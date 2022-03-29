@@ -80,6 +80,8 @@ end
 gem "pagy"
 
 gem "devise"
+gem 'omniauth-saml' 
+gem 'omniauth-rails_csrf_protection'
 
 gem "annotate"
 
