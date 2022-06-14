@@ -1,0 +1,22 @@
+<div id="<%= dom_id department %>">
+
+  <% if action_name != "show" %>
+    <%= department.dept_number %>
+    <%= department.name %>
+    <%= link_to "Show this department", department, class: "rounded py-1 px-2 bg-gray-100 inline-block font-xs" %>
+    <%= link_to 'Edit this department', edit_department_path(department), class: "rounded py-1 ml-2 px-2 bg-gray-100 inline-block font-xs" %>
+    <hr class="mt-6">
+  <% end %>
+
+  <% if action_name == "show" %>
+    <h1><%= department.name %></h1>
+    <ul>
+      <li><%= department.dept_number %></li>
+      <li><%= department.short_name %></li>
+      <li><%= department.updated_by %></li>
+      <li><%= department.created_at %></li>
+      <li><%= department.updated_at %></li>
+    </ul>
+  <% end %>
+
+</div>

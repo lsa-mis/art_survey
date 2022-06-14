@@ -84,6 +84,8 @@ gem 'google-cloud-storage', '~> 1.36', '>= 1.36.2'
 gem "pagy"
 
 gem "devise"
+gem 'omniauth-saml' 
+gem 'omniauth-rails_csrf_protection'
 
 gem "annotate"
 
