@@ -10,47 +10,47 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
-  idp_login_url = Rails.application.credentials.staging_idp_sso_target_url
-  idp_logout_url = Rails.application.credentials.staging_idp_slo_target_url
-  idp_fingerprint = Rails.application.credentials.staging_idp_cert_fingerprint
+#   idp_login_url = Rails.application.credentials.staging_idp_sso_target_url
+#   idp_logout_url = Rails.application.credentials.staging_idp_slo_target_url
+#   idp_fingerprint = Rails.application.credentials.staging_idp_cert_fingerprint
 
-  if Rails.env.production?
-      idp_login_url = Rails.application.credentials.production_idp_sso_target_url
-      idp_logout_url = Rails.application.credentials.production_idp_slo_target_url
-      idp_fingerprint = Rails.application.credentials.production_idp_cert_fingerprint
-  end
+#   if Rails.env.production?
+#       idp_login_url = Rails.application.credentials.production_idp_sso_target_url
+#       idp_logout_url = Rails.application.credentials.production_idp_slo_target_url
+#       idp_fingerprint = Rails.application.credentials.production_idp_cert_fingerprint
+#   end
 
-  consumer_service_url = Rails.application.credentials.dev_assertion_consumer_service_url
-  entity_id = Rails.application.credentials.dev_entity_id
+#   consumer_service_url = Rails.application.credentials.dev_assertion_consumer_service_url
+#   entity_id = Rails.application.credentials.dev_entity_id
 
-  if Rails.env.staging?
-      consumer_service_url = Rails.application.credentials.staging_assertion_consumer_service_url
-      entity_id = Rails.application.credentials.staging_entity_id
-  end
+#   if Rails.env.staging?
+#       consumer_service_url = Rails.application.credentials.staging_assertion_consumer_service_url
+#       entity_id = Rails.application.credentials.staging_entity_id
+#   end
 
-  if Rails.env.production?
-      consumer_service_url = Rails.application.credentials.production_assertion_consumer_service_url
-      entity_id = Rails.application.credentials.production_entity_id
-  end
+#   if Rails.env.production?
+#       consumer_service_url = Rails.application.credentials.production_assertion_consumer_service_url
+#       entity_id = Rails.application.credentials.production_entity_id
+#   end
 
-  config.omniauth :saml,
-      :assertion_consumer_service_url     => consumer_service_url,
-      :issuer                             => entity_id,
-      :idp_sso_target_url                 => idp_login_url,
-      :idp_slo_target_url                 => idp_logout_url,
-      :name_identifier_format             => "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
-      :attribute_statements               => {email: ['urn:oid:0.9.2342.19200300.100.1.3'],
-                                              name: ['urn:oid:2.16.840.1.113730.3.1.241'],
-                                              uid: ['urn:oid:0.9.2342.19200300.100.1.1'],
-                                              person_affiliation: ['urn:oid:1.3.6.1.4.1.5923.1.1.1.1'],
-                                              principal_name: ['urn:oid:1.3.6.1.4.1.5923.1.1.1.6']},
-      :request_attributes                 => {},
-      :idp_cert_fingerprint => idp_fingerprint,
-      :idp_cert_fingerprint_algorithm => 'http://www.w3.org/2000/09/xmldsig#sha256',
-      :allowed_clock_drift                => 10,
-      :private_key                        => Rails.application.credentials.service_provider_private_key,
-      :certificate                        => Rails.application.credentials.service_provider_certificate,
-      :security                           => {want_assertions_signed: true, want_assertions_encrypted: true}
+#   config.omniauth :saml,
+#       :assertion_consumer_service_url     => consumer_service_url,
+#       :issuer                             => entity_id,
+#       :idp_sso_target_url                 => idp_login_url,
+#       :idp_slo_target_url                 => idp_logout_url,
+#       :name_identifier_format             => "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+#       :attribute_statements               => {email: ['urn:oid:0.9.2342.19200300.100.1.3'],
+#                                               name: ['urn:oid:2.16.840.1.113730.3.1.241'],
+#                                               uid: ['urn:oid:0.9.2342.19200300.100.1.1'],
+#                                               person_affiliation: ['urn:oid:1.3.6.1.4.1.5923.1.1.1.1'],
+#                                               principal_name: ['urn:oid:1.3.6.1.4.1.5923.1.1.1.6']},
+#       :request_attributes                 => {},
+#       :idp_cert_fingerprint => idp_fingerprint,
+#       :idp_cert_fingerprint_algorithm => 'http://www.w3.org/2000/09/xmldsig#sha256',
+#       :allowed_clock_drift                => 10,
+#       :private_key                        => Rails.application.credentials.service_provider_private_key,
+#       :certificate                        => Rails.application.credentials.service_provider_certificate,
+#       :security                           => {want_assertions_signed: true, want_assertions_encrypted: true}
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -70,7 +70,7 @@ Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -231,7 +231,7 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
-  # config.timeout_in = 30.minutes
+  config.timeout_in = 30.minutes
 
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
@@ -254,7 +254,7 @@ Devise.setup do |config|
   # config.maximum_attempts = 20
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
-  # config.unlock_in = 1.hour
+  config.unlock_in = 1.hour
 
   # Warn on the last attempt before the account is locked.
   # config.last_attempt_warning = true
@@ -271,7 +271,7 @@ Devise.setup do |config|
 
   # When set to false, does not sign a user in automatically after their password is
   # reset. Defaults to true, so a user is signed in automatically after a reset.
-  # config.sign_in_after_reset_password = true
+#   config.sign_in_after_reset_password = true
 
   # ==> Configuration for :encryptable
   # Allow you to use another hashing or encryption algorithm besides bcrypt (default).
