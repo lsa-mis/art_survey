@@ -3,14 +3,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.0"
 
+gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.2", ">= 7.0.2.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+#gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+gem 'pg', '~> 1.3', '>= 1.3.5'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -28,7 +29,7 @@ gem "stimulus-rails"
 gem "tailwindcss-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
+gem 'jbuilder', '~> 2.11', '>= 2.11.5'
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
@@ -43,10 +44,11 @@ gem "redis", "~> 4.0"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+gem 'bootsnap', '~> 1.12', require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc", "~> 2.4.0"
+gem "sass-rails", ">= 6"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
@@ -71,11 +73,13 @@ group :development do
 end
 
 group :test do
-  gem "capybara"
+  gem 'capybara', '~> 3.37', '>= 3.37.1'
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "faker"
 end
+
+gem 'google-cloud-storage', '~> 1.36', '>= 1.36.2'
 
 gem "pagy"
 
