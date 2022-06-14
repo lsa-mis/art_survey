@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_03_15_203726) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -64,8 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_15_203726) do
   end
 
   create_table "assets", force: :cascade do |t|
-    t.integer "appraisal_type_id", null: false
-    t.integer "department_id", null: false
+    t.bigint "appraisal_type_id", null: false
+    t.bigint "department_id", null: false
     t.string "updated_by"
     t.string "location_building"
     t.string "location_room"
@@ -89,8 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_15_203726) do
   end
 
   create_table "permissions", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "department_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "department_id", null: false
     t.string "uniqname", null: false
     t.string "role", null: false
     t.datetime "created_at", null: false
