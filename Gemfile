@@ -46,6 +46,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.12', require: false
 
+gem "sprockets-rails"
 # Use Sass to process CSS
 # gem "sassc", "~> 2.4.0"
 # gem "sass-rails", ">= 6"
