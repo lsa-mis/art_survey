@@ -1,0 +1,33 @@
+<nav class="static bg-blue-900 shadow min-w-screen">
+  <div class="w-auto max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex-shrink-0 flex items-center">
+        <div class="flex">
+          <%= link_to root_path do %>
+            <div class="flex items-center">
+              <div class="inline-block h-8 justify-self-start content-start items-start">
+                <%= image_tag 'block_m-hex.png', alt: 'University of Michigan Logo', height: '35.75', width: '50', class: '' %>
+              </div>
+              <span class="text-white font text-3xl pl-2 font-sans font-medium">
+               LSA Art Survey
+              </span>
+            </div>
+          <% end %>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:space-x-4 pl-2">
+          <div class="border-transparent text-blue-50 inline-flex items-center justify-between space-x-4 pl-1 pt-1 border-b-2 text-base font-normal">
+            <div class="hover:underline">
+               <%= link_to "Items", items_path %>
+            </div>
+            <div class="hover:underline">
+              <%= link_to "Departments", departments_path %>
+            </div>
+            <div class="hover:underline">
+              <%= link_to 'Appraisal Types', appraisal_types_path %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
