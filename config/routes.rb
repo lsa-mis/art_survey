@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appraisal_types
   resources :items
   devise_for :users#, controllers: {omniauth_callbacks: "users/omniauth_callbacks", sessions: "users/sessions"} do
   #   delete 'sign_out', :to => 'users/sessions#destroy', :as => :destroy_user_session
