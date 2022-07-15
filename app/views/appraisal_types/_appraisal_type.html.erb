@@ -1,0 +1,19 @@
+<div id="<%= dom_id appraisal_type %>">
+
+  <% if action_name != "show" %>
+    <%= appraisal_type.name %>
+    <%= link_to "Show this appraisal_type", appraisal_type, class: "rounded py-1 px-2 bg-gray-100 inline-block font-xs" %>
+    <%= link_to 'Edit this appraisal_type', edit_appraisal_type_path(appraisal_type), class: "rounded py-1 ml-2 px-2 bg-gray-100 inline-block font-xs" %>
+    <hr class="mt-6">
+  <% end %>
+
+  <% if action_name == "show" %>
+    <h1><%= appraisal_type.name %></h1>
+    <ul>
+      <li><%= appraisal_type.description %></li>
+      <li><%= appraisal_type.created_at %></li>
+      <li><%= appraisal_type.updated_at %></li>
+    </ul>
+  <% end %>
+
+</div>
