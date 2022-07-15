@@ -53,12 +53,12 @@
 
   <div class="my-5">
     <%= form.label :appraisal_type_id %>
-    <%= form.text_field :appraisal_type_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :dappraisal_type_id, AppraisalType.all, :id, :name, {include_blank: "Select"}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :department_id %>
-    <%= form.text_field :department_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :department_id, Department.all, :id, :name, {include_blank: "Select"}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
