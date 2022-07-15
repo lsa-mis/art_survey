@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_15_203726) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_15_205810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_15_203726) do
     t.boolean "archived"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
     t.index ["appraisal_type_id"], name: "index_assets_on_appraisal_type_id"
     t.index ["department_id"], name: "index_assets_on_department_id"
   end
@@ -89,6 +90,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_15_203726) do
     t.string "updated_by", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "description"
+    t.string "location_building"
+    t.string "location_room"
+    t.integer "value_cost"
+    t.datetime "date_acquired"
+    t.string "department_contact"
+    t.string "updated_by"
+    t.boolean "archived"
+    t.bigint "appraisal_type_id", null: false
+    t.bigint "department_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appraisal_type_id"], name: "index_items_on_appraisal_type_id"
+    t.index ["department_id"], name: "index_items_on_department_id"
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -126,6 +144,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_15_203726) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "assets", "appraisal_types"
   add_foreign_key "assets", "departments"
+  add_foreign_key "items", "appraisal_types"
+  add_foreign_key "items", "departments"
   add_foreign_key "permissions", "departments"
   add_foreign_key "permissions", "users"
 end

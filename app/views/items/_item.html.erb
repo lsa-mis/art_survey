@@ -1,0 +1,57 @@
+<div id="<%= dom_id item %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= item.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Location building:</strong>
+    <%= item.location_building %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Location room:</strong>
+    <%= item.location_room %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Value cost:</strong>
+    <%= item.value_cost %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date acquired:</strong>
+    <%= item.date_acquired %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Department contact:</strong>
+    <%= item.department_contact %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Updated by:</strong>
+    <%= item.updated_by %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Archived:</strong>
+    <%= item.archived %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Appraisal type:</strong>
+    <%= item.appraisal_type_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Department:</strong>
+    <%= item.department_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this item", item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this item', edit_item_path(item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

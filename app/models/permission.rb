@@ -2,9 +2,9 @@
 #
 # Table name: permissions
 #
-#  id            :integer          not null, primary key
-#  user_id       :integer          not null
-#  department_id :integer          not null
+#  id            :bigint           not null, primary key
+#  user_id       :bigint           not null
+#  department_id :bigint           not null
 #  uniqname      :string           not null
 #  role          :string           not null
 #  created_at    :datetime         not null

@@ -2,7 +2,7 @@
 #
 # Table name: departments
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  dept_number :integer          not null
 #  name        :string           not null
 #  short_name  :string
