@@ -12,6 +12,9 @@
 #
 FactoryBot.define do
   factory :department do
-    
+    dept_number { Faker::Number.number(digits: 6) }
+    name { Faker::Commerce.department }
+    short_name { Faker::Alphanumeric.alpha(number: 4) }
+    updated_by nill
   end
 end

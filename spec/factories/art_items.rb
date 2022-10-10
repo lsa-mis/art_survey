@@ -17,6 +17,14 @@
 #
 FactoryBot.define do
   factory :art_item do
-    
+    description { Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false) }
+    location_building { Faker::Educator.university }
+    location_room { Faker::Number.number(digits: 4) }
+    value_cost { Faker::Number.number(digits: 6) }
+    date_acquired { Faker::Date.backward(days: 365) }
+    association :appraisal_type
+    archived { false }
+    association :departments
+    updated_by nil
   end
 end
