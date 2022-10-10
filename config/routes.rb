@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :art_items
   devise_for :users
   get 'static_pages/index'
   get 'static_pages/about'
