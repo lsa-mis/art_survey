@@ -11,5 +11,5 @@
 #  updated_at  :datetime         not null
 #
 class Department < ApplicationRecord
-    has_many :art_items
+  has_many :art_items
 end

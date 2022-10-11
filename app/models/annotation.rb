@@ -9,5 +9,5 @@
 #  updated_at :datetime         not null
 #
 class Annotation < ApplicationRecord
-	has_rich_text :note
+  has_rich_text :note
 end

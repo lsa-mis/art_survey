@@ -17,6 +17,6 @@
 #
 class ArtItem < ApplicationRecord
   has_rich_text :appraisal_description
-	has_rich_text :protection
-	belongs_to :department
+  has_rich_text :protection
+  belongs_to :department
 end
