@@ -79,6 +79,12 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+staging:
+  <<: *default
+  database: art_survey_staging
+  username: art_survey
+  password: <%= ENV["ART_SURVEY_DATABASE_PASSWORD"] %>
+
 production:
   <<: *default
   database: art_survey_production
