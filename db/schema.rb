@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_150147) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_222646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,21 +54,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_150147) do
 
   create_table "annotations", force: :cascade do |t|
     t.string "uri"
-    t.string "updated_by", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_annotations_on_user_id"
   end
 
   create_table "appraisal_types", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
-    t.string "updated_by", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_appraisal_types_on_user_id"
   end
 
   create_table "art_items", force: :cascade do |t|
-    t.string "description", null: false
     t.string "location_building", null: false
     t.string "location_room"
     t.integer "value_cost"
@@ -76,30 +77,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_150147) do
     t.bigint "appraisal_types_id"
     t.boolean "archived", default: false, null: false
     t.bigint "departments_id"
-    t.string "updated_by", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["appraisal_types_id"], name: "index_art_items_on_appraisal_types_id"
     t.index ["departments_id"], name: "index_art_items_on_departments_id"
+    t.index ["user_id"], name: "index_art_items_on_user_id"
   end
 
   create_table "departments", force: :cascade do |t|
     t.integer "dept_number", null: false
     t.string "name", null: false
     t.string "short_name", null: false
-    t.string "updated_by", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_departments_on_user_id"
   end
 
   create_table "permissions", force: :cascade do |t|
     t.string "uniqname", null: false
     t.string "role", null: false
-    t.string "updated_by", null: false
     t.bigint "departments_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["departments_id"], name: "index_permissions_on_departments_id"
+    t.index ["user_id"], name: "index_permissions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

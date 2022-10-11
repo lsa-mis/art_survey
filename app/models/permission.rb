@@ -5,10 +5,11 @@
 #  id             :bigint           not null, primary key
 #  uniqname       :string           not null
 #  role           :string           not null
-#  updated_by     :string           not null
 #  departments_id :bigint
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  user_id        :bigint
 #
 class Permission < ApplicationRecord
+  belongs_to :user # updated_by user
 end
