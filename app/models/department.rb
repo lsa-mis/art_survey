@@ -12,5 +12,4 @@
 #
 class Department < ApplicationRecord
   has_many :art_items
-  belongs_to :user # updated_by user
 end

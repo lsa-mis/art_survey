@@ -11,5 +11,4 @@
 #  user_id        :bigint
 #
 class Permission < ApplicationRecord
-  belongs_to :user # updated_by user
 end

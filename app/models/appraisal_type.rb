@@ -10,5 +10,4 @@
 #  user_id     :bigint
 #
 class AppraisalType < ApplicationRecord
-  belongs_to :user # updated_by user
 end
