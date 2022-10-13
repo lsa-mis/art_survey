@@ -20,5 +20,5 @@ class ArtItem < ApplicationRecord
   has_rich_text :protection
   belongs_to :appraisal_types
   belongs_to :department
-  belongs_to :user # updated_by user
+  has_many :annotations
 end

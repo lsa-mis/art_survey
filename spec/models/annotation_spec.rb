@@ -2,11 +2,12 @@
 #
 # Table name: annotations
 #
-#  id         :bigint           not null, primary key
-#  uri        :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint
+#  id          :bigint           not null, primary key
+#  uri         :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
+#  art_item_id :bigint
 #
 require 'rails_helper'
 
