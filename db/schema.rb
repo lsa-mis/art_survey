@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_222646) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_13_200946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_222646) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "art_item_id"
+    t.index ["art_item_id"], name: "index_annotations_on_art_item_id"
     t.index ["user_id"], name: "index_annotations_on_user_id"
   end
 
@@ -104,6 +106,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_222646) do
     t.bigint "user_id"
     t.index ["departments_id"], name: "index_permissions_on_departments_id"
     t.index ["user_id"], name: "index_permissions_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
