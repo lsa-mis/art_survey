@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appraisal_types
   resources :roles
   devise_for :users
   get 'static_pages/index'
