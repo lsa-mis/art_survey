@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_17_163220) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_17_214500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,12 +83,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_163220) do
     t.integer "value_cost", null: false
     t.date "date_acquired"
     t.bigint "appraisal_type_id", null: false
-    t.binary "archived", default: "0", null: false
     t.bigint "department_id", null: false
     t.integer "updated_by"
     t.string "department_contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "archived", default: false
     t.index ["appraisal_type_id"], name: "index_art_items_on_appraisal_type_id"
     t.index ["department_id"], name: "index_art_items_on_department_id"
   end
