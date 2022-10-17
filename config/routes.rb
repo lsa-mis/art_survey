@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :permissions
   resources :departments
   resources :appraisal_types
   resources :roles
