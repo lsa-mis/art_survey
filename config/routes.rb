@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :annotations
   resources :art_items
   resources :accesses
   resources :permissions

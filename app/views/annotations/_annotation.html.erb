@@ -1,0 +1,22 @@
+<div id="<%= dom_id annotation %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Note:</strong>
+    <%= annotation.note %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Created by:</strong>
+    <%= annotation.created_by %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Art item:</strong>
+    <%= annotation.art_item_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this annotation", annotation, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this annotation', edit_annotation_path(annotation), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
