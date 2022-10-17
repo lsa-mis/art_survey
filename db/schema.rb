@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_17_160015) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_17_162020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_160015) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "art_items", force: :cascade do |t|
+    t.string "location_building", null: false
+    t.string "location_room", null: false
+    t.integer "value_cost", null: false
+    t.date "date_acquired"
+    t.bigint "appraisal_type_id", null: false
+    t.binary "archived", default: "0", null: false
+    t.bigint "department_id", null: false
+    t.integer "updated_by"
+    t.string "department_contact"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appraisal_type_id"], name: "index_art_items_on_appraisal_type_id"
+    t.index ["department_id"], name: "index_art_items_on_department_id"
+  end
+
   create_table "departments", force: :cascade do |t|
     t.integer "deptID", null: false
     t.string "fullname", null: false
@@ -124,6 +140,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_160015) do
   add_foreign_key "accesses", "permissions"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "art_items", "appraisal_types"
+  add_foreign_key "art_items", "departments"
   add_foreign_key "permissions", "departments"
   add_foreign_key "permissions", "roles"
 end

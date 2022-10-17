@@ -1,0 +1,2 @@
+module ArtItemsHelper
+end

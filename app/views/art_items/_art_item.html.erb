@@ -1,0 +1,86 @@
+<div id="<%= dom_id art_item %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= art_item.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Location building:</strong>
+    <%= art_item.location_building %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Location room:</strong>
+    <%= art_item.location_room %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Value cost:</strong>
+    <%= art_item.value_cost %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date acquired:</strong>
+    <%= art_item.date_acquired %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Appraisal type:</strong>
+    <%= art_item.appraisal_type_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Appraisal description:</strong>
+    <%= art_item.appraisal_description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Protection:</strong>
+    <%= art_item.protection %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Archived:</strong>
+    <%= art_item.archived %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Department:</strong>
+    <%= art_item.department_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Updated by:</strong>
+    <%= art_item.updated_by %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Department contact:</strong>
+    <%= art_item.department_contact %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Annotation:</strong>
+    <%= art_item.annotation_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Documents:</strong>
+    <% art_item.documents.each do |document| %>
+      <div><%= link_to document.filename, document %></div>
+    <% end %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Images:</strong>
+    <% art_item.images.each do |image| %>
+      <div><%= link_to image.filename, image %></div>
+    <% end %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this art item", art_item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this art item', edit_art_item_path(art_item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
