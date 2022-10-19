@@ -16,6 +16,7 @@
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:space-x-4 pl-2">
           <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal"><%= link_to "About", static_pages_about_path, class: "#{class_names(active: current_page?(static_pages_about_path))}"%></div>
+          <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal"><%= link_to "Edit Page Information", page_informations_path, class: "#{class_names(active: current_page?(page_informations_path))}"%></div>
           <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal"><%= link_to "AdminDoc", "https://docs.google.com/document/d/1pmgKA3ZOaOsgaPZjhe2COJIYtvJkXHF8QQBXXqpnOTg/edit?usp=sharing", target: "_blank"%></div>
         </div>
       </div>
