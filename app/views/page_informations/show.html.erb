@@ -7,9 +7,9 @@
     <%= render @page_information %>
 
     <%= link_to 'Edit this page_information', edit_page_information_path(@page_information), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this page_information', page_information_path(@page_information), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
+    <%# <div class="inline-block ml-2"> %>
+      <%#= button_to 'Destroy this page_information', page_information_path(@page_information), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <%# </div> %>
     <%= link_to 'Back to page_informations', page_informations_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>
