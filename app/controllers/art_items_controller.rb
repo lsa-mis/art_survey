@@ -13,6 +13,7 @@ class ArtItemsController < ApplicationController
   # GET /art_items/new
   def new
     @art_item = ArtItem.new
+    @departments_list = Department.all
   end
 
   # GET /art_items/1/edit
@@ -65,6 +66,6 @@ class ArtItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def art_item_params
-      params.require(:art_item).permit(:description, :location_building, :location_room, :value_cost, :date_acquired, :appraisal_type_id, :appraisal_description, :protection, :archived, :department_id, :updated_by, :department_contact, :annotation_id, documents: [], images: [])
+      params.require(:art_item).permit(:description, :location_building, :location_room, :value_cost, :date_acquired, :appraisal_type_id, :protection, :archived, :department_id, :updated_by, :department_contact, documents: [], images: [])
     end
 end
