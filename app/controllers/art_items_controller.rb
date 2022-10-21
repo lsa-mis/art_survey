@@ -3,7 +3,7 @@ class ArtItemsController < ApplicationController
 
   # GET /art_items or /art_items.json
   def index
-    @art_items = ArtItem.all
+    @art_items = ArtItem.joins(:department).select("art_items.*, departments.fullname").order(:fullname)
   end
 
   # GET /art_items/1 or /art_items/1.json
