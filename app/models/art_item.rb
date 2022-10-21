@@ -24,4 +24,7 @@ class ArtItem < ApplicationRecord
   has_rich_text :protection
   has_many_attached :documents
   has_many_attached :images
+
+  scope :with_departments, -> { ArtItem.includes(:department) }
+
 end
