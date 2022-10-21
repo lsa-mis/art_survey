@@ -1,9 +1,20 @@
 class ArtItemsController < ApplicationController
   before_action :set_art_item, only: %i[ show edit update destroy ]
+  before_action :set_departments_list, only: [:new, :create, :edit, :update]
+  before_action :set_appraisal_types, only: [:new, :create, :edit, :update]
 
   # GET /art_items or /art_items.json
   def index
-    @art_items = ArtItem.joins(:department).select("art_items.*, departments.fullname").order(:fullname)
+    @q = ArtItem.with_departments.ransack(params[:q])
+    @art_items = @q.result.order('department.fullname')
+    @appraisal_type_ids = ArtItem.all.pluck(:appraisal_type_id).uniq.sort
+
+    unless params[:q].nil?
+      render turbo_stream: turbo_stream.replace(
+      :roomListing,
+      partial: "art_items/listing"
+    )
+    end
   end
 
   # GET /art_items/1 or /art_items/1.json
@@ -13,7 +24,6 @@ class ArtItemsController < ApplicationController
   # GET /art_items/new
   def new
     @art_item = ArtItem.new
-    @departments_list = Department.all
   end
 
   # GET /art_items/1/edit
@@ -62,6 +72,14 @@ class ArtItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_art_item
       @art_item = ArtItem.find(params[:id])
+    end
+
+    def set_departments_list
+      @departments_list = Department.all
+    end
+
+    def set_appraisal_types
+      @appraisal_types = AppraisalType.all
     end
 
     # Only allow a list of trusted parameters through.
