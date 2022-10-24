@@ -5,7 +5,17 @@ class ArtItemsController < ApplicationController
 
   # GET /art_items or /art_items.json
   def index
-    @q = ArtItem.with_departments.ransack(params[:q])
+    if params[:q].nil?
+      @q = ArtItem.active_with_departments.ransack(params[:q])
+    else
+      if
+        params[:q][:archived_true].present? && params[:q][:archived_true] == "0"
+        @q = ArtItem.active_with_departments.ransack(params[:q])
+      else
+        @q = ArtItem.archived_with_departments.ransack(params[:q])
+      end
+    end
+
     @art_items = @q.result.order('department.fullname')
     @appraisal_type_ids = ArtItem.all.pluck(:appraisal_type_id).uniq.sort
     @departments = Department.where(id: (ArtItem.pluck(:department_id).uniq)).order(:fullname)
