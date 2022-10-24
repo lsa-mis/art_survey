@@ -8,6 +8,7 @@ class ArtItemsController < ApplicationController
     @q = ArtItem.with_departments.ransack(params[:q])
     @art_items = @q.result.order('department.fullname')
     @appraisal_type_ids = ArtItem.all.pluck(:appraisal_type_id).uniq.sort
+    @departments = Department.where(id: (ArtItem.pluck(:department_id).uniq)).order(:fullname)
 
     unless params[:q].nil?
       render turbo_stream: turbo_stream.replace(
