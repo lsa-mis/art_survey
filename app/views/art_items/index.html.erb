@@ -17,7 +17,7 @@
     <%= search_form_for @q, data: { target: "autosubmit.form", action: "input->autosubmit#search" } do |form| %>
       <div class="relative min-h-screen md:flex">
         <div class="sidebar w-64 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out" data-autosubmit-target="sidebar">
-          <div class="pl-1 bg-gray-50 shadow border text-sm">
+          <div class="pl-1 bg-gray-50 shadow border text-base">
             <div class="px-1">
               <label for="department_id">Search Department</label>
               <%= form.collection_select :department_id_eq, @departments, :id, :fullname, include_blank: "Select ...", class: "block rounded-none rounded-l-md sm:text-sm border-gray-300" %>
@@ -40,10 +40,11 @@
               </div>
             </div>
             <span class="value_cost-error--hide text-red-700 text-sm mt-2 -mb-2" data-autosubmit-target="value_cost_error"></span>
+            <br>
             <hr>
             <div class="px-1 pb-2">
               <label for="room_type">Search Appraisal Type</label>
-              <div>
+              <div class="text-sm">
                 <% @appraisal_type_ids.each do |appraisal_type_id| %>
                   <%= form.check_box(:appraisal_type_id_in, {multiple: true}, appraisal_type_id, nil) %>
                   <%= AppraisalType.find(appraisal_type_id).classification %>
@@ -51,10 +52,17 @@
                 <% end %>
               </div>
             </div>
+            <br>
             <hr>
             <div class="px-1 pb-2">
               <%= form.label "Rich Text Search" %>
               <%= form.text_field :protection_body_cont, placeholder: "Contains", class: "block rounded-none rounded-l-md sm:text-sm border-gray-300", "data-action": "input->autosubmit#search" %>
+            </div>
+            <br>
+            <hr>
+            <div class="px-1 pb-2">
+              <%= form.check_box :archived_true %>
+              <%= form.label "Archived items" %>
             </div>
           </div>
           <br>
