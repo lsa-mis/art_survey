@@ -17,7 +17,7 @@ class ArtItemsController < ApplicationController
     end
 
     @art_items = @q.result.order('department.fullname')
-    @appraisal_type_ids = ArtItem.all.pluck(:appraisal_type_id).uniq.sort
+    @appraisal_type_ids = ArtItem.active_with_departments.pluck(:appraisal_type_id).uniq.sort
     @departments = Department.where(id: (ArtItem.pluck(:department_id).uniq)).order(:fullname)
 
     unless params[:q].nil?
