@@ -20,8 +20,11 @@ class ArtItem < ApplicationRecord
   belongs_to :department
   has_many :annotations
   has_rich_text :description
+  has_one :description, class_name: 'ActionText::RichText', as: :record
   has_rich_text :appraisal_description
+  has_one :appraisal_description, class_name: 'ActionText::RichText', as: :record
   has_rich_text :protection
+  has_one :protection, class_name: 'ActionText::RichText', as: :record
   has_many_attached :documents
   has_many_attached :images
 
