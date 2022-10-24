@@ -11,7 +11,7 @@ class ArtItemsController < ApplicationController
 
     unless params[:q].nil?
       render turbo_stream: turbo_stream.replace(
-      :roomListing,
+      :itemsListing,
       partial: "art_items/listing"
     )
     end
@@ -84,6 +84,6 @@ class ArtItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def art_item_params
-      params.require(:art_item).permit(:description, :location_building, :location_room, :value_cost, :date_acquired, :appraisal_type_id, :protection, :archived, :department_id, :updated_by, :department_contact, documents: [], images: [])
+      params.require(:art_item).permit(:description, :location_building, :location_room, :value_cost, :date_acquired, :appraisal_type_id, :appraisal_description, :protection, :archived, :department_id, :updated_by, :department_contact, documents: [], images: [])
     end
 end
