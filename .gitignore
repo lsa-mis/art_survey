@@ -31,6 +31,11 @@
 
 /public/assets
 
+# remove storage from git since we are using GCP and Hatchbox
+public/uploads
+/storage
+
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
