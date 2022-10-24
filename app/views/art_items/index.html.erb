@@ -20,19 +20,17 @@
           <div class="pl-1 bg-gray-50 shadow border text-sm">
             <div class="px-1">
               <label for="building">Search Building</label>
-              <%= form.text_field :location_building_cont, class: "block rounded-none rounded-l-md sm:text-sm border-gray-300", :placeholder => 'ex. "East Hall"', :"data-action" => "input->autosubmit#search", :"data-autosubmit-target" => "location_building" %>
+              <%= form.text_field :location_building_cont, class: "block rounded-none rounded-l-md sm:text-sm border-gray-300", placeholder: 'ex. "East Hall"', "data-action": "input->autosubmit#search" %>
             </div>
             <br>
             <hr>
             <label>Value cost</label>
             <div class="flex mt-2 mb-2">
               <div class="w-1/2 ml-2 mr-2">
-                <label class="block text-sm font-medium text-gray-700" for="min_value_cost">Min</label>
-                <%= number_field_tag 'min_value_cost', nil, min: 0, value: 0, :"data-autosubmit-target" => "min_value_cost", class: 'w-full block rounded sm:text-sm border-gray-300' %>
+                <%= form.text_field :value_cost_gteq, placeholder: "From", "data-autosubmit-target": "min_value_cost", class: 'w-full block rounded sm:text-sm border-gray-300' %>
               </div>
               <div class="ml-1 mr-2 w-1/2">
-                <label class="block text-sm font-medium text-gray-700" for="max_value_cost">Max</label>
-                  <%= number_field_tag 'max_value_cost', nil, max: 100000, value: 100000, :"data-autosubmit-target" => "max_value_cost", class: 'w-full block rounded sm:text-sm border-gray-300' %>
+                  <%= form.text_field :value_cost_lteq, placeholder: "To", "data-autosubmit-target": "max_value_cost", class: 'w-full block rounded sm:text-sm border-gray-300' %>
               </div>
             </div>
             <span class="value_cost-error--hide text-red-700 text-sm mt-2 -mb-2" data-autosubmit-target="value_cost_error"></span>
@@ -41,11 +39,16 @@
               <label for="room_type">Search Appraisal Type</label>
               <div>
                 <% @appraisal_type_ids.each do |appraisal_type_id| %>
-                  <%= AppraisalType.find(appraisal_type_id).classification %>
                   <%= form.check_box(:appraisal_type_id_in, {multiple: true}, appraisal_type_id, nil) %>
+                  <%= AppraisalType.find(appraisal_type_id).classification %>
                   <br>
                 <% end %>
               </div>
+            </div>
+            <hr>
+            <div class="px-1 pb-2">
+              <%= form.label "Rich Text Search" %>
+              <%= form.text_field :protection_body_cont, placeholder: "Contains", class: "block rounded-none rounded-l-md sm:text-sm border-gray-300", "data-action": "input->autosubmit#search" %>
             </div>
           </div>
           <br>
