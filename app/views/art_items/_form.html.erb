@@ -38,7 +38,7 @@
 
   <div class="my-5">
     <%= form.label :appraisal_type_id %>
-    <%= form.text_field :appraisal_type_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :appraisal_type_id, @appraisal_types, :id, :classification, {include_blank: "Select"}, required: true %>
   </div>
 
   <div class="my-5">
@@ -53,12 +53,12 @@
 
   <div class="my-5">
     <%= form.label :archived %>
-    <%= form.text_field :archived, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.check_box :archived %>
   </div>
 
   <div class="my-5">
     <%= form.label :department_id %>
-    <%= form.text_field :department_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :department_id, @departments_list, :id, :fullname, {include_blank: "Select"}, required: true %>
   </div>
 
   <div class="my-5">
@@ -69,11 +69,6 @@
   <div class="my-5">
     <%= form.label :department_contact %>
     <%= form.text_field :department_contact, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :annotation_id %>
-    <%= form.text_field :annotation_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
