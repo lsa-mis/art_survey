@@ -20,7 +20,7 @@
           <div class="pl-1 bg-gray-50 shadow border text-base">
             <div class="px-1">
               <label for="department_id">Search Department</label>
-              <%= form.collection_select :department_id_eq, @departments, :id, :fullname, include_blank: "Select ...", class: "block rounded-none rounded-l-md text-xs border-gray-300"%>
+              <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Select ..." }, { class: "block rounded-none rounded-l-md text-xs border-gray-300" } %>
             </div>
             <br>
             <hr>
