@@ -152,8 +152,6 @@ GEM
     nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pagy (5.10.1)
-      activesupport
     pg (1.4.3)
     public_suffix (5.0.0)
     puma (5.6.5)
@@ -283,7 +281,6 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   ldap_lookup (~> 0.1.6)
-  pagy (~> 5.10, >= 5.10.1)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4)
