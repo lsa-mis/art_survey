@@ -18,6 +18,10 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+# Ignore gcp auth
+/config/lsa-was-base-ca3ae384ea8a.json
+/config/InCommon.CA.crt
+
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
@@ -26,6 +30,11 @@
 !/tmp/storage/.keep
 
 /public/assets
+
+# remove storage from git since we are using GCP and Hatchbox
+/uploads/
+/storage/
+
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

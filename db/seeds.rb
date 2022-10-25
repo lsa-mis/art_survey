@@ -18,3 +18,6 @@
 #   {fullname: 'Applied Physics', deptID: 184600, shortname: 'AppPhys', updated_by: 1},
 #   {fullname: 'Asian Languages & Cultures', deptID: 176000, shortname: 'Asian', updated_by: 1}
 # ])
+
+PageInformation.create!(location: 'home')
+
