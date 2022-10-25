@@ -52,7 +52,6 @@ gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 
 gem 'pagy', '~> 5.10', '>= 5.10.1'
-gem 'pg_search', '~> 2.3', '>= 2.3.6'
 gem 'ransack', '~> 3.2', '>= 3.2.1'
 
 group :development, :test do
