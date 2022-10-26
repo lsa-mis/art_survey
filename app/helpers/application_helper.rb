@@ -14,4 +14,8 @@ module ApplicationHelper
     field.strftime("%m/%d/%Y") unless field.blank?
   end
 
+  def show_user(id)
+    User.find(id).updated_by_name
+  end
+
 end
