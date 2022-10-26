@@ -50,7 +50,7 @@
       Date acquired
       </dt>
       <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.date_acquired %></span>
+        <span class="flex-grow"><%= show_date(art_item.date_acquired) %></span>
       </dd>
     </div>
 
@@ -99,6 +99,23 @@
       </dd>
     </div>
 
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Created at
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= show_date(art_item.created_at) %></span>
+      </dd>
+    </div>
+
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Updated at
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= show_date(art_item.updated_at) %></span>
+      </dd>
+    </div>
 
   </dl>
 </div>
