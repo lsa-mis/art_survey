@@ -1,9 +1,31 @@
 class ArtItemsController < ApplicationController
   before_action :set_art_item, only: %i[ show edit update destroy ]
+  before_action :set_departments_list, only: [:new, :create, :edit, :update]
+  before_action :set_appraisal_types, only: [:new, :create, :edit, :update]
 
   # GET /art_items or /art_items.json
   def index
-    @art_items = ArtItem.all
+    if params[:q].nil?
+      @q = ArtItem.active_with_departments.ransack(params[:q])
+    else
+      if
+        params[:q][:archived_true].present? && params[:q][:archived_true] == "0"
+        @q = ArtItem.active_with_departments.ransack(params[:q])
+      else
+        @q = ArtItem.archived_with_departments.ransack(params[:q])
+      end
+    end
+
+    @art_items = @q.result.order('department.fullname')
+    @appraisal_type_ids = ArtItem.active_with_departments.pluck(:appraisal_type_id).uniq.sort
+    @departments = Department.where(id: (ArtItem.pluck(:department_id).uniq)).order(:fullname)
+
+    unless params[:q].nil?
+      render turbo_stream: turbo_stream.replace(
+      :itemsListing,
+      partial: "art_items/listing"
+    )
+    end
   end
 
   # GET /art_items/1 or /art_items/1.json
@@ -63,8 +85,16 @@ class ArtItemsController < ApplicationController
       @art_item = ArtItem.find(params[:id])
     end
 
+    def set_departments_list
+      @departments_list = Department.all
+    end
+
+    def set_appraisal_types
+      @appraisal_types = AppraisalType.all
+    end
+
     # Only allow a list of trusted parameters through.
     def art_item_params
-      params.require(:art_item).permit(:description, :location_building, :location_room, :value_cost, :date_acquired, :appraisal_type_id, :appraisal_description, :protection, :archived, :department_id, :updated_by, :department_contact, :annotation_id, documents: [], images: [])
+      params.require(:art_item).permit(:description, :location_building, :location_room, :value_cost, :date_acquired, :appraisal_type_id, :appraisal_description, :protection, :archived, :department_id, :updated_by, :department_contact, documents: [], images: [])
     end
 end

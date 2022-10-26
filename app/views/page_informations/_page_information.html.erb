@@ -1,0 +1,17 @@
+<div id="<%= dom_id page_information %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Location:</strong>
+    <%= page_information.location %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Content:</strong>
+    <%= page_information.content %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this page information", page_information, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this page information', edit_page_information_path(page_information), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
