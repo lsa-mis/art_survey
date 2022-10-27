@@ -1,11 +1,24 @@
+<% if art_item.archived %>
+  <%= render 'archived' %>
+<% end %>  
+
 <div class="mt-5 border-t border-gray-200">
-  <dl class="divide-y divide-gray-200">  
+  <dl class="divide-y divide-gray-200">
     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
       <dt class="text-sm font-medium text-gray-500">
       Department
       </dt>
       <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
         <span class="flex-grow"><%= art_item.department.fullname %></span>
+      </dd>
+    </div>
+
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Department contact:
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.department_contact %></span>
       </dd>
     </div>
 
@@ -78,15 +91,6 @@
       </dt>
       <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
         <span class="flex-grow"><%= art_item.protection %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Department contact:
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.department_contact %></span>
       </dd>
     </div>
 
