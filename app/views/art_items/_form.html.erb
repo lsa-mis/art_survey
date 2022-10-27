@@ -17,6 +17,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :department_contact %>
+    <%= form.text_field :department_contact, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :description %>
     <%= form.rich_text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
@@ -57,16 +62,6 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :archived %>
-    <%= form.check_box :archived %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :department_contact %>
-    <%= form.text_field :department_contact, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
     <%= form.label :documents %>
     <%= form.file_field :documents, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
@@ -75,6 +70,13 @@
     <%= form.label :images %>
     <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
+
+  <% unless @art_item.new_record? %>
+    <div class="my-5">
+      <%= form.label :archived %>
+      <%= form.check_box :archived %>
+    </div>
+  <% end %>
 
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
