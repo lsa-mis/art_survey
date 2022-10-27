@@ -20,7 +20,7 @@ FactoryBot.define do
     description { nil }
     location_building { "MyString" }
     location_room { "MyString" }
-    value_cost { 1 }
+    value_cost { 1000 }
     date_acquired { "2022-10-17" }
     appraisal_type { nil }
     appraisal_description { nil }

@@ -18,5 +18,32 @@
 require 'rails_helper'
 
 RSpec.describe ArtItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let!(:art_item) do
+    FactoryBot.create(:art_item)
+  end
+
+  context "value cost is 1000" do
+    before { phone_number.update!(value: "1000") }
+
+    it "equals 1000" do
+      expect(phone_number.value).to eq("5558568075")
+    end
+  end
+
+  context "phone number contains parentheses" do
+    before { phone_number.update!(value: "(555) 856-8075") }
+
+    it "strips out the non-numeric characters" do
+      expect(phone_number.value).to eq("5558568075")
+    end
+  end
+
+  context "phone number contains country code" do
+    before { phone_number.update!(value: "+1 555 856 8075") }
+
+    it "strips out the country code" do
+      expect(phone_number.value).to eq("5558568075")
+    end
+  end
 end
