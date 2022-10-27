@@ -28,4 +28,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable, :omniauthable, omniauth_providers: [:saml]
+
+  def updated_by_name
+    "#{self.display_name} - #{email}"
+  end
+
 end

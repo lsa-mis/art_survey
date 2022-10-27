@@ -1,78 +1,130 @@
-<div id="<%= dom_id art_item %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= art_item.description %>
-  </p>
+<% if art_item.archived %>
+  <%= render 'archived' %>
+<% end %>  
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Location building:</strong>
-    <%= art_item.location_building %>
-  </p>
+<div class="mt-5 border-t border-gray-200">
+  <dl class="divide-y divide-gray-200">
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Department
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.department.fullname %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Location room:</strong>
-    <%= art_item.location_room %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Department contact:
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.department_contact %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Value cost:</strong>
-    <%= art_item.value_cost %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Description
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.description %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Date acquired:</strong>
-    <%= art_item.date_acquired %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Location building
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.location_building %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Appraisal type:</strong>
-    <%= art_item.appraisal_type_id %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Location room
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.location_room %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Appraisal Description:</strong>
-    <%= art_item.appraisal_description %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Value cost
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.value_cost %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Protection:</strong>
-    <%= art_item.protection %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Date acquired
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= show_date(art_item.date_acquired) %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Archived:</strong>
-    <%= art_item.archived %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Appraisal type
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.appraisal_type.classification %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Department:</strong>
-    <%= art_item.department_id %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Appraisal Description
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.appraisal_description %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Updated by:</strong>
-    <%= art_item.updated_by %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Protection
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= art_item.protection %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Department contact:</strong>
-    <%= art_item.department_contact %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Updated by
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= show_user(art_item.updated_by) %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Documents:</strong>
-    <% art_item.documents.each do |document| %>
-      <div><%= link_to document.filename, document %></div>
-    <% end %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Created at
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= show_date(art_item.created_at) %></span>
+      </dd>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Images:</strong>
-    <% art_item.images.each do |image| %>
-      <div><%= link_to image.filename, image %></div>
-    <% end %>
-  </p>
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-500">
+      Updated at
+      </dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow"><%= show_date(art_item.updated_at) %></span>
+      </dd>
+    </div>
 
+  </dl>
+</div>
+
+<div>
   <% if action_name != "show" %>
     <%= link_to "Show this art item", art_item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this art item', edit_art_item_path(art_item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

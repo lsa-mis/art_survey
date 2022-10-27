@@ -10,4 +10,12 @@ module ApplicationHelper
     PageInformation.find_by(location: location).content  if PageInformation.find_by(location: location).present?
   end
 
+  def show_date(field)
+    field.strftime("%m/%d/%Y") unless field.blank?
+  end
+
+  def show_user(id)
+    User.find(id).updated_by_name
+  end
+
 end
