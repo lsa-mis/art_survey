@@ -27,5 +27,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :trackable
+         :trackable, :omniauthable, omniauth_providers: [:saml]
+
+  def updated_by_name
+    "#{self.display_name} - #{email}"
+  end
+
 end

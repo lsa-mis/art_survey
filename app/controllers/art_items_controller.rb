@@ -44,6 +44,7 @@ class ArtItemsController < ApplicationController
   # POST /art_items or /art_items.json
   def create
     @art_item = ArtItem.new(art_item_params)
+    @art_item.updated_by = current_user.id
 
     respond_to do |format|
       if @art_item.save
@@ -60,6 +61,7 @@ class ArtItemsController < ApplicationController
   def update
     respond_to do |format|
       if @art_item.update(art_item_params)
+        @art_item.update(updated_by: current_user.id)
         format.html { redirect_to art_item_url(@art_item), notice: "Art item was successfully updated." }
         format.json { render :show, status: :ok, location: @art_item }
       else
