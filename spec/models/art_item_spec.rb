@@ -18,5 +18,33 @@
 require 'rails_helper'
 
 RSpec.describe ArtItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let!(:art_item) do
+    FactoryBot.create(:art_item)
+  end
+
+  context "value_cost is greter than 1000" do
+    before { art_item.update!(value_cost: 1200) }
+
+    it "enter value greater than 1000" do
+      expect(art_item.value_cost).to be >= 1000
+    end
+  end
+
+  context "value_cost equal to 1000" do
+    before { art_item.update!(value_cost: 1000) }
+
+    it "enter value equal to 1000" do
+      expect(art_item.value_cost).to be >= 1000
+    end
+  end
+
+  context "value less than 1000" do
+    it "entering value less than 1000 is invalid" do
+      art_item = build(:art_item, value_cost: 200)
+      art_item.valid?
+      expect(art_item).to_not be_valid
+      expect(art_item.errors[:value_cost]).to include("must be greater than or equal to 1000")
+    end
+  end
 end

@@ -11,9 +11,8 @@
 #
 FactoryBot.define do
   factory :permission do
-    uniqname { "MyString" }
-    role { nil }
-    department { nil }
+    role {1}
+    department {1}
     updated_by { 1 }
   end
 end

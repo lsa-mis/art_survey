@@ -28,6 +28,8 @@ class ArtItem < ApplicationRecord
   has_many_attached :documents
   has_many_attached :images
 
+  validates :value_cost, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
+
   scope :active_with_departments, -> { ArtItem.includes(:department).where(archived: false) }
   scope :archived_with_departments, -> { ArtItem.includes(:department).where(archived: true) }
 

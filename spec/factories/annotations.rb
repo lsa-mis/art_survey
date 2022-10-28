@@ -10,8 +10,7 @@
 #
 FactoryBot.define do
   factory :annotation do
-    note { nil }
     created_by { 1 }
-    art_item { nil }
+    art_item {1}
   end
 end

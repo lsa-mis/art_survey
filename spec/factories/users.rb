@@ -24,6 +24,13 @@
 #
 FactoryBot.define do
   factory :user do
-    
+    id { Faker::Number.between(from: 1, to: 10) }
+    email { Faker::Internet.email }
+    provider { Faker::FunnyName.one_word_name }
+    uid { Faker::Number.between(from: 567489, to: 789760) }
+    uniqname { Faker::Internet.username(specifier: 5..10) }
+    principal_name { Faker::FunnyName.two_word_name }
+    display_name { Faker::FunnyName.one_word_name }
+    person_affiliation {Faker::Internet.domain_name}   
   end
 end

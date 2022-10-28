@@ -9,7 +9,6 @@
 #
 FactoryBot.define do
   factory :page_information do
-    location { "MyString" }
-    content { nil }
+    location { "home" }
   end
 end

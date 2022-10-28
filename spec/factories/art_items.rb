@@ -17,20 +17,21 @@
 #
 FactoryBot.define do
   factory :art_item do
-    description { nil }
-    location_building { "MyString" }
-    location_room { "MyString" }
-    value_cost { 1 }
-    date_acquired { "2022-10-17" }
-    appraisal_type { nil }
-    appraisal_description { nil }
-    protection { nil }
-    archived { "" }
-    department { nil }
+    description {Faker::Lorem.sentence(word_count: 3)}
+    location_building {Faker::University.suffix}
+    location_room {Faker::Number.number(digits: 4)}
+    value_cost {Faker::Number.number(digits: 4)}
+    date_acquired {Faker::Date.backward(days: 14)}
+    appraisal_type_id {1}
+    appraisal_description {Faker::Lorem.paragraph}
+    protection {Faker::Lorem.paragraph}
+    archived { 0 }
+    department_id {1}
     updated_by { 1 }
-    department_contact { "MyString" }
-    annotation { nil }
+    department_contact {Faker::Name.name}
     documents { nil }
     images { nil }
+    created_at { Faker::Date.backward(days: 14) }
+    updated_at { Faker::Date.backward(days: 14) }
   end
 end
