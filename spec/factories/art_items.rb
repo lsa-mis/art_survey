@@ -22,15 +22,16 @@ FactoryBot.define do
     location_room {Faker::Number.number(digits: 4)}
     value_cost {Faker::Number.number(digits: 4)}
     date_acquired {Faker::Date.backward(days: 14)}
-    association :appraisal_type
+    appraisal_type_id {1}
     appraisal_description {Faker::Lorem.paragraph}
     protection {Faker::Lorem.paragraph}
     archived { 0 }
-    association :department
+    department_id {1}
     updated_by { 1 }
     department_contact {Faker::Name.name}
-    association :annotation
     documents { nil }
     images { nil }
+    created_at { Faker::Date.backward(days: 14) }
+    updated_at { Faker::Date.backward(days: 14) }
   end
 end

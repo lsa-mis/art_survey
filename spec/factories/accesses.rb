@@ -11,7 +11,7 @@
 #
 FactoryBot.define do
   factory :access do
-    association :permission
+    permission {1}
     uniqname { Faker::Internet.username(specifier: 5..8) }
     updated_by { 1 }
   end

@@ -11,6 +11,6 @@
 FactoryBot.define do
   factory :annotation do
     created_by { 1 }
-    association :art_item
+    art_item {1}
   end
 end

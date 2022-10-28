@@ -11,8 +11,8 @@
 #
 FactoryBot.define do
   factory :role do
-    title { "MyString" }
-    description { "MyText" }
+    title { Faker::FunnyName.one_word_name }
+    description { Faker::Lorem.paragraph }
     updated_by { 1 }
   end
 end
