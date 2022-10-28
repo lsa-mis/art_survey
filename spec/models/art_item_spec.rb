@@ -19,31 +19,32 @@ require 'rails_helper'
 
 RSpec.describe ArtItem, type: :model do
 
-  let!(:art_item) do
-    FactoryBot.create(:art_item)
-  end
+  # let!(:art_item) do
+  #   FactoryBot.create(:art_item)
+  # end
 
-  context "value cost is 1000" do
-    before { phone_number.update!(value: "1000") }
+  context "value_cost can not be less than 1000" do
+    # before { art_item.update!(value_cost: 1200) }
 
-    it "equals 1000" do
-      expect(phone_number.value).to eq("5558568075")
+    it "enter value greater than 1000" do
+      art_item = FactoryBot.create(:art_item)
+      expect(art_item.value_cost).to be >= 1000
     end
   end
 
-  context "phone number contains parentheses" do
-    before { phone_number.update!(value: "(555) 856-8075") }
+  # context "value greater than or equal to 1000" do
+  #   before { art_item.update!(value_cost: 2300) }
 
-    it "strips out the non-numeric characters" do
-      expect(phone_number.value).to eq("5558568075")
-    end
-  end
+  #   it "greater than or equal to 1000" do
+  #     expect(art_item.value_cost).to be >= 1000
+  #   end
+  # end
 
-  context "phone number contains country code" do
-    before { phone_number.update!(value: "+1 555 856 8075") }
+  # context "value cannot be less than 1000" do
+  #   before { art_item.update!(value_cost: 200) }
 
-    it "strips out the country code" do
-      expect(phone_number.value).to eq("5558568075")
-    end
-  end
+  #   it "less than 1000" do
+  #     expect(art_item.value_cost).not_to be < 1000
+  #   end
+  # end
 end
