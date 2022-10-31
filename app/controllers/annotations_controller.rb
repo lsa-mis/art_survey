@@ -22,15 +22,14 @@ class AnnotationsController < ApplicationController
   # POST /annotations or /annotations.json
   def create
     @annotation = Annotation.new(annotation_params)
+    @annotation.created_by = current_user.id
 
-    respond_to do |format|
-      if @annotation.save
-        format.html { redirect_to annotation_url(@annotation), notice: "Annotation was successfully created." }
-        format.json { render :show, status: :created, location: @annotation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @annotation.errors, status: :unprocessable_entity }
-      end
+    if @annotation.save
+      @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
+      @new_annotation = Annotation.new(art_item: @annotation.art_item)
+      flash.now[:notice] = "Annotation successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
