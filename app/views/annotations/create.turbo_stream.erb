@@ -1,6 +1,6 @@
 <%= turbo_stream.prepend "annotations", @annotation %>
 
-<%= turbo_stream.replace "new_annotation" do %>
+<%= turbo_stream.update "new_annotation" do %>
   <%= render "form", annotation: @new_annotation %>
 <% end %>
 

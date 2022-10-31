@@ -35,14 +35,11 @@ class AnnotationsController < ApplicationController
 
   # PATCH/PUT /annotations/1 or /annotations/1.json
   def update
-    respond_to do |format|
-      if @annotation.update(annotation_params)
-        format.html { redirect_to annotation_url(@annotation), notice: "Annotation was successfully updated." }
-        format.json { render :show, status: :ok, location: @annotation }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @annotation.errors, status: :unprocessable_entity }
-      end
+    if @annotation.update(annotation_params)
+      @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
+      flash.now[:notice] = "Annotation successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
