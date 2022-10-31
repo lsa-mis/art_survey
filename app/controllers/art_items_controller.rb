@@ -30,6 +30,8 @@ class ArtItemsController < ApplicationController
 
   # GET /art_items/1 or /art_items/1.json
   def show
+    @new_annotation = Annotation.new(art_item: @art_item)
+    @annotations = @art_item.annotations.order("created_at DESC")
   end
 
   # GET /art_items/new

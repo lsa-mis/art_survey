@@ -1,12 +1,18 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class="mx-auto md:w-2/3 w-full">
   <div class="mx-auto">
-
     <%= render @art_item %>
-
     <%= link_to 'Edit this art_item', edit_art_item_path(@art_item), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to 'Destroy this art_item', art_item_path(@art_item), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
     <%= link_to 'Back to art_items', art_items_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+
+  <%= turbo_frame_tag "new_annotation" do %>
+    <%= render "annotations/form", annotation: @new_annotation %>
+  <% end %>
+
+  <div class="annotations" id="annotations">
+    <%= render @annotations %>
   </div>
 </div>

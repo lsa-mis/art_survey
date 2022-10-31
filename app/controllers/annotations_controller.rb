@@ -12,7 +12,7 @@ class AnnotationsController < ApplicationController
 
   # GET /annotations/new
   def new
-    @annotation = Annotation.new
+    @new_annotation = Annotation.new
   end
 
   # GET /annotations/1/edit
