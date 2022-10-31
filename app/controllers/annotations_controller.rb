@@ -49,11 +49,9 @@ class AnnotationsController < ApplicationController
   # DELETE /annotations/1 or /annotations/1.json
   def destroy
     @annotation.destroy
+    @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
 
-    respond_to do |format|
-      format.html { redirect_to annotations_url, notice: "Annotation was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    flash.now[:notice] = "Annotation successfully deleted."
   end
 
   private
