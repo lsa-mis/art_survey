@@ -8,11 +8,18 @@
     <%= link_to 'Back to art_items', art_items_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 
-  <%= turbo_frame_tag "new_annotation" do %>
-    <%= render "annotations/form", annotation: @new_annotation %>
-  <% end %>
 
-  <div class="annotations" id="annotations">
-    <%= render @annotations %>
+  <div class="text-xl mt-8">
+    <div class="mb-20">Annotations:
+      <%= turbo_frame_tag "new_annotation" do %>
+        <%= render "annotations/form", annotation: @new_annotation %>
+      <% end %>
+
+      <div class="annotations" id="annotations">
+        <%= render @annotations %>
+      </div>
+    </div>
   </div>
+
 </div>
+
