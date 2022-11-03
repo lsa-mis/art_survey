@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :page_informations
-  resources :annotations, :only => [:index, :show, :new, :create, :edit, :update]
+  resources :annotations, only: [:index, :show, :new, :create, :edit, :update]
   resources :art_items
   resources :accesses
   resources :permissions
