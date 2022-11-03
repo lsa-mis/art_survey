@@ -43,14 +43,6 @@ class AnnotationsController < ApplicationController
     end
   end
 
-  # DELETE /annotations/1 or /annotations/1.json
-  def destroy
-    @annotation.destroy
-    @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
-
-    flash.now[:notice] = "Annotation successfully deleted."
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_annotation
