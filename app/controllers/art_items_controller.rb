@@ -1,4 +1,5 @@
 class ArtItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_art_item, only: %i[ show edit update destroy ]
   before_action :set_departments_list, only: [:new, :create, :edit, :update]
   before_action :set_appraisal_types, only: [:new, :create, :edit, :update]
@@ -30,6 +31,8 @@ class ArtItemsController < ApplicationController
 
   # GET /art_items/1 or /art_items/1.json
   def show
+    @new_annotation = Annotation.new(art_item: @art_item)
+    @annotations = @art_item.annotations.order("created_at DESC")
   end
 
   # GET /art_items/new

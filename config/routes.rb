@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :page_informations
-  resources :annotations
+  resources :annotations, except: :destroy
   resources :art_items
   resources :accesses
   resources :permissions

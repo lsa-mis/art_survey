@@ -11,4 +11,8 @@
 class Annotation < ApplicationRecord
   belongs_to :art_item
   has_rich_text :note
+
+  validates_presence_of :note
+  validates :created_by, presence: true
+
 end

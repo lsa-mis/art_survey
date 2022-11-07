@@ -12,7 +12,7 @@ class AnnotationsController < ApplicationController
 
   # GET /annotations/new
   def new
-    @annotation = Annotation.new
+    @new_annotation = Annotation.new
   end
 
   # GET /annotations/1/edit
@@ -22,38 +22,24 @@ class AnnotationsController < ApplicationController
   # POST /annotations or /annotations.json
   def create
     @annotation = Annotation.new(annotation_params)
+    @annotation.created_by = current_user.id
 
-    respond_to do |format|
-      if @annotation.save
-        format.html { redirect_to annotation_url(@annotation), notice: "Annotation was successfully created." }
-        format.json { render :show, status: :created, location: @annotation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @annotation.errors, status: :unprocessable_entity }
-      end
+    if @annotation.save
+      @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
+      @new_annotation = Annotation.new(art_item: @annotation.art_item)
+      flash.now[:notice] = "Annotation successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /annotations/1 or /annotations/1.json
   def update
-    respond_to do |format|
-      if @annotation.update(annotation_params)
-        format.html { redirect_to annotation_url(@annotation), notice: "Annotation was successfully updated." }
-        format.json { render :show, status: :ok, location: @annotation }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @annotation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /annotations/1 or /annotations/1.json
-  def destroy
-    @annotation.destroy
-
-    respond_to do |format|
-      format.html { redirect_to annotations_url, notice: "Annotation was successfully destroyed." }
-      format.json { head :no_content }
+    if @annotation.update(annotation_params)
+      @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
+      flash.now[:notice] = "Annotation successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

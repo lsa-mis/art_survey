@@ -13,8 +13,10 @@
 
   <body>
     <%= render "layouts/header" %>
-    <main class="container max-w-7xl mx-auto mt-4 mb-28 px-5 flex">
-      <%= render "layouts/flash" %>
+    <main class="container mx-auto mt-4 mb-28 px-5 flex">
+      <div id="flash">
+        <%= render "layouts/flash" %>
+      </div>
       <%= yield %>
     </main>
     <%= render "layouts/footer" %>
