@@ -66,6 +66,35 @@
     <%= form.file_field :documents, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+  <div id="attached_files" class="sm:col-span-3">
+    <% if @art_item.documents.attached? %>
+      <div class="py-4 pl-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+        <dt class="text-sm font-medium text-gray-500">
+          Other files currently uploaded:
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+            <% @art_item.documents.each do |doc| %>
+              <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                <div class="w-0 flex-1 flex items-center">
+                  <i class="fas fa-paperclip text-gray-400"></i>
+                  <span class="ml-2 flex-1 w-0 truncate">
+                    <%= link_to doc.filename, url_for(doc), target: "_blank" %>
+                  </span>
+                  <% unless doc.id.nil? %>
+                      <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <%= link_to 'Remove', delete_file_path(doc), data: {turbo_method: :get, turbo_confirm: 'Are you sure?'} %>
+                      </button>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </dd>
+      </div>
+    <% end %>
+  </div>
+
   <div class="my-5">
     <%= form.label :images %>
     <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
