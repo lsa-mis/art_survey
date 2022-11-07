@@ -30,9 +30,29 @@ class ArtItem < ApplicationRecord
   has_many_attached :images
 
   validates :value_cost, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
+  validate :acceptable_documents
 
-  scope :active_with_departments, -> { ArtItem.with_attached_documents.includes(:department).where(archived: false) }
+  scope :active_with_departments, -> { ArtItem.with_attached_documentsincludes(:department).where(archived: false) }
   scope :archived_with_departments, -> { ArtItem.includes(:department).where(archived: true) }
 
+  def acceptable_documents
+    return unless documents.attached?
+  
+    acceptable_types = [
+      "application/pdf", "text/plain", "image/jpg", 
+      "image/jpeg", "image/png", 
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ]
 
+    documents.each do |doc|
+      unless doc.byte_size <= 20.megabyte
+        errors.add(:documents, "is too big")
+      end
+
+      unless acceptable_types.include?(doc.content_type)
+        errors.add(:documents, "must be an acceptable file type (pdf,txt,jpg,png,doc)")
+      end
+    end
+  end
+  
 end
