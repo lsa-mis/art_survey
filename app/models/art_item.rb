@@ -32,7 +32,7 @@ class ArtItem < ApplicationRecord
   validates :value_cost, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
   validate :acceptable_documents
 
-  scope :active_with_departments, -> { ArtItem.with_attached_documentsincludes(:department).where(archived: false) }
+  scope :active_with_departments, -> { ArtItem.with_attached_documents.includes(:department).where(archived: false) }
   scope :archived_with_departments, -> { ArtItem.includes(:department).where(archived: true) }
 
   def acceptable_documents
@@ -54,5 +54,5 @@ class ArtItem < ApplicationRecord
       end
     end
   end
-  
+
 end
