@@ -95,6 +95,10 @@
     </div>
 
     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <%= render partial: "show_documents", locals: { attached_files_resource: art_item } %>
+    </div>
+
+    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
       <dt class="text-sm font-medium text-gray-500">
       Updated by
       </dt>
