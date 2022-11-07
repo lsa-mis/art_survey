@@ -35,6 +35,6 @@ module ArtSurvey
     config.generators.system_tests = nil
 
     # run 'brew install vips' or uncomment the next line
-    # config.active_storage.variant_processor = :mini_magick
+    config.active_storage.variant_processor = :mini_magick
   end
 end
