@@ -27,7 +27,9 @@ class ArtItem < ApplicationRecord
   has_one :protection, class_name: 'ActionText::RichText', as: :record
   has_many_attached :documents
   include AppendToHasManyAttached['documents']
-  has_many_attached :images
+  has_many_attached :images do |attachable|
+    attachable.variant :thumb, resize_to_limit: [640, 480]
+  end
 
   validates :value_cost, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
   validate :acceptable_documents

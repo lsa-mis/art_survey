@@ -98,6 +98,13 @@
       <%= render partial: "show_documents", locals: { attached_files_resource: art_item } %>
     </div>
 
+    <div data-controller="lightbox">
+      <%= render "modal" %>
+      <div class="py-4">
+        <%= render partial: "show_images", locals: { art_item: art_item } %>
+      </div>
+    </div>
+
     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
       <dt class="text-sm font-medium text-gray-500">
       Updated by
