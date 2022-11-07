@@ -1,0 +1,9 @@
+<% if content_message(location) %>
+  <div class="container">
+    <%= content_message(location) %>
+    <div class="border-transparent text-blue-200 hover:border-blue-300 hover:text-blue-300 inline-flex items-center pl-4 ">
+      <%= link_to "Edit Info", page_informations_path %>
+    </div>
+    <hr class='w-3/4 mx-auto justify-center pb-4'>
+  </div>
+<% end %>
