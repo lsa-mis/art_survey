@@ -26,11 +26,12 @@ class ArtItem < ApplicationRecord
   has_rich_text :protection
   has_one :protection, class_name: 'ActionText::RichText', as: :record
   has_many_attached :documents
+  include AppendToHasManyAttached['documents']
   has_many_attached :images
 
   validates :value_cost, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
 
-  scope :active_with_departments, -> { ArtItem.includes(:department).where(archived: false) }
+  scope :active_with_departments, -> { ArtItem.with_attached_documents.includes(:department).where(archived: false) }
   scope :archived_with_departments, -> { ArtItem.includes(:department).where(archived: true) }
 
 
