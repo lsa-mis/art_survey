@@ -77,11 +77,16 @@ class ArtItemsController < ApplicationController
   # DELETE /art_items/1 or /art_items/1.json
   def destroy
     @art_item.destroy
-
     respond_to do |format|
       format.html { redirect_to art_items_url, notice: "Art item was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def delete_file_attachment
+    @delete_file = ActiveStorage::Attachment.find(params[:id])
+    @delete_file.purge
+    redirect_back(fallback_location: request.referer)
   end
 
   private
