@@ -66,6 +66,6 @@ class PermissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permission_params
-      params.require(:permission).permit(:uniqname, :role_id, :department_id, :updated_by)
+      params.require(:permission).permit(:role_id, :department_id, :updated_by)
     end
 end
