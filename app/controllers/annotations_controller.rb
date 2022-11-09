@@ -23,8 +23,6 @@ class AnnotationsController < ApplicationController
   # POST /annotations or /annotations.json
   def create
     @annotation = Annotation.new(annotation_params)
-    @annotation.created_by = current_user.id
-
     if @annotation.save
       @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
       @new_annotation = Annotation.new(art_item: @annotation.art_item)
