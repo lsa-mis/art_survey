@@ -13,4 +13,8 @@
 class Department < ApplicationRecord
   has_many :art_items
   has_many :permissions
+
+  def display_fullname
+    self.fullname
+  end
 end

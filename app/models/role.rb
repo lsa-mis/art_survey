@@ -11,4 +11,8 @@
 #
 class Role < ApplicationRecord
   has_many :permissions
+
+  def show_role_title
+    self.title
+  end
 end

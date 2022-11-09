@@ -22,4 +22,12 @@ module ApplicationHelper
     turbo_stream.update "flash", partial: "layouts/flash"
   end
 
+  def show_department_fullname(id)
+    Department.find(id).display_fullname
+  end
+
+  def show_role_title(id)
+    Role.find(id).show_role_title
+  end
+
 end
