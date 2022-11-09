@@ -66,6 +66,7 @@ module.exports = {
         750: '#9D691B',
         800: '#975a16',
         900: '#744210',
+        umyellow: '#ffcb05'
       },
       green: {
         100: '#f0fff4',
