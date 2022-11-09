@@ -1,30 +1,5 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
 # Art Survey
-![](https://img.shields.io/badge/Ruby%20Version-3.1.2-red) ![](https://img.shields.io/badge/Rails%20Version-7.0.4-red)
+![](https://img.shields.io/badge/Ruby%20Version-3.1.2-red) ![](https://img.shields.io/badge/Rails%20Version-7.0.4-red)![](https://img.shields.io/badge/Ruby%20Version-3.1.2-red) ![](https://img.shields.io/badge/Postgresql%20Version-14.4-red)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Art Survey is used to enter information about valuable departmentally owned art. In this context, we use “art” to include all valuable objects. These might range from a painting, to valuable gems, to antique instruments, and might be on display or stored in the back of a cupboard. 
