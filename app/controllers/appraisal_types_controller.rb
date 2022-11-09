@@ -1,5 +1,4 @@
 class AppraisalTypesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_appraisal_type, only: %i[ show edit update destroy ]
 
   # GET /appraisal_types or /appraisal_types.json

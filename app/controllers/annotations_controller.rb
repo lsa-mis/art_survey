@@ -1,5 +1,4 @@
 class AnnotationsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_annotation, only: %i[ show edit update destroy ]
 
   # GET /annotations or /annotations.json

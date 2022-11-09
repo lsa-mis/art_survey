@@ -1,5 +1,4 @@
 class RolesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_role, only: %i[ show edit update destroy ]
 
   # GET /roles or /roles.json

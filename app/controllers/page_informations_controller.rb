@@ -1,5 +1,4 @@
 class PageInformationsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_page_information, only: %i[ show edit update destroy ]
 
   # GET /page_informations or /page_informations.json
