@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :updated_by, value: current_user.id %>
+  
   <div class="my-5">
     <%= form.label :deptID %>
     <%= form.number_field :deptID, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
@@ -24,11 +26,6 @@
   <div class="my-5">
     <%= form.label :shortname %>
     <%= form.text_field :shortname, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :updated_by %>
-    <%= form.number_field :updated_by, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

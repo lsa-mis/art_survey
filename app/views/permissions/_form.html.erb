@@ -11,14 +11,16 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :updated_by, value: current_user.id %>
+
   <div class="my-5">
     <%= form.label :role_id %>
-    <%= form.text_field :role_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :role_id, Role.order(:title), :id, :title, prompt: true %>
   </div>
 
   <div class="my-5">
     <%= form.label :department_id %>
-    <%= form.text_field :department_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :department_id, Department.order(:fullname), :id, :fullname, prompt: true %>
   </div>
 
   <div class="inline">
