@@ -1,9 +1,15 @@
 <% if content_message(location) %>
   <div class="container">
     <%= content_message(location) %>
-    <div class="border-transparent text-blue-200 hover:border-blue-300 hover:text-blue-300 inline-flex items-center pl-4 ">
-      <%= link_to "Edit Info", page_informations_path %>
-    </div>
+    <%# if current_user && policy(Announcement).edit? && @index_page_announcement.present?%>
+    <% if current_user %>
+      <%= link_to page_informations_path do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 rounded-md hover:bg-yellow-umyellow " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          <title>Edit announcement</title>
+        </svg>
+      <% end %>
+    <% end %>
     <hr class='w-3/4 mx-auto justify-center pb-4'>
   </div>
 <% end %>

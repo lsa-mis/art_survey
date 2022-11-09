@@ -1,8 +1,4 @@
 <div id="<%= dom_id permission %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Uniqname:</strong>
-    <%= permission.uniqname %>
-  </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Role:</strong>
@@ -16,7 +12,7 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Updated by:</strong>
-    <%= permission.updated_by %>
+    <%= show_user(permission.updated_by) %>
   </p>
 
   <% if action_name != "show" %>

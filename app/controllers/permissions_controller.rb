@@ -1,4 +1,5 @@
 class PermissionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_permission, only: %i[ show edit update destroy ]
 
   # GET /permissions or /permissions.json
@@ -65,6 +66,6 @@ class PermissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permission_params
-      params.require(:permission).permit(:uniqname, :role_id, :department_id, :updated_by)
+      params.require(:permission).permit(:role_id, :department_id, :updated_by)
     end
 end

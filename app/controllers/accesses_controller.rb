@@ -1,4 +1,5 @@
 class AccessesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_access, only: %i[ show edit update destroy ]
 
   # GET /accesses or /accesses.json
