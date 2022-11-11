@@ -1,15 +1,24 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <div class="mx-auto">
-    <%= render @art_item %>
-    <%= link_to 'Edit this art_item', edit_art_item_path(@art_item), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this art_item', art_item_path(@art_item), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<div class="mx-auto grid grid-cols-2">
+  <div class="">
+    <div>
+      <div data-controller="lightbox">
+        <%= render "modal" %>
+        <div class="py-4">
+          <%= render partial: "show_images", locals: { art_item: @art_item } %>
+        </div>
+      </div>
+
+      <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+        <%= render partial: "show_documents", locals: { attached_files_resource: @art_item } %>
+      </div>
     </div>
-    <%= link_to 'Back to art_items', art_items_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    
   </div>
 
-
   <div class="text-xl mt-8">
+    <div class="">
+      <%= render @art_item %>
+    </div>
     <div class="mb-20">Annotations:
       <%= turbo_frame_tag "new_annotation" do %>
         <%= render "annotations/form", annotation: @new_annotation %>
