@@ -18,7 +18,7 @@
   <%= form.hidden_field :art_item_id, value: annotation.art_item_id %>
 
   <% if annotation.new_record? %>
-    <%= form.submit "Add Annotation", class: "rounded-lg py-1 px-2 bg-blue-600 text-white inline-block text-base cursor-pointer" %>
+    <%= form.submit "Add Annotation", class: "my-2 px-2 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
   <% else %>
     <div>
       <%= form.submit "Update", class: "rounded-lg py-1 px-2 bg-blue-600 text-white inline-block text-base cursor-pointer" %>
