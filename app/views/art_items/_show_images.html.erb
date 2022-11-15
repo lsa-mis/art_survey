@@ -17,18 +17,18 @@
     </ul>
     <br>
     <div class="ml-4 flex-shrink-0">
-      <button type="button" class="my-2 px-2 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400">
+      <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400">
         <%= link_to "Edit images", "#{art_item.id}/edit#attached_images" %>
       </button>
     </div>
   <% else %>
-      <div class="flex-1 flex items-center">
-        <span class="ml-2 flex-1 w-0 truncate">
+      <div class="ml-4 flex-shrink-0">
+        <span class="">
           No attached images.
         </span>
       </div>
         <div class="ml-4 flex-shrink-0">
-          <button type="button" class="my-2 px-2 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400">
+          <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400">
             <%= link_to "Edit images", "#{art_item.id}/edit#attached_images" %>
           </button>
         </div>
