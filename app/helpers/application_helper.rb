@@ -5,6 +5,21 @@ module ApplicationHelper
     return File.read(file_path).html_safe if File.exist?(file_path)
     file_path
   end
+
+  def show_svg(type)
+    case type
+    when "text/plain"
+      svg("text-1473")
+    when "application/pdf"
+      svg("pdf-3375")
+    when "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      svg("office-1466")
+    when "image/jpg" || "image/jpeg" || "image/png"
+      svg("jpg-1476")
+    else
+      svg("attachment-1483")
+    end
+  end
   
   def content_message(location)
     PageInformation.find_by(location: location).content  if PageInformation.find_by(location: location).present?
