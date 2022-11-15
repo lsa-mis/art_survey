@@ -4,9 +4,9 @@
   </h2>
   <% if attached_files_resource.documents.attached? %>
     <% attached_files_resource.documents.each do |file| %>
-      <div class="my-1 text-sm text-gray-900 sm:mt-0 flex">
+      <div class="my-1 text-sm text-gray-900 sm:mt-0 flex items-center">
         <div class="flex-none">
-          <%= svg("pdf-3375") %>
+          <%= show_svg(file.content_type) %>
         </div>
         <div class="w-0 flex-1 truncate ml-1">
           <span class="">
@@ -14,11 +14,11 @@
           </span>
         </div>
         <div class="flex-1">
-          <%= button_to "Delete", delete_file_path(file.id), method: :get, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "my-2 px-2 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
+          <%= button_to "Delete", delete_file_path(file.id), method: :get, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "my-1 px-2 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
         </div>
       </div>
     <% end %>
-    <div class="ml-4 flex-shrink-0 flex space-x-4">
+    <div class="flex-shrink-0">
       <button type="button" class="my-2 px-2 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400">
         <%= link_to "Add documents", "#{attached_files_resource.id}/edit#attached_files" %>
       </button>
@@ -29,7 +29,7 @@
         No attached documents.
       </span>
     </div>
-    <div class="ml-4 flex-shrink-0 flex space-x-4">
+    <div class="flex-shrink-0">
       <button type="button" class="my-2 px-2 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400">
         <%= link_to "Add documents", "#{attached_files_resource.id}/edit#attached_files" %>
       </button>
