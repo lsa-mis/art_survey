@@ -1,5 +1,5 @@
-<div class="mx-auto grid grid-cols-2">
-  <div class="">
+<div class="mx-auto grid grid-cols-3">
+  <div class="col-span-1">
     <div>
       <div data-controller="lightbox">
         <%= render "modal" %>
@@ -8,17 +8,19 @@
         </div>
       </div>
 
-      <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+      <div class="pl-4">
         <%= render partial: "show_documents", locals: { attached_files_resource: @art_item } %>
       </div>
     </div>
-    
   </div>
+  <div class="col-span-2">
+    <%= render @art_item %>
+  </div>
+    
+</div>
 
   <div class="text-xl mt-8">
-    <div class="">
-      <%= render @art_item %>
-    </div>
+    
     <div class="mb-20">Annotations:
       <%= turbo_frame_tag "new_annotation" do %>
         <%= render "annotations/form", annotation: @new_annotation %>
@@ -30,5 +32,5 @@
     </div>
   </div>
 
-</div>
+
 
