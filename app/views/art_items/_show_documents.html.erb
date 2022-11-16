@@ -2,22 +2,29 @@
   <h2 class="mb-2">
     Documents
   </h2>
+
   <% if attached_files_resource.documents.attached? %>
+  <div class="">
     <% attached_files_resource.documents.each do |file| %>
-      <div class="my-1 text-sm text-gray-900 sm:mt-0 flex items-center">
-        <div class="flex-none">
-          <%= show_svg(file.content_type) %>
+      <div class="my-1 text-sm text-gray-900 sm:mt-0 flex justify-between items-center">
+        <div>
+          <%= link_to url_for(file), target: "_blank" do %>
+            <div class="flex justify-start ml-1">
+              <div class="">
+                <%= show_svg(file.content_type) %>
+              </div>
+              <div class="ml-1">
+                <%= file.filename %>
+              </div>
+            </div>
+          <% end %>
         </div>
-        <div class="w-0 flex-1 truncate ml-1">
-          <span class="">
-            <%= link_to file.filename, url_for(file), target: "_blank" %>
-          </span>
-        </div>
-        <div class="flex-1">
+        <div class="mr-8">
           <%= button_to "Delete", delete_file_path(file.id), method: :get, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "my-1 px-2 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
         </div>
       </div>
     <% end %>
+    </div>
     <div class="flex-shrink-0">
       <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400">
         <%= link_to "Add documents", "#{attached_files_resource.id}/edit#attached_files" %>
