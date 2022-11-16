@@ -18,11 +18,11 @@
   <%= form.hidden_field :art_item_id, value: annotation.art_item_id %>
 
   <% if annotation.new_record? %>
-    <%= form.submit "Add Annotation", class: "my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
+    <%= form.submit "Add Annotation", class: "my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
   <% else %>
     <div>
-      <%= form.submit "Update", class: "my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
-      <%= link_to "Cancel", @annotation, class: "my-1 px-2 py-1 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
+      <%= form.submit "Update", class: "my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
+      <%= link_to "Cancel", @annotation, class: "my-1 px-2 py-1 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center hover:underline" %>
     </div>
   <% end %>
 <% end %>

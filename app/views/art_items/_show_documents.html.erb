@@ -20,13 +20,13 @@
           <% end %>
         </div>
         <div class="mr-8">
-          <%= button_to "Delete", delete_file_path(file.id), method: :get, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "my-1 px-2 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
+          <%= button_to "Delete", delete_file_path(file.id), method: :get, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "my-1 px-2 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center hover:underline" %>
         </div>
       </div>
     <% end %>
     </div>
     <div class="flex-shrink-0">
-      <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400">
+      <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline">
         <%= link_to "Add documents", "#{attached_files_resource.id}/edit#attached_files" %>
       </button>
     </div>
@@ -37,7 +37,7 @@
       </span>
     </div>
     <div class="flex-shrink-0">
-      <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400">
+      <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline">
         <%= link_to "Add documents", "#{attached_files_resource.id}/edit#attached_files" %>
       </button>
     </div>
