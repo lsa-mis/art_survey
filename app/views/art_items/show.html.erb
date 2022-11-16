@@ -1,4 +1,11 @@
-<h1>Art Item - <%= @art_item.id %></h1>
+<div class="flex items-center justify-between">
+  <h1 class=" text-3xl mb-2">Art Item - <%= @art_item.id %></h1>
+  <% if @art_item.archived %>
+    <div class="p-2 rounded-lg bg-yellow-200 shadow-lg sm:p-3">
+      This art item is archived
+    </div>
+  <% end %>  
+</div>
 <div class="mx-auto grid grid-cols-3">
   <div class="col-span-1">
     <div>

@@ -1,10 +1,6 @@
-<% if art_item.archived %>
-  <%= render 'archived' %>
-<% end %>  
-
 <div class="grid grid-cols-2 place-content-between">
   <div class="mr-4">
-    <div class="py-2">
+    <div class="">
       <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
       Department
       </label>
@@ -97,7 +93,7 @@
   </div>
 
   <div class="ml-4">
-    <h2>Record history</h2>
+    <span class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">Record history</span>
     <div class="py-2">
       <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
         Updated by
@@ -127,15 +123,19 @@
     <div>
       <div class="flex items-center">
         <div>
-          <%= link_to 'Edit this item', edit_art_item_path(@art_item), class: "my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
+          <%= link_to 'Edit this item', edit_art_item_path(@art_item), class: "my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
         </div>
         <div class="ml-2">
-          <%= button_to 'Delete this item', art_item_path(@art_item), method: :delete, class: "my-2 px-2 py-1 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
+          <% if art_item.archived %>
+            <%= link_to 'Unarchive this item', art_item_path(@art_item), method: :post, data: { confirm: 'Are you sure?' }, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
+          <% else %>
+            <%= link_to 'Archive this item', art_item_path(@art_item), method: :post, data: { confirm: 'Are you sure?' }, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
+          <% end %>
         </div>
       </div>
-      <div class="">
+      <div class="mt-2">
         <%= link_to art_items_path, data: { "turbo-frame": "_top" } do %>
-          <div class="flex items-center ml-1 bg-white rounded-md text-sm text-blue-umblue hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50 pb-2">
+          <div class="flex items-center text-sm text-blue-umblue hover:underline pb-2">
             <%= svg("left-arrow-svgrepo-com")  %>
             <span>Back to search</span>
           </div>
