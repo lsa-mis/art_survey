@@ -13,7 +13,7 @@
               <div class="">
                 <%= show_svg(file.content_type) %>
               </div>
-              <div class="ml-1">
+              <div class="ml-1 w-60 text-clip">
                 <%= file.filename %>
               </div>
             </div>
@@ -32,7 +32,7 @@
     </div>
   <% else %>
     <div class="flex-shrink-0">
-      <span class="">
+      <span class="text-sm">
         No attached documents.
       </span>
     </div>
