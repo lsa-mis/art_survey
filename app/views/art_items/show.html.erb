@@ -6,17 +6,17 @@
     </div>
   <% end %>  
 </div>
-<div class="mx-auto grid grid-cols-3">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
   <div class="col-span-1">
     <div>
       <div data-controller="lightbox">
         <%= render "modal" %>
-        <div class="py-4">
+        <div class="px-2">
           <%= render partial: "show_images", locals: { art_item: @art_item } %>
         </div>
       </div>
 
-      <div class="pl-4">
+      <div class="px-2">
         <%= render partial: "show_documents", locals: { attached_files_resource: @art_item } %>
       </div>
     </div>
@@ -27,7 +27,7 @@
     
 </div>
 
-  <div class="text-xl mt-8">
+  <div class="text-xl mt-8 mx-2">
     
     <div class="mb-20">Annotations:
       <%= turbo_frame_tag "new_annotation" do %>
