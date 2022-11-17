@@ -1,6 +1,7 @@
 class ArtItemImagesController < ApplicationController
   layout false
 
+  before_action :is_access_authorized?
   before_action :set_art_item, only: :index
 
   def index
