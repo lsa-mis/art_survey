@@ -5,14 +5,17 @@ class ApplicationController < ActionController::Base
   def superuser_role_object
     Role.find_by(title: "SuperUser")
   end
+  helper_method :superuser_role_object
 
   def department_admin_role_object
     Role.find_by(title: "Department Administrator")
   end
+  helper_method :department_admin_role_object
 
   def recorder_role_object
     Role.find_by(title: "Recorder")
   end
+  helper_method :recorder_role_object
 
   def is_super_user?
     #current_user.uniqname has an access that includes the role superuser
