@@ -1,6 +1,7 @@
 class PermissionsController < ApplicationController
   before_action :set_permission, only: %i[ show edit update destroy ]
-
+  before_action :is_super_user? 
+  
   # GET /permissions or /permissions.json
   def index
     @permissions = Permission.all
