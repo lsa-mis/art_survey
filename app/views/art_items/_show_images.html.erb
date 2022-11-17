@@ -22,15 +22,15 @@
       </button>
     </div>
   <% else %>
-      <div class="flex-shrink-0">
-        <span class="">
-          No attached images.
-        </span>
-      </div>
-        <div class="flex-shrink-0">
-          <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline">
-            <%= link_to "Add images", "#{art_item.id}/edit#attached_images" %>
-          </button>
-        </div>
+    <div class="flex-shrink-0">
+      <span class="">
+        No attached images.
+      </span>
+    </div>
+    <div class="flex-shrink-0">
+      <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline">
+        <%= link_to "Add images", "#{art_item.id}/edit#attached_images" %>
+      </button>
+    </div>
   <% end %>
 </div>

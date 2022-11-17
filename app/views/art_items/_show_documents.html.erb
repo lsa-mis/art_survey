@@ -4,26 +4,26 @@
   </h2>
 
   <% if attached_files_resource.documents.attached? %>
-  <div class="">
-    <% attached_files_resource.documents.each do |file| %>
-      <div class="my-1 text-sm text-gray-900 sm:mt-0 flex justify-between items-center">
-        <div>
-          <%= link_to url_for(file), target: "_blank" do %>
-            <div class="flex justify-start ml-1">
-              <div class="">
-                <%= show_svg(file.content_type) %>
+    <div class="">
+      <% attached_files_resource.documents.each do |file| %>
+        <div class="my-1 text-sm text-gray-900 flex justify-between items-center">
+          <div class="">
+            <%= link_to url_for(file), target: "_blank" do %>
+              <div class="flex justify-start ml-1">
+                <div class="">
+                  <%= show_svg(file.content_type) %>
+                </div>
+                <div class="ml-1 text-ellipsis overflow-hidden">
+                  <%= file.filename %>
+                </div>
               </div>
-              <div class="ml-1 w-60 text-clip">
-                <%= file.filename %>
-              </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
+          <div class="mr-8">
+            <%= button_to "Delete", delete_file_path(file.id), method: :get, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "my-1 px-2 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center hover:underline" %>
+          </div>
         </div>
-        <div class="mr-8">
-          <%= button_to "Delete", delete_file_path(file.id), method: :get, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "my-1 px-2 rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center hover:underline" %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
     </div>
     <div class="flex-shrink-0">
       <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline">

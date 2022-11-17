@@ -8,37 +8,31 @@
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
   <div class="col-span-1">
-    <div>
-      <div data-controller="lightbox">
-        <%= render "modal" %>
-        <div class="px-2">
-          <%= render partial: "show_images", locals: { art_item: @art_item } %>
-        </div>
-      </div>
-
+    <div data-controller="lightbox">
+      <%= render "modal" %>
       <div class="px-2">
-        <%= render partial: "show_documents", locals: { attached_files_resource: @art_item } %>
+        <%= render partial: "show_images", locals: { art_item: @art_item } %>
       </div>
+    </div>
+    <div class="px-2">
+      <%= render partial: "show_documents", locals: { attached_files_resource: @art_item } %>
     </div>
   </div>
   <div class="col-span-2">
     <%= render @art_item %>
   </div>
-    
 </div>
 
-  <div class="text-xl mt-8 mx-2">
-    
-    <div class="mb-20">Annotations:
-      <%= turbo_frame_tag "new_annotation" do %>
-        <%= render "annotations/form", annotation: @new_annotation %>
-      <% end %>
-
-      <div class="annotations" id="annotations">
-        <%= render @annotations %>
-      </div>
+<div class="text-xl mt-8 mx-2">
+  <div class="mb-20">Annotations:
+    <%= turbo_frame_tag "new_annotation" do %>
+      <%= render "annotations/form", annotation: @new_annotation %>
+    <% end %>
+    <div class="annotations" id="annotations">
+      <%= render @annotations %>
     </div>
   </div>
+</div>
 
 
 
