@@ -12,6 +12,8 @@
 class Role < ApplicationRecord
   has_many :permissions
 
+  validates :title, presence: true, uniqueness: true
+
   def show_role_title
     self.title
   end

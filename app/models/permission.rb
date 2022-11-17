@@ -14,4 +14,7 @@ class Permission < ApplicationRecord
   belongs_to :role
   belongs_to :department
   has_many :accesses
+
+  validates :department_id, presence: true    
+  validates :role_id, presence: true, uniqueness: { scope: :department_id }
 end

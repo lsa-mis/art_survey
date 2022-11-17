@@ -32,6 +32,7 @@ class ArtItem < ApplicationRecord
   end
   include AppendToHasManyAttached['images']
 
+  validates :department_id, presence: true
   validates :value_cost, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
   validate :acceptable_documents
 
