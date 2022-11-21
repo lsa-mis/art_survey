@@ -1,144 +1,146 @@
-<% if art_item.archived %>
-  <%= render 'archived' %>
-<% end %>  
-
-<div class="mt-5 border-t border-gray-200">
-  <dl class="divide-y divide-gray-200">
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
+<div class="grid grid-cols-1 md:grid-cols-2 place-content-between">
+  <div class="mx-2">
+    <div class="">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
       Department
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.department.fullname %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Department contact:
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.department_contact %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Description
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.description %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Location building
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.location_building %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Location room
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.location_room %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Value cost
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.value_cost %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Date acquired
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= show_date(art_item.date_acquired) %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Appraisal type
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.appraisal_type.classification %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Appraisal Description
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.appraisal_description %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Protection
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= art_item.protection %></span>
-      </dd>
-    </div>
-
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <%= render partial: "show_documents", locals: { attached_files_resource: art_item } %>
-    </div>
-
-    <div data-controller="lightbox">
-      <%= render "modal" %>
-      <div class="py-4">
-        <%= render partial: "show_images", locals: { art_item: art_item } %>
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= art_item.department.fullname %>
       </div>
     </div>
 
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Updated by
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= show_user(art_item.updated_by) %></span>
-      </dd>
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+      Department contact
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= art_item.department_contact %>
+      </div>
+    </div>
+    
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+      Description
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= art_item.description %>
+      </div>
     </div>
 
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Created at
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= show_date(art_item.created_at) %></span>
-      </dd>
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+      Location building
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= art_item.location_building %>
+      </div>
     </div>
 
-    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-      <dt class="text-sm font-medium text-gray-500">
-      Updated at
-      </dt>
-      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-        <span class="flex-grow"><%= show_date(art_item.updated_at) %></span>
-      </dd>
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+      Location room
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= art_item.location_room %>
+      </div>
     </div>
 
-  </dl>
-</div>
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+      Value cost
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= number_to_currency(art_item.value_cost) %>
+      </div>
+    </div>
 
-<div>
-  <% if action_name != "show" %>
-    <%= link_to "Show this art item", art_item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this art item', edit_art_item_path(art_item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+    <div class="py-2">
+      <label class="flex text-sm tfont-medium ext-gray-900 sm:mt-0 sm:col-span-2">
+      Date acquired
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= show_date(art_item.date_acquired) %>
+      </div>
+    </div>
+
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+      Appraisal type
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= art_item.appraisal_type.classification %>
+      </div>
+    </div>
+
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+      Appraisal Description
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= art_item.appraisal_description %>
+      </div>
+    </div>
+
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+      Protection
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= art_item.protection %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ml-4">
+    <span class="flex text-sm font-semibold text-gray-900 sm:mt-0 sm:col-span-2">Record history</span>
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+        Updated by
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= show_user(art_item.updated_by) %>
+      </div>
+    </div>
+
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+        Created at
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= show_date(art_item.created_at) %>
+      </div>
+    </div>
+
+    <div class="py-2">
+      <label class="flex text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-2">
+        Updated at
+      </label>
+      <div class="ml-2 text-sm text-gray-700 flex-grow">
+        <%= show_date(art_item.updated_at) %>
+      </div>
+    </div>
+    <div>
+      <div class="flex items-center">
+        <div>
+          <%= link_to 'Edit this item', edit_art_item_path(@art_item), class: "my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
+        </div>
+        <div class="ml-2">
+          <% if art_item.archived %>
+            <%= link_to 'Unarchive this item', art_item_path(@art_item), method: :post, data: { confirm: 'Are you sure?' }, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
+          <% else %>
+            <%= link_to 'Archive this item', art_item_path(@art_item), method: :post, data: { confirm: 'Are you sure?' }, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="mt-2">
+        <%= link_to art_items_path, data: { "turbo-frame": "_top" } do %>
+          <div class="flex items-center text-sm text-blue-umblue hover:underline pb-2">
+            <%= svg("left-arrow-svgrepo-com")  %>
+            <span>Back to search</span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

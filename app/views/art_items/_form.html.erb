@@ -63,12 +63,12 @@
     <%= form.rich_text_area :protection, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
+  <div id="attached_files" class="my-5">
     <%= form.label :documents, "Documents (pdf,txt,jpg,png,doc)" %>
     <%= form.file_field :documents, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div id="attached_files" class="sm:col-span-3">
+  <div class="sm:col-span-3">
     <% if @art_item.documents.attached? %>
       <div class="py-4 pl-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
         <dt class="text-sm font-medium text-gray-500">
@@ -97,7 +97,7 @@
     <% end %>
   </div>
 
-  <div class="my-5">
+  <div id="attached_images" class="my-5">
     <%= form.label :images %>
     <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
