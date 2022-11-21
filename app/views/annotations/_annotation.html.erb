@@ -10,10 +10,10 @@
           Updated on 
           <%= annotation.updated_at.strftime('%m/%d/%Y') %>
         </div>
-        <div class="flex items-center p-1">
+        <div class="flex items-center">
           by
           <%= show_user(annotation.created_by) %>
-          <%= link_to "Edit", edit_annotation_path(annotation), class: "px-2 ml-2 rounded-md shadow-sm bg-gray-100 text-sm text-black text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400" %>
+          <%= link_to "Edit", edit_annotation_path(annotation), class: "m-2 px-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
         </div>
       </div>
     </div>
