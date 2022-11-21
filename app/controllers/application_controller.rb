@@ -15,8 +15,10 @@ class ApplicationController < ActionController::Base
   helper_method :is_user?
 
   def is_access_authorized?
-    unless is_user?(role_object("SuperUser")) || is_user?(role_object("Department Administrator")) || is_user?(role_object("Recorder"))
-      redirect_to root_path
+    if is_user?(role_object("SuperUser")) || is_user?(role_object("Department Administrator")) || is_user?(role_object("Recorder"))
+      true
+    else 
+      false
     end
   end
   helper_method :is_access_authorized?
