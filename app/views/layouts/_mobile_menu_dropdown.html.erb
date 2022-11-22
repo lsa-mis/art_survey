@@ -6,8 +6,8 @@
         data-dropdown-target="menu" data-dropdown-visible-class="opacity-100  -translate-y-0" 
          tabindex="-1">
     <div class="pt-2 pb-3 space-y-1 text-white" id="header-nav-menu-button">
-      <%= link_to  "Catalog", art_items_path, class: "mobile-dropdown-link #{class_names(active: current_page?(art_items_path))}" if user_signed_in? %>
-      <%= link_to  "AdminDoc", "https://docs.google.com/document/d/e/2PACX-1vTKMfzTxp2I02KuuT_3S5t2OOA4vUIZObWUgnslilQSuh1XBUQgmTpODJGmyoLWZ5UkN-adzSBQgBc7/pub#h.zf7fqp6cccac", target: "_blank", class: "mobile-dropdown-link" if user_signed_in? %>
+      <%= link_to  "Catalog", art_items_path, class: "hover:bg-blue-50 hover:text-blue-700 block px-3 pr-4 py-2 text-base font-medium rounded w-screen max-w-xl #{class_names(active: current_page?(art_items_path))}" if user_signed_in? %>
+      <%= link_to  "AdminDoc", "https://docs.google.com/document/d/e/2PACX-1vTKMfzTxp2I02KuuT_3S5t2OOA4vUIZObWUgnslilQSuh1XBUQgmTpODJGmyoLWZ5UkN-adzSBQgBc7/pub#h.zf7fqp6cccac", target: "_blank", class: "hover:bg-blue-50 hover:text-blue-700 block px-3 pr-4 py-2 text-base font-medium rounded w-screen max-w-xl" if user_signed_in? %>
       <div class="grid grid-col-2 gap-2 justify-items-end mr-8">
         <div>
           <% if user_signed_in? %>

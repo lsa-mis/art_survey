@@ -64,3 +64,7 @@ trix-editor .trix-button-group--file-tools {
   color: blue;
   text-decoration: underline;
 }
+
+.active {
+  color: #ecc94b
+}
