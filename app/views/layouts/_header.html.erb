@@ -16,7 +16,7 @@
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:space-x-4 pl-2">
           <% if user_signed_in? %>
-            <% if is_access_authorized? %>
+            <% if access_authorized! %>
               <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal"><%= link_to "Catalog", art_items_path, class: "#{class_names(active: current_page?(art_items_path))}"%></div>
               <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal"><%= link_to "AdminDoc", "https://docs.google.com/document/d/e/2PACX-1vTKMfzTxp2I02KuuT_3S5t2OOA4vUIZObWUgnslilQSuh1XBUQgmTpODJGmyoLWZ5UkN-adzSBQgBc7/pub#h.zf7fqp6cccac", target: "_blank"%></div>
             <% end %>

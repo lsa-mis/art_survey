@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
+  before_action :is_super_user!
   before_action :set_role, only: %i[ show edit update destroy ]
-  before_action :is_super_user?
   
   # GET /roles or /roles.json
   def index

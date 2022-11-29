@@ -1,5 +1,5 @@
 class ArtItemsController < ApplicationController
-  before_action :is_access_authorized?
+  before_action :access_authorized!
   before_action :set_art_item, only: %i[ show edit update destroy ]
   before_action :set_departments_list, only: [:new, :create, :edit, :update]
   before_action :set_appraisal_types, only: [:new, :create, :edit, :update]
