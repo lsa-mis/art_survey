@@ -40,14 +40,19 @@
                   <div class="px-1 shadow-sm font-medium rounded text-blue-900 bg-yellow-550 hover:bg-yellow-500 hover:underline">Sign In</div>
                 <% end %>
               </div>
+            <%= button_to destroy_user_session_path, method: :delete, data: {turbo: "false"} do %>
+              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal">Sign Out</div>
             <% end %>
-          </div>
+            <div class="border-transparent text-yellow-500 inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal">
+              <%= current_user.email %>
+            </div>
+          <% else %>
+            <%= button_to user_saml_omniauth_authorize_path, data: {turbo: "false"} do %>
+              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal">Sign In</div>
+            <% end %>
+          <% end %>
         </div>
       </div>
-      <div class="sm:hidden items-center mt-1">
-        <%= render 'layouts/mobile_menu_toggle' %>
-      </div>
     </div>
-    <%= render 'layouts/mobile_menu_dropdown' %>
   </div>
 </nav>
