@@ -6,16 +6,16 @@ class ApplicationController < ActionController::Base
   end
   helper_method :role_object
 
-  def is_user_a?(role)
-    if Permission.where(role_id: role).exists?
-      permission_collection = Permission.where(role_id: role)
+  def is_user_a?( role_title )
+    if Permission.where(role_id: role_object( role_title )).exists?
+      permission_collection = Permission.where(role_id: role_object( role_title ))
       Access.where(permission_id: permission_collection).pluck(:uniqname).include?(session[:user_uniqname])
     end
   end
-  helper_method :is_user_a?(role)
+  helper_method :is_user_a?
   
   def is_super_user!
-    if is_user?("SuperUser")
+    if is_user_a?("SuperUser")
       true
     end
   end
