@@ -1,7 +1,6 @@
 <% if content_message(location) %>
   <div class="container">
     <%= content_message(location) %>
-    <%# if current_user && policy(Announcement).edit? && @index_page_announcement.present?%>
     <% if is_super_user! %>
       <%= link_to page_informations_path do %>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 rounded-md hover:bg-yellow-umyellow " fill="none" viewBox="0 0 24 24" stroke="currentColor">
