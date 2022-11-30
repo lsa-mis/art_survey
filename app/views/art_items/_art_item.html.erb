@@ -127,9 +127,9 @@
         </div>
         <div class="ml-2">
           <% if art_item.archived %>
-            <%= link_to 'Unarchive this item', art_item_path(@art_item), method: :post, data: { confirm: 'Are you sure?' }, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
+            <%= link_to 'Unarchive this item', unarchive_art_item_path(@art_item), data: {turbo_method: :get, turbo_confirm: 'Are you sure?'}, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
           <% else %>
-            <%= link_to 'Archive this item', art_item_path(@art_item), method: :post, data: { confirm: 'Are you sure?' }, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
+            <%= link_to 'Archive this item', archive_art_item_path(@art_item), data: {turbo_method: :get, turbo_confirm: 'Are you sure?'}, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
           <% end %>
         </div>
       </div>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :page_informations
   resources :annotations, except: :destroy
   get 'art_item_images/index'
+  resources :art_items, except: :destroy
   resources :art_items do
     resources :art_item_images, only: :index
   end  
@@ -12,6 +13,8 @@ Rails.application.routes.draw do
   resources :roles
 
   get 'art_items/delete_file_attachment/:id', to: 'art_items#delete_file_attachment', as: :delete_file
+  get 'archive_art_item/:id', to: 'art_items#archive', as: :archive_art_item
+  get 'unarchive_art_item/:id', to: 'art_items#unarchive', as: :unarchive_art_item
 
   get 'static_pages/home'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

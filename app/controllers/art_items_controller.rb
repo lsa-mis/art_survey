@@ -74,12 +74,25 @@ class ArtItemsController < ApplicationController
     end
   end
 
-  # DELETE /art_items/1 or /art_items/1.json
-  def destroy
-    @art_item.destroy
+  def archive
+    @art_item = ArtItem.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to art_items_url, notice: "Art item was successfully destroyed." }
-      format.json { head :no_content }
+      if @art_item.update(archived: true)
+          format.html { redirect_to art_item_url(@art_item), notice: "Art item was archived." }
+      else
+        format.html { redirect_to art_item_url(@art_item), notice: "Error archiving art item." }
+      end
+    end
+  end
+  
+  def unarchive
+    @art_item = ArtItem.find(params[:id])
+    respond_to do |format|
+      if @art_item.update(archived: false)
+        format.html { redirect_to art_item_url(@art_item), notice: 'Record was unarchived.'}
+      else
+        format.html { redirect_to art_item_url(@art_item), notice: "Error unarchiving art item." }
+      end
     end
   end
 
