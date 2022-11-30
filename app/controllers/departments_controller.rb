@@ -1,6 +1,6 @@
 class DepartmentsController < ApplicationController
   before_action :set_department, only: %i[ show edit update destroy ]
-  before_action :is_super_user?
+  before_action :is_super_user!
   
   # GET /departments or /departments.json
   def index

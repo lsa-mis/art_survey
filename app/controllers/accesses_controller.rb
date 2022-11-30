@@ -1,6 +1,6 @@
 class AccessesController < ApplicationController
   before_action :set_access, only: %i[ show edit update destroy ]
-  before_action :is_super_user?
+  before_action :is_super_user!
 
   # GET /accesses or /accesses.json
   def index

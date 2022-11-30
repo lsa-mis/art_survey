@@ -1,6 +1,6 @@
 class PageInformationsController < ApplicationController
   before_action :set_page_information, only: %i[ show edit update destroy ]
-  before_action :is_super_user?
+  before_action :is_super_user!
   
   # GET /page_informations or /page_informations.json
   def index
