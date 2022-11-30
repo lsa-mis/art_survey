@@ -15,7 +15,7 @@
 
   <div class="my-5">
     <%= form.label :permission_id %>
-    <%= form.text_field :permission_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :permission_id, Permission.order(:department_id), :id, :department_name_and_role_title, prompt: true %>
   </div>
 
   <div class="my-5">
