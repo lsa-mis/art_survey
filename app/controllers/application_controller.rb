@@ -22,10 +22,16 @@ class ApplicationController < ActionController::Base
   helper_method :is_super_user!
 
   def access_authorized!
-    Access.all.pluck(:uniqname).include?(session[:user_uniqname])
+   if Access.all.pluck(:uniqname).include?(session[:user_uniqname])
       true
+   end
   end
   helper_method :access_authorized!
+
+  def super_user_access_authorized!
+    redirect_to root_path unless is_super_user!
+    flash.alert = "Not Authorized." 
+  end
 
   def current_user_access
     Access.where(uniqname: session[:user_uniqname]).pluck(:permission_id)
