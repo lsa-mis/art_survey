@@ -14,6 +14,7 @@ class AccessesController < ApplicationController
   # GET /accesses/new
   def new
     @access = Access.new
+    @permissions_available = current_user_permissions
   end
 
   # GET /accesses/1/edit
