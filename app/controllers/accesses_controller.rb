@@ -19,6 +19,7 @@ class AccessesController < ApplicationController
 
   # GET /accesses/1/edit
   def edit
+    @permissions_available = current_user_permissions
   end
 
   # POST /accesses or /accesses.json
