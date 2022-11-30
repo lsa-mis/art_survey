@@ -7,20 +7,20 @@ class ArtItemsController < ApplicationController
   # GET /art_items or /art_items.json
   def index
     if params[:q].nil?
-      @q = ArtItem.active_with_departments.ransack(params[:q])
+      @q = get_artitems_collection.ransack(params[:q])
     else
       if
         params[:q][:archived_true].present? && params[:q][:archived_true] == "0"
-        @q = ArtItem.active_with_departments.ransack(params[:q])
+        @q = get_artitems_collection.ransack(params[:q])
       else
-        @q = ArtItem.archived_with_departments.ransack(params[:q])
+        @q = get_artitems_collection.ransack(params[:q])
       end
     end
 
     @art_items = @q.result.order('department.fullname')
-    @appraisal_type_ids = ArtItem.active_with_departments.pluck(:appraisal_type_id).uniq.sort
-    @departments = Department.where(id: (ArtItem.pluck(:department_id).uniq)).order(:fullname)
-
+    @appraisal_type_ids = get_artitems_collection.pluck(:appraisal_type_id).uniq.sort
+    @departments = Department.where(id: (ArtItem.where(department_id: current_user_departments).pluck(:department_id).uniq)).order(:fullname)
+ 
     unless params[:q].nil?
       render turbo_stream: turbo_stream.replace(
       :itemsListing,
@@ -98,6 +98,10 @@ class ArtItemsController < ApplicationController
 
     def set_appraisal_types
       @appraisal_types = AppraisalType.all
+    end
+
+    def get_artitems_collection
+      ArtItem.active_with_departments.where(department_id: current_user_departments)
     end
 
     # Only allow a list of trusted parameters through.
