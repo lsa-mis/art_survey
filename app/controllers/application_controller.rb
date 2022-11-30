@@ -21,6 +21,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :is_super_user!
 
+  def is_department_admin_user!
+    if is_user_a?("Department Administrator")
+      true
+    end
+  end
+  helper_method :is_department_admin_user!
+
   def access_authorized!
    if Access.all.pluck(:uniqname).include?(session[:user_uniqname])
       true
@@ -30,6 +37,11 @@ class ApplicationController < ActionController::Base
 
   def super_user_access_authorized!
     redirect_to root_path unless is_super_user!
+    flash.alert = "Not Authorized." 
+  end
+
+  def super_user_department_admin_access_authorized!
+    redirect_to root_path unless (is_super_user! || is_department_admin_user!)
     flash.alert = "Not Authorized." 
   end
 
@@ -43,6 +55,10 @@ class ApplicationController < ActionController::Base
     else
       Department.where(id: Permission.where(id: current_user_access).pluck(:department_id).uniq)
     end
+  end
+
+  def current_user_permissions
+    Permission.where(department_id: current_user_departments)
   end
 
 end
