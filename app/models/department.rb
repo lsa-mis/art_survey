@@ -14,7 +14,7 @@ class Department < ApplicationRecord
   has_many :art_items
   has_many :permissions
 
-  validates :dept_id, presence: true, uniqueness: true
+  validates :deptID, presence: true, uniqueness: true
 
   def display_fullname
     self.fullname
