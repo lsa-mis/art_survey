@@ -1,10 +1,10 @@
 class AccessesController < ApplicationController
+  before_action :super_user_access_authorized!
   before_action :set_access, only: %i[ show edit update destroy ]
-  before_action :is_super_user!
 
   # GET /accesses or /accesses.json
   def index
-    @accesses = Access.all
+    @accesses = Access.all.order(:uniqname)
   end
 
   # GET /accesses/1 or /accesses/1.json
