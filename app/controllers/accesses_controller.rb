@@ -1,10 +1,10 @@
 class AccessesController < ApplicationController
-  before_action :super_user_access_authorized!
+  before_action :super_user_department_admin_access_authorized!
   before_action :set_access, only: %i[ show edit update destroy ]
 
   # GET /accesses or /accesses.json
   def index
-    @accesses = Access.all.order(:uniqname)
+    @accesses = get_accesses_collection.order(:uniqname)
   end
 
   # GET /accesses/1 or /accesses/1.json
@@ -62,6 +62,10 @@ class AccessesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_access
       @access = Access.find(params[:id])
+    end
+
+    def get_accesses_collection
+      Access.where(permission_id: current_user_permissions)
     end
 
     # Only allow a list of trusted parameters through.
