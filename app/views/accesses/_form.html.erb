@@ -15,7 +15,7 @@
 
   <div class="my-5">
     <%= form.label :permission_id %>
-    <%= form.collection_select :permission_id, Permission.order(:department_id), :id, :department_name_and_role_title, prompt: true %>
+    <%= form.collection_select :permission_id, @permissions_available.order(:department_id), :id, :department_name_and_role_title, prompt: true %>
   </div>
 
   <div class="my-5">
