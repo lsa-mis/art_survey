@@ -26,4 +26,17 @@ class ApplicationController < ActionController::Base
       true
   end
   helper_method :access_authorized!
+
+  def current_user_access
+    Access.where(uniqname: session[:user_uniqname]).pluck(:permission_id)
+  end
+
+  def current_user_departments
+    if is_super_user!
+      Department.all
+    else
+      Department.where(id: Permission.where(id: current_user_access).pluck(:department_id).uniq)
+    end
+  end
+
 end
