@@ -1,6 +1,6 @@
 class AppraisalTypesController < ApplicationController
+  before_action :super_user_access_authorized!
   before_action :set_appraisal_type, only: %i[ show edit update destroy ]
-  before_action :is_super_user!
   
   # GET /appraisal_types or /appraisal_types.json
   def index
