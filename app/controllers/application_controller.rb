@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   def super_user_access_authorized!
     redirect_to root_path unless is_super_user!
-    flash.alert = "Not Authorized." 
+    flash.alert = "Not Authorized." unless is_super_user!
   end
 
   def super_user_department_admin_access_authorized!
