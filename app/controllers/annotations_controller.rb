@@ -1,5 +1,5 @@
 class AnnotationsController < ApplicationController
-  before_action :access_authorized!
+  before_action :super_user_access_authorized!
   before_action :set_annotation, only: %i[ show edit update destroy ]
 
 
