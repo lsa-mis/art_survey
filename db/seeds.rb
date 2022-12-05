@@ -42,4 +42,4 @@
 #   {role_id: roles.third, department_id: departments.first, updated_by: youser}
 # ])
 
-# Access.create!(permission_id: permissions.first, uniqname: youser.uniqname, updated_by: youser)
+# Access.create!(permission_id: permissions.first, uniqname: "<your uniqname>")
