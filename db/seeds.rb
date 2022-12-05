@@ -21,3 +21,23 @@
 
 PageInformation.create!(location: 'home')
 
+Department.create!(
+  [deptID: 171210, fullname: "Facilities", shortname: "FCL"],
+  [deptID: 170000, fullname: "Dean's Office", shortname: "DEANS"]
+)
+
+Role.create!(
+  [title: "SuperUser", description: "Manager of all things"],
+  [title: "Department Administrator", description: "Can see, edit and delete all records that they have entered as well as any records that are associated to your department."],
+  [title: "Recorder", description: "Can see, edit and delete only the items they have entered."]
+)
+
+Permission.create!(
+  [role_id: Role.first, department_id: Department.first],
+  [role_id: Role.second, department_id: Department.first],
+  [role_id: Role.third, department_id: Department.first]
+)
+
+Access.create!(
+  [permission_id: Permission.first, uniqname: "<your uniqname>"]
+)
