@@ -21,6 +21,8 @@
 
 # PageInformation.create!(location: 'home')
 
+# youser = (your user details from logging in)
+
 # departments = Department.create!([
 #   {deptID: 171210, fullname: "Facilities", shortname: "FCL"},
 #   {deptID: 170000, fullname: "Dean's Office", shortname: "DEANS"}
@@ -38,4 +40,4 @@
 #   {role_id: roles.third, department_id: departments.first}
 # ])
 
-# Access.create!(permission_id: permissions.first, uniqname: "<your uniqname>")
+# Access.create!(permission_id: permissions.first, uniqname: youser.uniqname)
