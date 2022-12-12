@@ -93,7 +93,7 @@ class ArtItemsController < ApplicationController
     end
 
     def set_departments_list
-      @departments_list = Department.where(department_id: current_user_departments)
+      @departments_list = Department.where(id: current_user_departments)
     end
 
     def set_appraisal_types
