@@ -62,6 +62,7 @@ class ApplicationController < ActionController::Base
       Department.where(id: Permission.where(id: current_user_access).pluck(:department_id).uniq)
     end
   end
+  helper_method :current_user_departments
 
   def current_user_permissions
     Permission.where(department_id: current_user_departments)
