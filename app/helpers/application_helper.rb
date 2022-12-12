@@ -44,19 +44,4 @@ module ApplicationHelper
   def show_role_title(id)
     Role.find(id).show_role_title
   end
-
-  def department_admins( department )
-    #collection of a department's admins
-    deptadmin_permissions = Permission.where(role_id: department_admin_role_object, department_id: department)
-    deptadmin_accesses = Access.where(permission_id: deptadmin_permissions).pluck(:uniqname)
-    deptadmin_object_collection = User.where(uniqname: deptadmin_accesses)
-  end
-
-  def department_recorders( department = nil )
-    #collection of a department's recorders
-    recorder_permissions = Permission.where(role_id: recorder_role_object, department_id: department)
-    recorder_accesses = Access.where(permission_id: recorder_permissions).pluck(:uniqname)
-    recorder_object_collection = User.where(uniqname: recorder_accesses)
-  end
-
 end
