@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   helper_method :role_object
 
   def is_user_a?( role_title )
-    if Permission.where(role_id: role_object( role_title )).exists?
-      permission_collection = Permission.where(role_id: role_object( role_title ))
+    permission_collection = Permission.where(role_id: role_object( role_title ))
+    if permission_collection.exists?
       Access.where(permission_id: permission_collection).pluck(:uniqname).include?(session[:user_uniqname])
     end
   end
@@ -34,6 +34,12 @@ class ApplicationController < ActionController::Base
    end
   end
   helper_method :access_authorized!
+
+  def check_for_authorized_access
+    redirect_to root_path unless access_authorized!
+    flash.alert = "Not Authorized." unless access_authorized!
+  end
+  helper_method :check_for_authorized_access
 
   def super_user_access_authorized!
     redirect_to root_path unless is_super_user!
@@ -61,4 +67,7 @@ class ApplicationController < ActionController::Base
     Permission.where(department_id: current_user_departments)
   end
 
+  def get_accesses_collection
+    Access.where(permission_id: current_user_permissions)
+  end
 end
