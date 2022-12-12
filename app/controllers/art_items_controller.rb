@@ -103,11 +103,6 @@ class ArtItemsController < ApplicationController
     def get_artitems_collection
       ArtItem.active_with_departments.where(department_id: current_user_departments)
     end
-     
-    def check_for_authorized_access
-      redirect_to root_path unless access_authorized!
-      flash.alert = "Not Authorized." unless access_authorized!
-    end
 
     # Only allow a list of trusted parameters through.
     def art_item_params
