@@ -66,10 +66,6 @@ class AccessesController < ApplicationController
       @access = Access.find(params[:id])
     end
 
-    def get_accesses_collection
-      Access.where(permission_id: current_user_permissions)
-    end
-
     # Only allow a list of trusted parameters through.
     def access_params
       params.require(:access).permit(:permission_id, :uniqname, :updated_by)
