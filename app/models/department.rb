@@ -11,8 +11,8 @@
 #  updated_at :datetime         not null
 #
 class Department < ApplicationRecord
-  has_many :art_items
-  has_many :permissions
+  has_many :art_items, dependent: :destroy
+  has_many :permissions, dependent: :destroy
 
   validates :deptID, presence: true, uniqueness: true
 

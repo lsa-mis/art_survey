@@ -10,7 +10,7 @@
 #  updated_at  :datetime         not null
 #
 class Role < ApplicationRecord
-  has_many :permissions
+  has_many :permissions, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
 
