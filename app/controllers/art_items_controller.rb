@@ -1,8 +1,8 @@
 class ArtItemsController < ApplicationController
   before_action :check_for_authorized_access
   before_action :set_art_item, only: %i[ show edit update destroy ]
-  before_action :set_departments_list, only: [:new, :create, :edit, :update]
-  before_action :set_appraisal_types, only: [:new, :create, :edit, :update]
+  before_action :set_departments_list, only: %i[ index new create edit update ]
+  before_action :set_appraisal_types, only: %i[ new create edit update ]
 
   # GET /art_items or /art_items.json
   def index
@@ -19,7 +19,7 @@ class ArtItemsController < ApplicationController
 
     @art_items = @q.result.order('department.fullname')
     @appraisal_type_ids = get_artitems_collection.pluck(:appraisal_type_id).uniq.sort
-    @departments = Department.where(id: (ArtItem.where(department_id: current_user_departments).pluck(:department_id).uniq)).order(:fullname)
+    @departments = Department.where(id: (ArtItem.where(department_id: @departments_list).pluck(:department_id).uniq)).order(:fullname)
  
     unless params[:q].nil?
       render turbo_stream: turbo_stream.replace(
