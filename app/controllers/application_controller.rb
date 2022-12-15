@@ -52,14 +52,8 @@ class ApplicationController < ActionController::Base
     Access.where(uniqname: session[:user_uniqname])
   end
 
-  def current_department_admin_user_department_ids
-    department_admin_permissions_collection = Permission.where(role_id: role_object( "Department Administrator" ))
-    current_department_admin_user_access = Access.where(permission_id: department_admin_permissions_collection, uniqname: session[:user_uniqname])
-    current_department_admin_user_department_ids = Permission.find(current_department_admin_user_access.pluck(:permission_id)).pluck(:department_id)
-  end
-
   def current_department_admin_user_department_permissions_collection
-    Permission.where(department_id: current_department_admin_user_department_ids)
+    Permission.where(id: current_user_access.pluck(:permission_id), role_id: role_object( "Department Administrator" ))
   end
 
   def current_user_permissions
@@ -72,12 +66,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_user_associated_department_permissions
+    Permission.where(department_id: current_user_permissions.pluck(:department_id))
+  end
+
   def current_user_departments
     if is_super_user!
       Department.all
     elsif is_department_admin_user!
-      permission_collection = Permission.where(id: current_user_access.pluck(:permission_id))
-      Department.where(id: (current_department_admin_user_department_ids.concat(permission_collection.pluck(:department_id))).uniq)
+      Department.where(id: current_department_admin_user_department_permissions_collection.pluck(:department_id))
     else
       Department.where(id: current_user_permissions.pluck(:department_id)).uniq
     end
@@ -87,7 +84,7 @@ class ApplicationController < ActionController::Base
     if is_super_user!
       Access.all
     elsif is_department_admin_user!
-      department_admin_access_collection = (Access.where(permission_id: current_department_admin_user_department_permissions_collection)).uniq
+      Access.where(permission_id: current_department_admin_user_department_permissions_collection + current_user_associated_department_permissions)
     else
       current_user_access
     end
