@@ -8,16 +8,8 @@ This listing does not apply to collections in LSA's research or public museums. 
 ## Getting Started (Mac)
 
 ### Prerequisites
-- homebrew
-- git
 - postgresql (correct version and running)
-- make sure your ruby version is correct 
-  - use Ruby virtual environments tools (rbenv, for example) to manage ruby versions 
-- make sure you have write permissions for the ruby gems directory
-- correct version of bundler
-```
-gem install bundler:2.2.26
-```
+- This application uses University of Michigan Shibboleth + DUO authentication
 
 To get a local copy up and running clone the repo, navigate to the local instance and start the application
 ```
@@ -33,12 +25,6 @@ bin/dev
   - Omniauth-SAML
     - Shibboleth + DUO
     - Devise
- ## Authorization
- - ldap_lookup - to gather user group affiliation
- - pundit gem - use policies to give access to records and actions based on user's role
-
-
-## Deployment
 
 ## Support / Questions
   Please email the [LSA W&ADS Rails Team](mailto:lsa-was-rails-devs@umich.edu)
