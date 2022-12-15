@@ -66,7 +66,7 @@ class AccessesController < ApplicationController
     end
 
     def get_permissions
-      @permissions_available = current_user_permissions
+      @permissions_available = current_user_associated_department_permissions
     end
 
     # Only allow a list of trusted parameters through.
