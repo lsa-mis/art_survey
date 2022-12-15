@@ -90,6 +90,8 @@ class ArtItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_art_item
       @art_item = ArtItem.find(params[:id])
+      redirect_to root_path unless current_user_departments.include?(@art_item.department)
+      flash.alert = "Not Authorized." unless current_user_departments.include?(@art_item.department)
     end
 
     def set_departments_list
