@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
     elsif is_department_admin_user!
       Department.where(id: current_department_admin_user_department_permissions_collection.pluck(:department_id))
     else
-      Department.where(id: current_user_permissions.pluck(:department_id)).uniq
+      Department.where(id: current_user_permissions.pluck(:department_id))
     end
   end
 
