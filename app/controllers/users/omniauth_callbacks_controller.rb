@@ -47,6 +47,7 @@ def set_user
 
   if @user
     session[:user_email] = @user.email
+    session[:user_uniqname] = get_uniqname(@user.email)
   end
 end
 

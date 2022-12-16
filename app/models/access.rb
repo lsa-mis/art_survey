@@ -11,4 +11,8 @@
 #
 class Access < ApplicationRecord
   belongs_to :permission
+
+  validates :uniqname, presence: true
+  validates :updated_by, presence: true
+  validates :permission_id, presence: true, uniqueness: { scope: :uniqname }
 end

@@ -1,6 +1,7 @@
 class AnnotationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :super_user_access_authorized!
   before_action :set_annotation, only: %i[ show edit update destroy ]
+
 
   # GET /annotations or /annotations.json
   def index
@@ -23,8 +24,6 @@ class AnnotationsController < ApplicationController
   # POST /annotations or /annotations.json
   def create
     @annotation = Annotation.new(annotation_params)
-    @annotation.created_by = current_user.id
-
     if @annotation.save
       @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
       @new_annotation = Annotation.new(art_item: @annotation.art_item)

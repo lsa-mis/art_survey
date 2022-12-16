@@ -19,5 +19,27 @@
 #   {fullname: 'Asian Languages & Cultures', deptID: 176000, shortname: 'Asian', updated_by: 1}
 # ])
 
-PageInformation.create!(location: 'home')
+# PageInformation.create!(location: 'home')
 
+# You will need to create a youser manually
+
+# youser = (your user object from logging in)
+
+# departments = Department.create!([
+#   {deptID: 171210, fullname: "Facilities", shortname: "FCL", updated_by: youser},
+#   {deptID: 170000, fullname: "Dean's Office", shortname: "DEANS", updated_by: youser}
+# ])
+
+# roles = Role.create!([
+#   {title: "SuperUser", description: "Manager of all things", updated_by: youser},
+#   {title: "Department Administrator", description: "Can see, edit and delete all records that they have entered as well as any records that are associated to your department.", updated_by: youser},
+#   {title: "Recorder", description: "Can see, edit and delete only the items they have entered.", updated_by: youser}
+# ])
+
+# permissions = Permission.create!([
+#   {role_id: roles.first, department_id: departments.first, updated_by: youser},
+#   {role_id: roles.second, department_id: departments.first, updated_by: youser},
+#   {role_id: roles.third, department_id: departments.first, updated_by: youser}
+# ])
+
+# Access.create!(permission_id: permissions.first, uniqname: youser.uniqname, updated_by: youser)

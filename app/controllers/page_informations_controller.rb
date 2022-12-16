@@ -1,7 +1,7 @@
 class PageInformationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :super_user_access_authorized!
   before_action :set_page_information, only: %i[ show edit update destroy ]
-
+  
   # GET /page_informations or /page_informations.json
   def index
     @page_informations = PageInformation.all

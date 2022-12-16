@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :updated_by, value: current_user.id %>
+
   <div class="my-5">
     <%= form.label :department_id %>
     <%= form.collection_select :department_id, @departments_list, :id, :fullname, { include_blank: "Select ...", required: true }, { class: "block rounded-none rounded-l-md text-base border-gray-300" } %>

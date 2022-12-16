@@ -1,26 +1,26 @@
 class ArtItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :check_for_authorized_access
   before_action :set_art_item, only: %i[ show edit update destroy ]
-  before_action :set_departments_list, only: [:new, :create, :edit, :update]
-  before_action :set_appraisal_types, only: [:new, :create, :edit, :update]
+  before_action :set_departments_list, only: %i[ index new create edit update ]
+  before_action :set_appraisal_types, only: %i[ new create edit update ]
 
   # GET /art_items or /art_items.json
   def index
     if params[:q].nil?
-      @q = ArtItem.active_with_departments.ransack(params[:q])
+      @q = get_artitems_collection.ransack(params[:q])
     else
       if
         params[:q][:archived_true].present? && params[:q][:archived_true] == "0"
-        @q = ArtItem.active_with_departments.ransack(params[:q])
+        @q = get_artitems_collection.ransack(params[:q])
       else
-        @q = ArtItem.archived_with_departments.ransack(params[:q])
+        @q = get_artitems_collection.ransack(params[:q])
       end
     end
 
     @art_items = @q.result.order('department.fullname')
-    @appraisal_type_ids = ArtItem.active_with_departments.pluck(:appraisal_type_id).uniq.sort
-    @departments = Department.where(id: (ArtItem.pluck(:department_id).uniq)).order(:fullname)
-
+    @appraisal_type_ids = get_artitems_collection.pluck(:appraisal_type_id).uniq.sort
+    @departments = Department.where(id: (ArtItem.where(department_id: @departments_list).pluck(:department_id).uniq)).order(:fullname)
+ 
     unless params[:q].nil?
       render turbo_stream: turbo_stream.replace(
       :itemsListing,
@@ -47,8 +47,6 @@ class ArtItemsController < ApplicationController
   # POST /art_items or /art_items.json
   def create
     @art_item = ArtItem.new(art_item_params)
-    @art_item.updated_by = current_user.id
-
     respond_to do |format|
       if @art_item.save
         format.html { redirect_to art_item_url(@art_item), notice: "Art item was successfully created." }
@@ -64,7 +62,6 @@ class ArtItemsController < ApplicationController
   def update
     respond_to do |format|
       if @art_item.update(art_item_params)
-        @art_item.update(updated_by: current_user.id)
         format.html { redirect_to art_item_url(@art_item), notice: "Art item was successfully updated." }
         format.json { render :show, status: :ok, location: @art_item }
       else
@@ -93,14 +90,20 @@ class ArtItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_art_item
       @art_item = ArtItem.find(params[:id])
+      redirect_to root_path unless current_user_departments.include?(@art_item.department)
+      flash.alert = "Not Authorized." unless current_user_departments.include?(@art_item.department)
     end
 
     def set_departments_list
-      @departments_list = Department.all
+      @departments_list = current_user_departments
     end
 
     def set_appraisal_types
       @appraisal_types = AppraisalType.all
+    end
+
+    def get_artitems_collection
+      ArtItem.active_with_departments.where(department_id: current_user_departments)
     end
 
     # Only allow a list of trusted parameters through.

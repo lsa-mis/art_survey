@@ -1,22 +1,13 @@
 <div id="<%= dom_id access %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Permission:</strong>
-    <%= access.permission_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Uniqname:</strong>
-    <%= access.uniqname %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Updated by:</strong>
-    <%= access.updated_by %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this access", access, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this access', edit_access_path(access), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <tr class="border-b-2"> 
+    <td class="px-2"><%= show_department_fullname(access.permission.department_id) %> - <%= show_role_title(access.permission.role_id) %></td>
+    <td class="px-2"><%= access.uniqname %></td>
+    <td class="px-2"><%= show_user(access.updated_by) %></td>
+    <td class="px-2">
+      <% if action_name != "show" %>
+        <%= link_to "Show this access", access, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= link_to 'Edit this access', edit_access_path(access), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <% end %>
+    </td>
+  </tr>
 </div>

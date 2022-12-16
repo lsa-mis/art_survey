@@ -1,10 +1,11 @@
 class AccessesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :super_user_department_admin_access_authorized!
   before_action :set_access, only: %i[ show edit update destroy ]
+  before_action :get_permissions, only: %i[ new edit ]
 
   # GET /accesses or /accesses.json
   def index
-    @accesses = Access.all
+    @accesses = get_accesses_collection
   end
 
   # GET /accesses/1 or /accesses/1.json
@@ -62,6 +63,10 @@ class AccessesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_access
       @access = Access.find(params[:id])
+    end
+
+    def get_permissions
+      @permissions_available = current_user_associated_department_permissions
     end
 
     # Only allow a list of trusted parameters through.

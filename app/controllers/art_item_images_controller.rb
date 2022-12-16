@@ -1,5 +1,6 @@
 class ArtItemImagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :access_authorized!
+
   layout false
 
   before_action :set_art_item, only: :index

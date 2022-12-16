@@ -13,11 +13,16 @@ class Permission < ApplicationRecord
   
   belongs_to :role
   belongs_to :department
-  has_many :accesses
+  has_many :accesses, dependent: :destroy
 
-  around_save :set_updated_by
+  validates :department_id, presence: true    
+  validates :role_id, presence: true, uniqueness: { scope: :department_id }
 
-  def set_updated_by
-    self.updated_by = current_user
+  def department_name_and_role_title
+    "#{department.fullname} - #{role.title}"
+  end
+
+  def department_full_name
+    "#{department.fullname}"
   end
 end
