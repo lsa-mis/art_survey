@@ -29,8 +29,12 @@ module ApplicationHelper
     field.strftime("%m/%d/%Y") unless field.blank?
   end
 
-  def show_user(id)
-    User.find(id).updated_by_name
+  def show_user_name_by_id(id)
+    User.find(id).display_name_email
+  end
+
+  def show_user_name_by_uniqname(uniqname)
+    "#{LdapLookup.get_simple_name(uniqname)} - #{uniqname}"
   end
 
   def render_flash_stream
