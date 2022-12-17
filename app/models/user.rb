@@ -29,8 +29,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :omniauthable, omniauth_providers: [:saml]
 
-  def updated_by_name
-    "#{self.display_name} - #{email}"
+  def display_name_email
+    "#{display_name} - #{email}"
   end
 
 end
