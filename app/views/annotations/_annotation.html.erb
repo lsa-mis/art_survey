@@ -12,7 +12,7 @@
         </div>
         <div class="flex items-center">
           by
-          <%= show_user(annotation.created_by) %>
+          <%= show_user_name_by_id(annotation.created_by) %>
           <%= link_to "Edit", edit_annotation_path(annotation), class: "m-2 px-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
         </div>
       </div>
