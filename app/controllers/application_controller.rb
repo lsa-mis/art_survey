@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
     if is_super_user!
       Department.all
     elsif is_department_admin_user!
-      Department.where(id: current_department_admin_user_department_permissions_collection.pluck(:department_id))
+      Department.where(id: (current_department_admin_user_department_permissions_collection.pluck(:department_id) + Permission.where(id: current_user_access.pluck(:permission_id)).pluck(:department_id)))
     else
       Department.where(id: current_user_permissions.pluck(:department_id))
     end
