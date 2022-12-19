@@ -8,8 +8,9 @@ This listing does not apply to collections in LSA's research or public museums. 
 ## Getting Started (Mac)
 
 ### Prerequisites
-- postgresql (correct version and running)
-- This application uses University of Michigan Shibboleth + DUO authentication
+- Postgresql
+- University of Michigan Shibboleth + DUO authentication
+- 'ldap_lookup' gem requires a proper configuration to be in place
 
 To get a local copy up and running clone the repo, navigate to the local instance and start the application
 ```
