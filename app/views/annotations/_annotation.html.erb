@@ -11,9 +11,9 @@
           <%= annotation.updated_at.strftime('%m/%d/%Y') %>
         </div>
         <div class="flex items-center">
-          by
-          <%= show_user_name_by_id(annotation.created_by) %>
-          <%= link_to "Edit", edit_annotation_path(annotation), class: "m-2 px-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
+          &nbspby
+          <%= show_user_name_by_id(annotation.updated_by) %>
+            <%= link_to "Edit", edit_annotation_path(annotation), class: "m-2 px-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@
     </div>
   <% end %>
   
-  <%= form.hidden_field :created_by, value: current_user.id %>
+  <%= form.hidden_field :updated_by, value: current_user.id %>
 
   <div class="my-5">
     <%= form.label :note %>
