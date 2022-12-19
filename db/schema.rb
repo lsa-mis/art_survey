@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_19_212959) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_19_150006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_212959) do
   end
 
   create_table "annotations", force: :cascade do |t|
-    t.integer "created_by"
+    t.integer "updated_by"
     t.bigint "art_item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -127,6 +127,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_212959) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_permissions", force: :cascade do |t|
+    t.string "uniqname", null: false
+    t.string "role", null: false
+    t.bigint "department_id", null: false
+    t.integer "updated_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_user_permissions_on_department_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -158,4 +168,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_212959) do
   add_foreign_key "art_items", "departments"
   add_foreign_key "permissions", "departments"
   add_foreign_key "permissions", "roles"
+  add_foreign_key "user_permissions", "departments"
 end

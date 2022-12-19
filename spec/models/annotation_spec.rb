@@ -3,7 +3,7 @@
 # Table name: annotations
 #
 #  id          :bigint           not null, primary key
-#  created_by  :integer
+#  updated_by  :integer
 #  art_item_id :bigint           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
