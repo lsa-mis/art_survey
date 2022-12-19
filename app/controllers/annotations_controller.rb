@@ -1,5 +1,5 @@
 class AnnotationsController < ApplicationController
-  before_action :super_user_access_authorized!
+  before_action :check_for_authorized_access
   before_action :set_annotation, only: %i[ show edit update destroy ]
 
 
@@ -25,7 +25,7 @@ class AnnotationsController < ApplicationController
   def create
     @annotation = Annotation.new(annotation_params)
     if @annotation.save
-      @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
+      @annotations = Annotation.where(art_item: @annotation.art_item).order("updated_at DESC")
       @new_annotation = Annotation.new(art_item: @annotation.art_item)
       flash.now[:notice] = "Annotation successfully created."
     else
@@ -36,7 +36,7 @@ class AnnotationsController < ApplicationController
   # PATCH/PUT /annotations/1 or /annotations/1.json
   def update
     if @annotation.update(annotation_params)
-      @annotations = Annotation.where(art_item: @annotation.art_item).order("created_at DESC")
+      @annotations = Annotation.where(art_item: @annotation.art_item).order("updated_at DESC")
       flash.now[:notice] = "Annotation successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -51,6 +51,6 @@ class AnnotationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def annotation_params
-      params.require(:annotation).permit(:note, :created_by, :art_item_id)
+      params.require(:annotation).permit(:note, :updated_by, :art_item_id)
     end
 end
