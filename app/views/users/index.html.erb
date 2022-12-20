@@ -16,21 +16,21 @@
           <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Current Sign In At</th>
           <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Current Sign In IP</th>
           <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-            <span class="sr-only">Edit</span>
+            <span class="sr-only">Show</span>
           </th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200 bg-white">
       <% @users.each do |user| %>
         <tr class="even:bg-blue-50">
-          <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6"><%= user.id %></td>
+          <td class="whitespace-nowrap py-4 px-3 text-sm font-medium text-gray-500 sm:pl-6"><%= user.id %></td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900 lg:table-cell"><%= user.display_name %></td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900 lg:table-cell"><%= user.uniqname %></td>
           <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-900 lg:table-cell"><%= user.email %></td>
-          <td class="hidden whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= user.sign_in_count %></td>
+          <td class="hidden whitespace-nowrap py-4 px-3 text-sm  text-gray-900 lg:table-cell"><%= user.sign_in_count %></td>
           <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-900 lg:table-cell"><%= user.current_sign_in_at %></td>
           <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-900 lg:table-cell"><%= user.current_sign_in_ip %></td>
-          <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+          <td class="whitespace-nowrap px-3 py-4 text-right text-sm font-medium sm:pr-6">
             <%= link_to "Show", user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
           </td>
         </tr>
