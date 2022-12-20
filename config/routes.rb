@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :page_informations
   resources :annotations, except: :destroy
   get 'art_item_images/index'
