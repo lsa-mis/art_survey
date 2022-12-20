@@ -23,7 +23,7 @@
       <% @appraisal_types.each do |at| %>
         <tr class="even:bg-blue-50">
           <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= at.classification %></td>
-          <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= at.description %></td>
+          <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= at.description.truncate(70) %></td>
           <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= show_user_name_by_id(at.updated_by) %></td>
           <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
             <%= link_to "Show", appraisal_type_path(at), class: "text-indigo-600 hover:text-indigo-900" %>
