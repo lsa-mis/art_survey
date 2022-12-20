@@ -22,6 +22,7 @@
           <%= link_to "Departments", departments_path, class: "hover:bg-blue-50 hover:text-blue-700 block px-3 pr-4 py-2 ml-3 text-xs font-medium rounded w-screen max-w-xl #{class_names(active: current_page?(departments_path))} " %>
           <%= link_to "Permissions", permissions_path, class: "hover:bg-blue-50 hover:text-blue-700 block px-3 pr-4 py-2 ml-3 text-xs font-medium rounded w-screen max-w-xl #{class_names(active: current_page?(permissions_path))} " %>
           <%= link_to "Roles", roles_path, class: "hover:bg-blue-50 hover:text-blue-700 block px-3 pr-4 py-2 ml-3 text-xs font-medium rounded w-screen max-w-xl #{class_names(active: current_page?(roles_path))}" %>
+          <%= link_to "Users", users_path, class: "hover:bg-blue-50 hover:text-blue-700 block px-3 pr-4 py-2 ml-3 text-xs font-medium rounded w-screen max-w-xl #{class_names(active: current_page?(users_path))}" %>
         <% end %>
       <% end %>
       <div class="grid grid-col-2 gap-2 justify-items-end mr-8">
