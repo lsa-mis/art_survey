@@ -3,10 +3,13 @@
 
     <%= render @department %>
 
-    <%= link_to 'Edit this department', edit_department_path(@department), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this department', department_path(@department), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to 'Back to departments', departments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% if @department.deptID != 999999 %>
+      <%= link_to 'Edit', edit_department_path(@department), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    
+      <div class="inline-block ml-2">
+        <%= button_to 'Delete', department_path(@department), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      </div>
+    <% end %>
+    <%= link_to 'Back', departments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

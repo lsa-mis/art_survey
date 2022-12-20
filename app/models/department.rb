@@ -19,4 +19,8 @@ class Department < ApplicationRecord
   def display_fullname
     self.fullname
   end
+
+  def display_shortname
+    self.shortname
+  end
 end

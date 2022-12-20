@@ -45,6 +45,10 @@ module ApplicationHelper
     Department.find(id).display_fullname
   end
 
+  def show_department_shortname(id)
+    Department.find(id).display_shortname
+  end
+
   def show_role_title(id)
     Role.find(id).show_role_title
   end
