@@ -67,6 +67,7 @@
               <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Departments", departments_path, class: "#{class_names(active: current_page?(departments_path))}"%></div>
               <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Permissions", permissions_path, class: "#{class_names(active: current_page?(permissions_path))}"%></div>
               <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Roles", roles_path, class: "#{class_names(active: current_page?(roles_path))}"%></div>
+              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Users", users_path, class: "#{class_names(active: current_page?(users_path))}"%></div>
             <% end %>
           <% end %>
         </div>
