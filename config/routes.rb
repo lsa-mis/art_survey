@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :users
+  get 'users', to: 'users#index', as: 'users'
+  get 'users/:id', to: 'users#show', as: 'user'
   resources :page_informations
   resources :annotations, except: :destroy
   get 'art_item_images/index'
