@@ -87,6 +87,4 @@ staging:
 
 production:
   <<: *default
-  database: art_survey_production
-  username: art_survey
-  password: <%= ENV["ART_SURVEY_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
