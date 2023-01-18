@@ -22,6 +22,14 @@ Devise.setup do |config|
     entity_id = Rails.application.credentials.staging_entity_id
   end
 
+  if Rails.env.production?
+    idp_login_url = Rails.application.credentials.production_idp_sso_target_url
+    idp_logout_url = Rails.application.credentials.production_idp_slo_target_url
+    idp_fingerprint = Rails.application.credentials.production_idp_cert_fingerprint
+    consumer_service_url = Rails.application.credentials.production_assertion_consumer_service_url
+    entity_id = Rails.application.credentials.production_entity_id
+  end
+
   config.omniauth :saml,
     :assertion_consumer_service_url     => consumer_service_url,
     :issuer                             => entity_id,
