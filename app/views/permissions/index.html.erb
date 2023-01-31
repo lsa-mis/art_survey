@@ -4,33 +4,29 @@
       <h2 class="text-xl font-semibold text-gray-900">Configure Department Roles</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <%= link_to 'New permission', new_permission_path, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-blue-umblue px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-white hover:text-blue-umblue hover:ring-2 hover:ring-blue-umblue focus:outline-none focus:ring-2 focus:ring-blue-umblue focus:ring-offset-2 sm:w-auto" %>
+      <%= link_to 'New Department Role', new_permission_path, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-blue-umblue px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-white hover:text-blue-umblue hover:ring-2 hover:ring-blue-umblue focus:outline-none focus:ring-2 focus:ring-blue-umblue focus:ring-offset-2 sm:w-auto" %>
     </div>
   </div>
-  <div class="-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
-    <p class="pl-2 font-semibold text-gray-900">Available Roles</p>
-    <table class="min-w-full divide-y divide-gray-300">
-      <thead class="bg-gray-50">
-        <tr>
-          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Title</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Description</th>
-          <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-            <span class="sr-only">Edit</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200 bg-white">
-      <% @roles.each do |role| %>
-        <tr class="even:bg-blue-50">
-          <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= role.title %></td>
-          <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= role.description.truncate(100) %></td>
-          <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-            <%= link_to "Show", role_path(role), class: "text-indigo-600 hover:text-indigo-900" %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class= "grid grid-cols-4">
+    <div class="col-span-2 text-sm -mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-6 sm:-mx-6 md:mx-0 md:rounded-lg">
+      <p class="pl-2 font-semibold text-gray-900">Available Roles</p>
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead class="bg-gray-50">
+          <tr class="p-3">
+            <th scope="col" class="text-left font-semibold text-gray-900 sm:pl-6">Title</th>
+            <th scope="col" class="hidden text-left font-semibold text-gray-900 lg:table-cell">Description</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-xs bg-white">
+        <% @roles.each do |role| %>
+          <tr class="even:bg-blue-50">
+            <td class="whitespace-nowrap font-medium text-gray-900 sm:pl-6"><%= role.title %></td>
+            <td class="hidden pl-2 text-gray-700 lg:table-cell"><%= role.description %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
     <table class="min-w-full divide-y divide-gray-300">
