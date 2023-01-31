@@ -63,11 +63,10 @@
           <% if user_signed_in? %>
             <% if is_super_user! %>
               <div class="border-transparent text-blue-200 inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal">Application Configurations:</div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Appraisal Types", appraisal_types_path, class: "#{class_names(active: current_page?(appraisal_types_path))}"%></div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Departments", departments_path, class: "#{class_names(active: current_page?(departments_path))}"%></div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Permissions", permissions_path, class: "#{class_names(active: current_page?(permissions_path))}"%></div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Roles", roles_path, class: "#{class_names(active: current_page?(roles_path))}"%></div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Users", users_path, class: "#{class_names(active: current_page?(users_path))}"%></div>
+              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Add Appraisal Types", appraisal_types_path, class: "#{class_names(active: current_page?(appraisal_types_path))}"%></div>
+              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Add Departments", departments_path, class: "#{class_names(active: current_page?(departments_path))}"%></div>
+              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Configure Department Roles", permissions_path, class: "#{class_names(active: current_page?(permissions_path))}"%></div>
+              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "View Users", users_path, class: "#{class_names(active: current_page?(users_path))}"%></div>
             <% end %>
           <% end %>
         </div>
