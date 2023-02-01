@@ -5,7 +5,7 @@
       <h2 class="mt-2 text-sm text-gray-700">All art items grouped by departments.</h2>
     </div>
   </div>
-  <div class="mt-8 flex flex-col">
+  <div class="flex flex-col">
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
         <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -28,18 +28,18 @@
                   </tr>
                   <% prev_dept = dept %>
                   <tr class="border-t border-gray-300">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= item.location_building %> - <span class="text-gray-700"><%= item.location_room %></span></td>
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= item.location_building %> - <span class="text-gray-700"><%= item.location_room.truncate(20) %></span></td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900 text-right"><%= number_to_currency(item.value_cost, precision: 0) %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900"><%= item.description.to_plain_text.truncate(50) %></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900"><%= item.description.to_plain_text.truncate(80) %></td>
                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                       <%= link_to 'Show', art_item_path(item), class: "text-indigo-600 hover:text-indigo-900" %><span class="sr-only">, <%= item.id %></span></a>
                     </td>
                   </tr>
                 <% else %>
                   <tr class="border-t border-gray-300">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= item.location_building %> - <span class="text-gray-700"><%= item.location_room %></td>
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= item.location_building %> - <span class="text-gray-700"><%= item.location_room.truncate(20) %></td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900 text-right"><%= number_to_currency(item.value_cost, precision: 0) %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900"><%= item.description.to_plain_text.truncate(50) %></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900"><%= item.description.to_plain_text.truncate(80) %></td>
                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                       <%= link_to 'Show', art_item_path(item), class: "text-indigo-600 hover:text-indigo-900" %><span class="sr-only">, <%= item.id %></span></a>
                     </td>
