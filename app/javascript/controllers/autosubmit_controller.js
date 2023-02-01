@@ -30,12 +30,10 @@ export default class extends Controller {
           this.value_cost_errorTarget.innerText = ""
 
           Turbo.navigator.submitForm(this.formTarget)
-          this.sidebarTarget.classList.toggle('-translate-x-full')
         }
       }
       else {
         Turbo.navigator.submitForm(this.formTarget)
-        this.sidebarTarget.classList.toggle('-translate-x-full')
       }
     }, 600)
   }
