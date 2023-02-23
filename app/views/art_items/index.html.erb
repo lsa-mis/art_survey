@@ -1,10 +1,10 @@
 <div class="grid grid-cols-4">
-  <h1 class="col-span-3 leading-53 font-display font-semibold text-3xl">Search Art Items</h1>
+  <h1 class="col-span-3 leading-53 font-oswald font-semibold text-3xl">Search Art Items</h1>
   <div class="flex justify-end items-center pb-1">
     <%= link_to 'Add Art Item', new_art_item_path, class: "rounded py-2 px-3 bg-blue-umblue text-white block hover:bg-white hover:text-blue-umblue hover:ring-2 hover:ring-blue-umblue" %>
   </div>
 </div>
-<div class="text-xs font-normal font-body mt-2 mb-10">
+<div class="text-xs font-normal font-montserrat mt-2 mb-10">
   <%= render 'layouts/display_info_text', location: 'catalog' %>
 </div>
 
@@ -16,15 +16,15 @@
       <div class="font-blue-umblue">
         <div class="sidebar" data-autosubmit-target="sidebar">
           <div class="text-sm ">
-            <div class="pb-2 grid grid-cols-4">
+            <div class="pb-2 grid grid-cols-5 gap-2">
               <div class="col-span-2">
                 <div class="">
-                  <label for="department_id"><span class="font-bold text-black">Search Department</span></label>
+                  <label for="department_id"><span class="font-oswald font-bold text-black">Search Department</span></label>
                   <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Department" }, { class: "mt-2 block rounded-none rounded text-xs border-umblue" } %>
                 </div>
                 <div class="mt-3">
                   <div>
-                    <label><span class="font-bold text-black">Value cost</span></label>
+                    <label><span class="font-oswald font-bold text-black">Value cost</span></label>
                   </div>
                   <div class="mt-2 flex justify-start">
                     <div class="">
@@ -39,10 +39,10 @@
                 <span class="value_cost-error--hide text-red-700 text-sm data-autosubmit-target="value_cost_error"></span>
               </div>
 
-              <div class="">
+              <div class="col-span-2">
                 <div class="">
-                  <label for="room_type"><span class="font-bold text-black">Search Appraisal Type</span></label>
-                  <div class="text-sm mt-2">
+                  <label for="room_type"><span class="font-oswald font-bold text-black">Search Appraisal Type</span></label>
+                  <div class="text-xs font-montserrat mt-2">
                     <ul class="pl-2 pb-2">
                       <% @appraisal_type_ids.each do |appraisal_type_id| %>
                         <li>
