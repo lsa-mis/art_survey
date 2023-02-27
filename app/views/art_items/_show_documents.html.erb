@@ -4,13 +4,13 @@
   </h2>
 
   <% if attached_files_resource.documents.attached? %>
-    <div class="">
+    <div>
       <% attached_files_resource.documents.each do |file| %>
         <div class="my-1 text-sm text-gray-900 flex justify-between items-center">
-          <div class="">
+          <div>
             <%= link_to url_for(file), target: "_blank" do %>
               <div class="flex justify-start ml-1">
-                <div class="">
+                <div>
                   <%= show_svg(file.content_type) %>
                 </div>
                 <div class="ml-1 text-ellipsis overflow-hidden">

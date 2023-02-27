@@ -18,7 +18,7 @@
           <div class="text-sm ">
             <div class="pb-2 grid grid-cols-3 gap-2 md:grid md:grid-cols-5 md:gap-2">
               <div class="col-span-2">
-                <div class="">
+                <div>
                   <label for="department_id"><span class="font-oswald font-bold text-black">Search Department</span></label>
                   <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Department" }, { class: "mt-2 block rounded-none rounded text-xs border-umblue" } %>
                 </div>
@@ -27,11 +27,11 @@
                     <label><span class="font-oswald font-bold text-black">Value cost</span></label>
                   </div>
                   <div class="mt-2 flex justify-start">
-                    <div class="">
+                    <div>
                       <%= form.text_field :value_cost_gteq, placeholder: "Minimum", "data-autosubmit-target": "min_value_cost", class: ' block rounded sm:text-sm border-umblue' %>
                     </div>
                     <div class="mx-4 pt-2">to</div>
-                    <div class="">
+                    <div>
                         <%= form.text_field :value_cost_lteq, placeholder: "Maximum", "data-autosubmit-target": "max_value_cost", class: 'block rounded sm:text-sm border-umblue' %>
                     </div>
                   </div>
@@ -40,7 +40,7 @@
               </div>
 
               <div class="col-span-2">
-                <div class="">
+                <div>
                   <label for="room_type"><span class="font-oswald font-bold text-black">Search Appraisal Type</span></label>
                   <div class="text-xs font-montserrat mt-2">
                     <ul class="pl-2 pb-2">

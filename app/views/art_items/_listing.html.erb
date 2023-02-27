@@ -1,16 +1,16 @@
 <%= turbo_stream_from :art_items %>
 <div id="itemsListing">
-  <div class="">
+  <div>
     <div class="mb-4 sm:flex-auto">
       <h2 class="font-oswald text-lg font-medium text-black">All Art Items</h2>
       <span class= "text-xs font-normal font-montserrat">Grouped by department</span>
     </div>
   </div>
 
-  <div class="">
+  <div>
     <% @departments_result.each do |dept|%>
       <div class="font-oswald text-xl font-medium mt-6"><%= show_department_fullname(dept) %></div>
-      <div class= "mt-4 flex">
+      <div class= "mt-4 flex w-full">
         <% @art_items.where(department_id: dept).each do |item| %>   
           <div class="w-1/3 mx-2 rounded shadow-lg">
             <% if item.images.first.present? %>
