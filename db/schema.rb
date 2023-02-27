@@ -127,16 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_150006) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_permissions", force: :cascade do |t|
-    t.string "uniqname", null: false
-    t.string "role", null: false
-    t.bigint "department_id", null: false
-    t.integer "updated_by"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_user_permissions_on_department_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -168,5 +158,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_150006) do
   add_foreign_key "art_items", "departments"
   add_foreign_key "permissions", "departments"
   add_foreign_key "permissions", "roles"
-  add_foreign_key "user_permissions", "departments"
 end

@@ -124,13 +124,6 @@
     <% end %>
   </ul>
 
-  <% unless @art_item.new_record? %>
-    <div class="my-5">
-      <%= form.label :archived %>
-      <%= form.check_box :archived %>
-    </div>
-  <% end %>
-
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-900 text-white inline-block font-medium cursor-pointer hover:bg-white hover:text-blue-umblue hover:ring-2 hover:ring-blue-umblue" %>
   </div>

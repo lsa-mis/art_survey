@@ -1,55 +1,44 @@
 <%= turbo_stream_from :art_items %>
-<div class="px-4 sm:px-6 lg:px-8" id="itemsListing">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h2 class="mt-2 text-sm text-gray-700">All art items grouped by departments.</h2>
+<div id="itemsListing">
+  <div>
+    <div class="mb-4 sm:flex-auto">
+      <h2 class="font-oswald text-lg font-medium text-black">All Art Items</h2>
+      <span class= "text-xs font-normal font-montserrat">Grouped by department</span>
     </div>
   </div>
-  <div class="mt-8 flex flex-col">
-    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-          <table class="table-auto">
-            <thead class="bg-white">
-              <tr>
-                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-base font-semibold text-gray-900 sm:pl-6 width-20">Department<br><span class="text-sm">Building</span> - <span class="text-sm text-gray-700">Room</span></th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Value</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Item Description</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody class="bg-white">
-              <% prev_dept = "" %>
-              <% @art_items.each do |item| %>
-                <% dept = item.department.fullname %>
-                <% if dept != prev_dept %>
-                  <tr class="border-t border-gray-200">
-                    <th colspan="5" scope="colgroup" class="bg-gray-50 px-4 py-2 text-left text-base font-semibold text-gray-900 sm:px-6"><%= dept %></th>
-                  </tr>
-                  <% prev_dept = dept %>
-                  <tr class="border-t border-gray-300">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= item.location_building %> - <span class="text-gray-700"><%= item.location_room %></span></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900 text-right"><%= number_to_currency(item.value_cost, precision: 0) %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900"><%= item.description.to_plain_text.truncate(50) %></td>
-                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <%= link_to 'Show', art_item_path(item), class: "text-indigo-600 hover:text-indigo-900" %><span class="sr-only">, <%= item.id %></span></a>
-                    </td>
-                  </tr>
-                <% else %>
-                  <tr class="border-t border-gray-300">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= item.location_building %> - <span class="text-gray-700"><%= item.location_room %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900 text-right"><%= number_to_currency(item.value_cost, precision: 0) %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900"><%= item.description.to_plain_text.truncate(50) %></td>
-                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <%= link_to 'Show', art_item_path(item), class: "text-indigo-600 hover:text-indigo-900" %><span class="sr-only">, <%= item.id %></span></a>
-                    </td>
-                  </tr>
-                <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+
+  <div>
+    <% @departments_result.each do |dept|%>
+      <div class="font-oswald text-xl font-medium mt-6"><%= show_department_fullname(dept) %></div>
+      <div class= "mt-4 flex w-full">
+        <% @art_items.where(department_id: dept).each do |item| %>   
+          <div class="w-1/3 mx-2 rounded shadow-lg">
+            <% if item.images.first.present? %>
+              <%= image_tag(item.images.first.representation(resize_to_limit: [200, 200]), class: 'mx-auto') %>
+            <% else %>
+              <%= image_tag("block_m-hex", size: "200", class: 'mx-auto px-2') %>
+            <% end %>
+            <div class="px-6 py-4">
+              <p class="text-gray-700 font-oswald">
+                <%= item.description.to_plain_text.truncate(40) %>
+              </p>
+              <p class="text-black text-base font-montserrat">
+                <%= item.location_building %> <br> <span class="text-gray-700">Room: <%= item.location_room.truncate(30) %>
+              </p>
+              <p class="text-base font-montserrat">
+                <%= number_to_currency(item.value_cost, precision: 0) %>
+              </p>
+              <p class="mt-4 text-black text-base font-montserrat">
+                <%= link_to 'Read more >', art_item_path(item), class: "text-indigo-600 hover:text-indigo-900" %><span class="sr-only"><%= item.id %></span></a>
+              </p>
+            </div>
+          </div>
+        <% end %>
       </div>
-    </div>
+    <% end %>
   </div>
+
+
+
+
 </div>

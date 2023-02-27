@@ -5,7 +5,7 @@ class AccessesController < ApplicationController
 
   # GET /accesses or /accesses.json
   def index
-    @accesses = get_accesses_collection
+    @accesses = get_accesses_collection.sort_by { |ac| ac.permission.department_full_name }
   end
 
   # GET /accesses/1 or /accesses/1.json

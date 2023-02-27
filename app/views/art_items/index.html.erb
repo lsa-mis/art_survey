@@ -1,83 +1,84 @@
-<h1 class="font-bold text-4xl">Art items</h1>
-<%= render 'layouts/display_info_text', location: 'catalog' %>
-<div class="container mx-auto max-w-5xl px-1 mb-20" data-controller='autosubmit'>
-  <div class="flex justify-end items-center">
-    <%= link_to 'New art item', new_art_item_path, class: "rounded-lg py-3 px-5 bg-blue-umblue text-white block font-medium hover:bg-white hover:text-blue-umblue hover:ring-2 hover:ring-blue-umblue" %>
+<div class="grid grid-cols-4">
+  <h1 class="col-span-3 leading-53 font-oswald font-semibold text-3xl">Search Art Items</h1>
+  <div class="flex justify-end items-center pb-1">
+    <%= link_to 'Add Art Item', new_art_item_path, class: "rounded py-2 px-3 bg-blue-umblue text-white block hover:bg-white hover:text-blue-umblue hover:ring-2 hover:ring-blue-umblue" %>
   </div>
-  <div class="grid grid-cols-2 pb-2">
-    <div class="justify-self-start md:hidden ">
-      <!--  Mobile menu button -->
-      <button class="mobile-menu-button rounded h-10 w-10 bg-blue-900 text-white focus:outline-none focus:bg-blue-800 ">
-        <div class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <%= svg("filter-solid")  %>
-        </div>
-      </button>
-    </div>
-  </div>
+</div>
+<div class="text-xs font-normal font-montserrat mt-2 mb-10">
+  <%= render 'layouts/display_info_text', location: 'catalog' %>
+</div>
+
+<div class="px-1 mb-2" data-controller='autosubmit'>
+
   <div>
     <%= search_form_for @q, data: { target: "autosubmit.form", action: "input->autosubmit#search" } do |form| %>
-      <div class="relative min-h-screen md:flex">
-        <div class="sidebar w-64 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out" data-autosubmit-target="sidebar">
-          <div class="pl-1 bg-gray-50 shadow border text-base">
-            <div class="px-1">
-              <label for="department_id">Search Department</label>
-              <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Select ..." }, { class: "block rounded-none rounded-l-md text-xs border-gray-300" } %>
-            </div>
-            <br>
-            <hr>
-            <label>Value cost</label>
-            <div class="flex mt-2 mb-2">
-              <div class="w-1/2 ml-2 mr-2">
-                <%= form.text_field :value_cost_gteq, placeholder: "From", "data-autosubmit-target": "min_value_cost", class: 'w-full block rounded sm:text-sm border-gray-300' %>
+      
+      <div class="font-blue-umblue">
+        <div class="sidebar" data-autosubmit-target="sidebar">
+          <div class="text-sm ">
+            <div class="pb-2 grid grid-cols-3 gap-2 md:grid md:grid-cols-5 md:gap-2">
+              <div class="col-span-2">
+                <div>
+                  <label for="department_id"><span class="font-oswald font-bold text-black">Search Department</span></label>
+                  <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Department" }, { class: "mt-2 block rounded-none rounded text-xs border-umblue" } %>
+                </div>
+                <div class="mt-3">
+                  <div>
+                    <label><span class="font-oswald font-bold text-black">Value cost</span></label>
+                  </div>
+                  <div class="mt-2 flex justify-start">
+                    <div>
+                      <%= form.text_field :value_cost_gteq, placeholder: "Minimum", "data-autosubmit-target": "min_value_cost", class: 'block rounded sm:text-sm border-umblue' %>
+                    </div>
+                    <div class="mx-4 pt-2">to</div>
+                    <div>
+                        <%= form.text_field :value_cost_lteq, placeholder: "Maximum", "data-autosubmit-target": "max_value_cost", class: 'block rounded sm:text-sm border-umblue' %>
+                    </div>
+                  </div>
+                </div>
+                <span class="value_cost-error--hide text-red-700 text-sm" data-autosubmit-target="value_cost_error"></span>
               </div>
-              <div class="ml-1 mr-2 w-1/2">
-                  <%= form.text_field :value_cost_lteq, placeholder: "To", "data-autosubmit-target": "max_value_cost", class: 'w-full block rounded sm:text-sm border-gray-300' %>
+
+              <div class="col-span-2">
+                <div>
+                  <label for="room_type"><span class="font-oswald font-bold text-black">Search Appraisal Type</span></label>
+                  <div class="text-xs font-montserrat mt-2">
+                    <ul class="pl-2 pb-2">
+                      <% @appraisal_type_ids.each do |appraisal_type_id| %>
+                        <li>
+                          <%= form.check_box(:appraisal_type_id_in, {multiple: true}, appraisal_type_id, nil) %>
+                          <%= AppraisalType.find(appraisal_type_id).classification %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-            <span class="value_cost-error--hide text-red-700 text-sm mt-2 -mb-2" data-autosubmit-target="value_cost_error"></span>
-            <br>
-            <hr>
-            <div class="px-1 pb-2">
-              <label for="room_type">Search Appraisal Type</label>
-              <div class="text-sm">
-                <% @appraisal_type_ids.each do |appraisal_type_id| %>
-                  <%= form.check_box(:appraisal_type_id_in, {multiple: true}, appraisal_type_id, nil) %>
-                  <%= AppraisalType.find(appraisal_type_id).classification %>
-                  <br>
-                <% end %>
+
+              <div>
+                <div class="text-umblue">
+                  <%= form.text_field :protection_body_cont, placeholder: "Text Search", class: "block rounded-none rounded sm:text-sm border-umblue w-full", "data-action": "input->autosubmit#search" %>
+                </div>
               </div>
+
             </div>
-            <br>
-            <hr>
-            <div class="px-1 pb-2">
-              <%= form.label "Rich Text Search" %>
-              <%= form.text_field :protection_body_cont, placeholder: "Contains", class: "block rounded-none rounded-l-md sm:text-sm border-gray-300 w-60", "data-action": "input->autosubmit#search" %>
-            </div>
-            <br>
-            <hr>
-            <div class="px-1 pb-2">
-              <%= form.check_box :archived_true %>
-              <%= form.label "Archived items" %>
-            </div>
-          
-            <br>
             <div class="flex-1 mx-2">
               <div class="grid grid-cols-3">
-                <div class="mb-2">
+                <div class="pb-2">
                   <button type="button" class="px-2 rounded-md shadow-sm bg-gray-100 text-sm text-black text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400"
                     data-action='click->autosubmit#clearFilters'>
-                    Clear
+                    Clear All
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <%= render 'listing' %>
-        </div>
       </div>
     <% end %>
+    <div class="container mt-4">
+      <%= render 'listing' %>
+    </div>
   </div>
 </div>
 <%= javascript_include_tag 'mobile_menu', async: true %>
