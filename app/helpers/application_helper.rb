@@ -34,7 +34,7 @@ module ApplicationHelper
   end
 
   def show_user_name_by_uniqname(uniqname)
-    "#{LdapLookup.get_simple_name(uniqname)} - #{uniqname}"
+    User.find_by(uniqname: uniqname).present? ? "#{User.find_by(uniqname: uniqname).display_name} - #{uniqname}" : "#{uniqname}"
   end
 
   def render_flash_stream
