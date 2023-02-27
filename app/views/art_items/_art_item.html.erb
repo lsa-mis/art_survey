@@ -125,13 +125,6 @@
         <div>
           <%= link_to 'Edit this item', edit_art_item_path(@art_item), class: "my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
         </div>
-        <div class="ml-2">
-          <% if art_item.archived %>
-            <%= link_to 'Unarchive this item', art_item_path(@art_item), method: :post, data: { confirm: 'Are you sure?' }, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
-          <% else %>
-            <%= link_to 'Archive this item', art_item_path(@art_item), method: :post, data: { confirm: 'Are you sure?' }, class: "my-2 px-2 py-1 hover:underline rounded-md shadow-sm bg-gray-100 text-sm text-blue-umblue text-center" %>
-          <% end %>
-        </div>
       </div>
       <div class="mt-2">
         <%= link_to art_items_path, data: { "turbo-frame": "_top" } do %>
