@@ -8,7 +8,7 @@
   <%= render 'layouts/display_info_text', location: 'catalog' %>
 </div>
 
-<div class=" px-1 mb-2" data-controller='autosubmit'>
+<div class="px-1 mb-2" data-controller='autosubmit'>
 
   <div>
     <%= search_form_for @q, data: { target: "autosubmit.form", action: "input->autosubmit#search" } do |form| %>
@@ -16,7 +16,7 @@
       <div class="font-blue-umblue">
         <div class="sidebar" data-autosubmit-target="sidebar">
           <div class="text-sm ">
-            <div class="pb-2 grid grid-cols-5 gap-2">
+            <div class="pb-2 grid grid-cols-3 gap-2 md:grid md:grid-cols-5 md:gap-2">
               <div class="col-span-2">
                 <div class="">
                   <label for="department_id"><span class="font-oswald font-bold text-black">Search Department</span></label>
@@ -57,11 +57,7 @@
 
               <div>
                 <div class="text-umblue">
-                  <%= form.text_field :protection_body_cont, placeholder: "Search", class: "block rounded-none rounded sm:text-sm border-umblue w-full", "data-action": "input->autosubmit#search" %>
-                </div>
-                <div class="">
-                  <%= form.check_box :archived_true %>
-                  <%= form.label "Include Archived Items" %>
+                  <%= form.text_field :protection_body_cont, placeholder: "Text Search", class: "block rounded-none rounded sm:text-sm border-umblue w-full", "data-action": "input->autosubmit#search" %>
                 </div>
               </div>
 
@@ -71,7 +67,7 @@
                 <div class="pb-2">
                   <button type="button" class="px-2 rounded-md shadow-sm bg-gray-100 text-sm text-black text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400"
                     data-action='click->autosubmit#clearFilters'>
-                    Clear
+                    Clear All
                   </button>
                 </div>
               </div>
