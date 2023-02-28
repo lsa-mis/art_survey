@@ -16,7 +16,7 @@
             <% if item.images.first.present? %>
               <%= image_tag(item.images.first.representation(resize_to_limit: [200, 200]), class: 'mx-auto') %>
             <% else %>
-              <%= image_tag("block_m-hex", size: "200", class: 'mx-auto px-2') %>
+              <%= image_tag("block_m-hex.png", size: "200", class: 'mx-auto px-2') %>
             <% end %>
             <div class="px-6 py-4">
               <p class="text-gray-700 font-oswald">

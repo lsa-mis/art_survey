@@ -45,7 +45,7 @@
                   <div class="text-xs font-montserrat mt-2">
                     <ul class="pl-2 pb-2">
                       <% @appraisal_type_ids.each do |appraisal_type_id| %>
-                        <li>
+                        <li class = "mb-2">
                           <%= form.check_box(:appraisal_type_id_in, {multiple: true}, appraisal_type_id, nil) %>
                           <%= AppraisalType.find(appraisal_type_id).classification %>
                         </li>
