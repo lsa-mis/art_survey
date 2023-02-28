@@ -24,15 +24,15 @@
                 </div>
                 <div class="mt-3">
                   <div>
-                    <label><span class="font-oswald font-bold text-black">Value cost</span></label>
+                    <span class="font-oswald font-bold text-black">Value cost</span>
                   </div>
                   <div class="mt-2 flex justify-start">
                     <div>
-                      <%= form.text_field :value_cost_gteq, placeholder: "Minimum", "data-autosubmit-target": "min_value_cost", class: 'block rounded sm:text-sm border-umblue' %>
+                      <%= form.text_field :value_cost_gteq, placeholder: "Minimum", "data-autosubmit-target": "min_value_cost", class: 'block rounded sm:text-sm border-umblue', "aria-labelledby": "q_value_cost_gteq" %>
                     </div>
                     <div class="mx-4 pt-2">to</div>
                     <div>
-                        <%= form.text_field :value_cost_lteq, placeholder: "Maximum", "data-autosubmit-target": "max_value_cost", class: 'block rounded sm:text-sm border-umblue' %>
+                        <%= form.text_field :value_cost_lteq, placeholder: "Maximum", "data-autosubmit-target": "max_value_cost", class: 'block rounded sm:text-sm border-umblue', "aria-labelledby": "q_value_cost_lteq" %>
                     </div>
                   </div>
                 </div>
@@ -41,7 +41,7 @@
 
               <div class="col-span-2">
                 <div>
-                  <label for="room_type"><span class="font-oswald font-bold text-black">Search Appraisal Type</span></label>
+                  <label for="appraisal_type"><span class="font-oswald font-bold text-black">Search Appraisal Type</span></label>
                   <div class="text-xs font-montserrat mt-2">
                     <ul class="pl-2 pb-2">
                       <% @appraisal_type_ids.each do |appraisal_type_id| %>
@@ -57,7 +57,7 @@
 
               <div>
                 <div class="text-umblue">
-                  <%= form.text_field :protection_body_cont, placeholder: "Text Search", class: "block rounded-none rounded sm:text-sm border-umblue w-full", "data-action": "input->autosubmit#search" %>
+                  <%= form.text_field :protection_body_cont, placeholder: "Text Search", class: "block rounded-none rounded sm:text-sm border-umblue w-full", "data-action": "input->autosubmit#search", "aria-labelledby": "q_protection_body_cont" %>
                 </div>
               </div>
 
