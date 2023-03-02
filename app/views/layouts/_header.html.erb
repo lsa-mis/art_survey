@@ -22,7 +22,7 @@
             <% end %>
             <% if is_super_user! || is_department_admin_user! %>
               <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal">|</div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal"><%= link_to "Access", accesses_path, class: "#{class_names(active: current_page?(accesses_path))}"%></div>
+              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal"><%= link_to "Users", accesses_path, class: "#{class_names(active: current_page?(accesses_path))}"%></div>
             <% end %>
           <% end %>
         </div>

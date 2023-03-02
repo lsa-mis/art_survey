@@ -14,22 +14,26 @@
         <% @art_items.where(department_id: dept).each do |item| %>   
           <div class="w-64 m-2 rounded shadow-lg">
             <% if item.images.first.present? %>
-              <%= image_tag(item.images.first.representation(resize_to_limit: [200, 200]), class: 'mx-auto', alt: item.description.to_plain_text.truncate(40) ) %>
+              <%= link_to art_item_path(item) do %>
+                <% image_tag(item.images.first.representation(resize_to_limit: [200, 200]), class: 'mx-auto hover:border-2 hover:border-blue-umblue', alt: item.description.to_plain_text.truncate(40) ) %>
+              <% end %>            
             <% else %>
-              <%= image_tag("block_m-hex.png", size: "200", class: 'mx-auto px-2', alt: "Block M Placeholder") %>
+              <%= link_to art_item_path(item) do %>
+                <%= image_tag("block_m-hex.png", size: "200", class: 'mx-auto px-2 hover:border-2 hover:border-blue-umblue', alt: "Block M Placeholder") %>
+              <% end %>
             <% end %>
             <div class="px-6 py-4">
-              <p class="text-gray-700 font-oswald">
+              <h3>
                 <%= item.description.to_plain_text.truncate(40) %>
+              </h3>
+              <p class="body-lg-text">
+                <%= item.location_building %> <br> <span>Room: <%= item.location_room.truncate(30) %>
               </p>
-              <p class="text-black text-base font-montserrat">
-                <%= item.location_building %> <br> <span class="text-gray-700">Room: <%= item.location_room.truncate(30) %>
-              </p>
-              <p class="text-base font-montserrat">
+              <p class="body-lg-text">
                 <%= number_to_currency(item.value_cost, precision: 0) %>
               </p>
-              <p class="mt-4 text-black text-base font-montserrat">
-                <%= link_to 'Read more >', art_item_path(item), class: "text-indigo-600 hover:text-indigo-900" %><span class="sr-only"><%= item.id %></span></a>
+              <p class="mt-4">
+                <%= link_to 'View Item', art_item_path(item), class: "link-text" %><span class="sr-only"><%= item.id %></span></a>
               </p>
             </div>
           </div>

@@ -1,4 +1,7 @@
 <div>
   <%= render 'layouts/display_info_text', location: 'home' %>
-  <div id="maincontent"></div>
+</div>
+
+<div class="flex w-full justify-center mt-5">
+  <%= link_to "View Catalog", art_items_path, class: "primary_button" unless !user_signed_in? %>
 </div>

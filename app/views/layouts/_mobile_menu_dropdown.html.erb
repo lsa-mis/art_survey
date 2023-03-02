@@ -13,7 +13,7 @@
         <% end %>
         <% if is_super_user! || is_department_admin_user! %>
           <hr class="ml-2 mx-auto w-48 h-1 bg-gray-100 rounded border-0 dark:bg-gray-700">
-          <%= link_to "Access", accesses_path, class: "hover:bg-blue-50 hover:text-blue-700 block px-3 pr-4 py-2 text-base font-medium rounded w-screen max-w-xl #{class_names(active: current_page?(accesses_path))}" %>
+          <%= link_to "Users", accesses_path, class: "hover:bg-blue-50 hover:text-blue-700 block px-3 pr-4 py-2 text-base font-medium rounded w-screen max-w-xl #{class_names(active: current_page?(accesses_path))}" %>
         <% end %>
         <% if is_super_user! %>
           <hr class="ml-2 mx-auto w-48 h-px bg-gray-100 rounded border-0 dark:bg-gray-700">
