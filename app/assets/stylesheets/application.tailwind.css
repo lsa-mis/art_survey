@@ -80,6 +80,10 @@ from https://tailwindcss.com/docs/adding-custom-styles
     @apply text-sm font-medium leading-4 text-gray-550 font-montserrat;
   }
 
+  .link-text {
+    @apply text-xs font-semibold text-blue-umblue font-montserrat hover:text-blue-300
+  }
+
   .caption {
     @apply text-sm font-semibold leading-4 italic text-gray-550;
   }
