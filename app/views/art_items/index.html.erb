@@ -1,6 +1,6 @@
-<div class="grid grid-cols-4">
+<div class="grid grid-cols-5">
   <h1 class="col-span-3 leading-53 font-oswald font-semibold text-3xl">Search Art Items</h1>
-  <div class="flex justify-end items-center pb-1">
+  <div class="col-span-2 flex justify-end items-center pb-1">
     <%= link_to 'Add Art Item', new_art_item_path, class: "rounded py-2 px-3 bg-blue-umblue text-white block hover:bg-white hover:text-blue-umblue hover:ring-2 hover:ring-blue-umblue" %>
   </div>
 </div>
@@ -20,7 +20,7 @@
               <div class="col-span-2">
                 <div>
                   <label for="department_id"><span class="font-oswald font-bold text-black">Search Department</span></label>
-                  <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Department" }, { class: "mt-2 block rounded-none rounded text-xs border-umblue" } %>
+                  <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Department" }, { class: "input_text_field mt-2" } %>
                 </div>
                 <div class="mt-3">
                   <div>
@@ -28,11 +28,11 @@
                   </div>
                   <div class="mt-2 flex justify-start">
                     <div>
-                      <%= form.text_field :value_cost_gteq, placeholder: "Minimum", "data-autosubmit-target": "min_value_cost", class: 'block rounded sm:text-sm border-umblue', "aria-labelledby": "q_value_cost_gteq" %>
+                      <%= form.text_field :value_cost_gteq, placeholder: "Minimum", "data-autosubmit-target": "min_value_cost", class: 'input_text_field', "aria-labelledby": "q_value_cost_gteq" %>
                     </div>
                     <div class="mx-4 pt-2">to</div>
                     <div>
-                        <%= form.text_field :value_cost_lteq, placeholder: "Maximum", "data-autosubmit-target": "max_value_cost", class: 'block rounded sm:text-sm border-umblue', "aria-labelledby": "q_value_cost_lteq" %>
+                        <%= form.text_field :value_cost_lteq, placeholder: "Maximum", "data-autosubmit-target": "max_value_cost", class: 'input_text_field', "aria-labelledby": "q_value_cost_lteq" %>
                     </div>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
 
               <div>
                 <div class="text-umblue">
-                  <%= form.text_field :protection_body_cont, placeholder: "Text Search", class: "block rounded-none rounded sm:text-sm border-umblue w-full", "data-action": "input->autosubmit#search", "aria-labelledby": "q_protection_body_cont" %>
+                  <%= form.text_field :protection_body_cont, placeholder: "Text Search", class: "input_text_field", "data-action": "input->autosubmit#search", "aria-labelledby": "q_protection_body_cont" %>
                 </div>
               </div>
 
