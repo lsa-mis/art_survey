@@ -24,7 +24,8 @@
 </div>
 
 <div class="text-xl mt-8 mx-2">
-  <div class="mb-20">Annotations:
+<h2>Annotations:</h2>
+  <div class="mb-20">
     <%= turbo_frame_tag "new_annotation" do %>
       <%= render "annotations/form", annotation: @new_annotation %>
     <% end %>
