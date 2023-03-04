@@ -14,7 +14,6 @@
   <%= form.hidden_field :updated_by, value: current_user.id %>
 
   <div class="my-5">
-    <%= form.label :note %>
     <%= form.rich_text_area :note, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
