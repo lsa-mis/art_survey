@@ -22,6 +22,14 @@
                   <label for="department_id"><span class="font-oswald font-bold text-black">Search Department</span></label>
                   <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Department" }, { class: "input_text_field mt-2" } %>
                 </div>
+
+                <div class="mt-3">
+                  <div class="text-umblue">
+                    <label for="q_protection_body_cont"><span class="font-oswald font-bold text-black">Text Search</span>
+                    <%= form.text_field :protection_body_cont, placeholder: "Text Search", class: "input_text_field mt-2", "data-action": "input->autosubmit#search", "aria-labelledby": "q_protection_body_cont" %>
+                  </div>
+                </div>
+
                 <div class="mt-3">
                   <div>
                     <span class="font-oswald font-bold text-black">Value cost</span>
@@ -39,25 +47,21 @@
                 <span class="value_cost-error--hide text-red-700 text-sm" data-autosubmit-target="value_cost_error"></span>
               </div>
 
-              <div class="col-span-2">
-                <div>
-                  <label for="appraisal_type"><span class="font-oswald font-bold text-black">Search Appraisal Type</span></label>
-                  <div class="text-xs font-montserrat mt-2">
-                    <ul class="pl-2 pb-2">
-                      <% @appraisal_type_ids.each do |appraisal_type_id| %>
-                        <li class = "mb-2">
-                          <%= form.check_box(:appraisal_type_id_in, {multiple: true}, appraisal_type_id, nil) %>
-                          <%= AppraisalType.find(appraisal_type_id).classification %>
-                        </li>
-                      <% end %>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
               <div>
-                <div class="text-umblue">
-                  <%= form.text_field :protection_body_cont, placeholder: "Text Search", class: "input_text_field", "data-action": "input->autosubmit#search", "aria-labelledby": "q_protection_body_cont" %>
+                <div class="mt-3">
+                  <div>
+                    <label for="appraisal_type"><span class="font-oswald font-bold text-black">Search Appraisal Type</span></label>
+                    <div class="text-xs font-montserrat mt-2">
+                      <ul class="pl-2 pb-2">
+                        <% @appraisal_type_ids.each do |appraisal_type_id| %>
+                          <li class = "mb-2">
+                            <%= form.check_box(:appraisal_type_id_in, {multiple: true}, appraisal_type_id, nil) %>
+                            <%= AppraisalType.find(appraisal_type_id).classification %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
 
