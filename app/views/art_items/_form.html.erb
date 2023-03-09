@@ -13,6 +13,8 @@
 
   <%= form.hidden_field :updated_by, value: current_user.id %>
 
+  <p>All items are required unless marked <span class="text-gray-800 text-xs italic">* optional</span></p>
+
   <div class="my-5">
     <%= form.label :department_id %>
     <%= form.collection_select :department_id, @departments_list, :id, :fullname, { include_blank: "Select ...", required: true }, { class: "block rounded-none rounded-l-md text-base border-gray-300" } %>
@@ -20,7 +22,7 @@
 
   <div class="my-5">
     <%= form.label :department_contact %>
-    <%= form.text_field :department_contact, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :department_contact, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true %>
   </div>
 
   <div class="my-5">
@@ -30,12 +32,12 @@
 
   <div class="my-5">
     <%= form.label :location_building %>
-    <%= form.text_field :location_building, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :location_building, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true %>
   </div>
 
   <div class="my-5">
     <%= form.label :location_room %>
-    <%= form.text_field :location_room, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :location_room, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true %>
   </div>
 
   <div class="my-5">
@@ -45,26 +47,26 @@
 
   <div class="my-5">
     <%= form.label :date_acquired %>
-    <%= form.date_field :date_acquired, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2" %>
+    <%= form.date_field :date_acquired, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", required: true %>
   </div>
 
   <div class="my-5">
     <%= form.label :appraisal_type_id %>
-    <%= form.collection_select :appraisal_type_id, @appraisal_types, :id, :classification, {include_blank: "Select", required: true }, { class: "block rounded-none rounded-l-md text-base border-gray-300" } %>
+    <%= form.collection_select :appraisal_type_id, @appraisal_types.order(:classification), :id, :classification, {include_blank: "Select", required: true }, { class: "block rounded-none rounded-l-md text-base border-gray-300" }%>
   </div>
 
   <div class="my-5">
-    <%= form.label :appraisal_description %>
+    <%= form.label :appraisal_description %><span class="text-gray-800 text-xs italic"> * optional</span>
     <%= form.rich_text_area :appraisal_description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :protection %>
+    <%= form.label :protection %><span class="text-gray-800 text-xs italic"> * optional</span>
     <%= form.rich_text_area :protection, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div id="attached_files" class="my-5">
-    <%= form.label :documents, "Documents (pdf,txt,jpg,png,doc)" %>
+    <%= form.label :documents, "Documents (pdf,txt,jpg,png,doc)" %><span class="text-gray-800 text-xs italic"> * optional</span>
     <%= form.file_field :documents, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -98,7 +100,7 @@
   </div>
 
   <div id="attached_images" class="my-5">
-    <%= form.label :images %>
+    <%= form.label :images %><span class="text-gray-800 text-xs italic"> * optional</span>
     <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
