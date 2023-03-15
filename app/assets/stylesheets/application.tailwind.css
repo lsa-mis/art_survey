@@ -84,6 +84,10 @@ from https://tailwindcss.com/docs/adding-custom-styles
     @apply text-xs font-semibold text-blue-umblue font-montserrat hover:text-blue-300
   }
 
+  .optional-text {
+    @apply text-gray-800 text-xs italic
+  }
+
   .caption {
     @apply text-sm font-semibold leading-4 italic text-gray-550;
   }
@@ -201,7 +205,7 @@ from https://tailwindcss.com/docs/adding-custom-styles
   }
 
   .fancy_label {
-    @apply text-sm font-bold text-gray-900 bg-white relative px-1 top-2 left-3 w-auto group-focus-within:text-red-600;
+    @apply font-oswald text-sm font-bold text-gray-900 bg-white relative px-1 top-2 w-auto group-focus-within:text-red-600;
   }
   
   input[type='checkbox'] {

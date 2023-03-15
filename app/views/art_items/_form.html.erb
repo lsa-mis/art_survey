@@ -13,7 +13,7 @@
 
   <%= form.hidden_field :updated_by, value: current_user.id %>
 
-  <p>All items are required unless marked <span class="text-gray-800 text-xs italic">* optional</span></p>
+  <p>All items are required unless marked <span class="optional-text">* optional</span></p>
 
   <div class="my-5">
     <%= form.label :department_id %>
@@ -56,17 +56,17 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :appraisal_description %><span class="text-gray-800 text-xs italic"> * optional</span>
+    <%= form.label :appraisal_description %><span class="optional-text"> * optional</span>
     <%= form.rich_text_area :appraisal_description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :protection %><span class="text-gray-800 text-xs italic"> * optional</span>
+    <%= form.label :protection %><span class="optional-text"> * optional</span>
     <%= form.rich_text_area :protection, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div id="attached_files" class="my-5">
-    <%= form.label :documents, "Documents (pdf,txt,jpg,png,doc)" %><span class="text-gray-800 text-xs italic"> * optional</span>
+    <%= form.label :documents, "Documents (pdf,txt,jpg,png,doc)" %><span class="optional-text"> * optional</span>
     <%= form.file_field :documents, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -100,7 +100,7 @@
   </div>
 
   <div id="attached_images" class="my-5">
-    <%= form.label :images %><span class="text-gray-800 text-xs italic"> * optional</span>
+    <%= form.label :images %><span class="optional-text"> * optional</span>
     <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -127,6 +127,6 @@
   </ul>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-900 text-white inline-block font-medium cursor-pointer hover:bg-white hover:text-blue-umblue hover:ring-2 hover:ring-blue-umblue" %>
+    <%= form.submit class: "secondary_blue_button" %>
   </div>
 <% end %>

@@ -6,7 +6,7 @@
   <% if attached_files_resource.documents.attached? %>
     <div>
       <% attached_files_resource.documents.each do |file| %>
-        <div class="my-1 text-sm text-gray-900 flex justify-between items-center">
+        <div class="my-1 flex justify-between items-center">
           <div>
             <%= link_to url_for(file), target: "_blank" do %>
               <div class="flex justify-start ml-1">
@@ -26,7 +26,7 @@
       <% end %>
     </div>
     <div class="flex-shrink-0">
-      <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline">
+      <button type="button" class="secondary_blue_button">
         <%= link_to "Add documents", "#{attached_files_resource.id}/edit#attached_files" %>
       </button>
     </div>
@@ -37,7 +37,7 @@
       </span>
     </div>
     <div class="flex-shrink-0">
-      <button type="button" class="my-2 px-2 py-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline">
+      <button type="button" class="secondary_blue_button">
         <%= link_to "Add documents", "#{attached_files_resource.id}/edit#attached_files" %>
       </button>
     </div>
