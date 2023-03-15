@@ -1,10 +1,10 @@
 <div class="grid grid-cols-5">
-  <h1 class="col-span-3 leading-53 font-oswald font-semibold text-3xl">Search Art Items</h1>
+  <h1 class="col-span-3">Search Art Items</h1>
   <div class="col-span-2 flex justify-start items-center pb-1">
-    <%= link_to 'Add Art Item', new_art_item_path, class: "rounded py-2 px-3 bg-blue-umblue text-white block hover:bg-white hover:text-blue-umblue hover:ring-2 hover:ring-blue-umblue" %>
+    <%= link_to 'Add Art Item', new_art_item_path, class: "primary_button" %>
   </div>
 </div>
-<div class="text-xs font-normal font-montserrat mt-2 mb-10">
+<div class="body-text mt-2 mb-10">
   <%= render 'layouts/display_info_text', location: 'catalog' %>
 </div>
 
@@ -19,20 +19,20 @@
             <div class="pb-2 grid md:grid-cols-4">
               <div class="col-span-2">
                 <div>
-                  <label for="department_id"><span class="font-oswald font-bold text-black">Search Department</span></label>
+                  <label for="department_id"><span class="fancy_label">Search Department</span></label>
                   <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Department" }, { class: "input_text_field mt-2" } %>
                 </div>
 
                 <div class="mt-3">
                   <div class="text-umblue">
-                    <label for="q_protection_body_cont"><span class="font-oswald font-bold text-black">Search Text</span>
+                    <label for="q_protection_body_cont"><span class="fancy_label">Search Text</span>
                     <%= form.text_field :protection_body_cont, placeholder: "Text Search", class: "input_text_field mt-2", "data-action": "input->autosubmit#search", "aria-labelledby": "q_protection_body_cont" %>
                   </div>
                 </div>
 
                 <div class="mt-3">
                   <div>
-                    <span class="font-oswald font-bold text-black">Search Value</span>
+                    <span class="fancy_label">Search Value</span>
                   </div>
                   <div class="mt-2 flex justify-start">
                     <div>
@@ -50,8 +50,8 @@
               <div class="col-span-2">
                 <div class="md:mt-0 mt-3">
                   <div>
-                    <label for="appraisal_type"><span class="font-oswald font-bold text-black">Search Appraisal Type</span></label>
-                    <div class="text-xs font-montserrat mt-2">
+                    <label for="appraisal_type"><span class="fancy_label">Search Appraisal Type</span></label>
+                    <div class="body-text mt-2">
                       <ul class="pl-2 pb-2">
                         <% @appraisal_type_ids.each do |appraisal_type_id| %>
                           <li class = "mb-2">
@@ -69,7 +69,7 @@
             <div class="flex-1 mx-2">
               <div class="grid grid-cols-3">
                 <div class="pb-2">
-                  <button type="button" class="px-2 rounded-md shadow-sm bg-gray-100 text-sm text-black text-center ring-1 ring-black ring-opacity-5 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-400"
+                  <button type="button" class="tertiary_button"
                     data-action='click->autosubmit#clearFilters'>
                     Clear All
                   </button>

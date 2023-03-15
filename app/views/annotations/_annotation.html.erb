@@ -1,19 +1,18 @@
 <%= turbo_frame_tag annotation do %>
   <hr class= "flex-1 border-t border-blue-600 my-1">
   <div>
-    <div class="w-full text-xs">
-      <div class="flex text-base space-x-2 items-center pt-1">
+    <div class="w-full ">
+      <div class="flex body-lg-text space-x-2 items-center pt-1">
         <div><%= annotation.note %></div>
       </div>
-      <div class="flex items-center">
+      <div class="flex items-center body-text">
         <div>
-          Updated on 
+          Updated on: 
           <%= annotation.updated_at.strftime('%m/%d/%Y') %>
         </div>
-        <div class="flex items-center">
-          &nbspby
+        <div class="flex items-center pl-1 body-text">
           <%= show_user_name_by_id(annotation.updated_by) %>
-            <%= link_to "Edit", edit_annotation_path(annotation), class: "m-2 px-1 rounded-md shadow-sm bg-blue-umblue text-sm text-gray-100 text-center hover:underline" %>
+            <%= link_to "Edit", edit_annotation_path(annotation), class: "pl-2 link-text" %>
         </div>
       </div>
     </div>

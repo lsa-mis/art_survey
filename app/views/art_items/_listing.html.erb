@@ -2,14 +2,14 @@
 <div id="itemsListing">
   <div>
     <div class="mb-4 sm:flex-auto">
-      <h2 class="font-oswald text-lg font-medium text-black">All Art Items</h2>
-      <span class= "text-xs font-normal font-montserrat">Grouped by department</span>
+      <h2>All Art Items</h2>
+      <span class="body-text">Grouped by department</span>
     </div>
   </div>
 
   <div>
     <% @departments_result.each do |dept|%>
-      <div class="font-oswald text-xl font-medium mt-6"><%= show_department_fullname(dept) %></div>
+      <h3 class="mt-6"><%= show_department_fullname(dept) %></h3>
       <div class= "mt-4 flex flex-wrap">
         <% @art_items.where(department_id: dept).each do |item| %>   
           <div class="w-64 m-2 rounded shadow-lg">
