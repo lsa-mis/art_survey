@@ -19,7 +19,7 @@
             <div class="pb-2 grid md:grid-cols-4">
               <div class="col-span-2">
                 <div>
-                  <label for="department_id"><span class="fancy_label">Search Department</span></label>
+                  <label for="q_department_id_eq"><span class="fancy_label">Search Department</span></label>
                   <%= form.collection_select :department_id_eq, @departments, :id, :fullname, { include_blank: "Department" }, { class: "input_text_field mt-2" } %>
                 </div>
 
@@ -50,16 +50,20 @@
               <div class="col-span-2">
                 <div class="md:mt-0 mt-3">
                   <div>
-                    <label for="appraisal_type"><span class="fancy_label">Search Appraisal Type</span></label>
-                    <div class="body-text mt-2">
-                      <ul class="pl-2 pb-2">
-                        <% @appraisal_type_ids.each do |appraisal_type_id| %>
-                          <li class = "mb-2">
-                            <%= form.check_box(:appraisal_type_id_in, {multiple: true}, appraisal_type_id, nil) %>
-                            <%= form.label AppraisalType.find(appraisal_type_id).classification %>
-                          </li>
-                        <% end %>
-                      </ul>
+                    <fieldset>
+                      <legend class="fancy_label">Search Appraisal Type</legend>
+                      <div class="body-text mt-2">
+                        <ul class="pl-2 pb-2">
+                          <% @appraisal_type_ids.each do |appraisal_type_id| %>
+                            <li class = "mb-2">
+                              <%= form.check_box(:appraisal_type_id_in, {multiple: true}, appraisal_type_id, nil ) %>
+                              <label class="text-sm font-medium text-gray-700" for=<%= "q_appraisal_type_id_in_#{appraisal_type_id}" %>>
+                                <%= AppraisalType.find(appraisal_type_id).classification %>
+                              </label>
+                            </li>
+                          <% end %>
+                        </ul>
+                      </fieldset>
                     </div>
                   </div>
                 </div>
