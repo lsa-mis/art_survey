@@ -26,7 +26,7 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :description %>
+    <%= form.label "description_trix_input_art_item" %>
     <%= form.rich_text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -56,12 +56,12 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :appraisal_description %><span class="optional-text"> * optional</span>
+    <%= form.label "protection_trix_input_art_item" %><span class="optional-text"> * optional</span>
     <%= form.rich_text_area :appraisal_description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :protection %><span class="optional-text"> * optional</span>
+    <%= form.label "appraisal_description_trix_input_art_item" %><span class="optional-text"> * optional</span>
     <%= form.rich_text_area :protection, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -104,7 +104,7 @@
     <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="text-sm font-medium text-gray-500 mb-10 pb-10">
+  <div class="body-md-text mb-10 pb-10">
           Other images currently uploaded:
   </div>
 
