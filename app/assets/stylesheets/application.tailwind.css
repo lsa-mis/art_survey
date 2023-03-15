@@ -335,3 +335,11 @@ from https://tailwindcss.com/docs/adding-custom-styles
     content-visibility: auto;
   }
 }
+
+.skiplink {
+  @apply absolute top-0 left-24 -translate-y-full;
+}
+
+.skiplink:focus {
+    @apply translate-y-2 bg-yellow-500 px-2 z-10;
+}
