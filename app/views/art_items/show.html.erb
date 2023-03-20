@@ -1,5 +1,5 @@
 <div class="flex items-center justify-between">
-  <h1 class=" text-3xl mb-2">Art Item - <%= @art_item.id %></h1>
+  <h1 class="mb-2">Art Item - <%= @art_item.id %></h1>
   <% if @art_item.archived %>
     <div class="p-2 rounded-lg bg-yellow-200 shadow-lg sm:p-3">
       This art item is archived
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<div class="text-xl mt-8 mx-2">
+<div class="mt-8 mx-2">
 <h2>Annotations:</h2>
   <div class="mb-20">
     <%= turbo_frame_tag "new_annotation" do %>

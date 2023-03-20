@@ -32,12 +32,20 @@ class ArtItem < ApplicationRecord
   end
   include AppendToHasManyAttached['images']
 
-  validates :department_id, presence: true
+  validates :department_id, :department_contact, :description, :location_building, :location_room, :date_acquired, :appraisal_type_id, presence: true
   validates :value_cost, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
+
+  validate :has_description
   validate :acceptable_documents
 
   scope :active_with_departments, -> { ArtItem.with_attached_documents.includes(:department).where(archived: false) }
   scope :archived_with_departments, -> { ArtItem.includes(:department).where(archived: true) }
+
+  def has_description
+    unless description&.body&.present?
+      errors.add(:description, "Can't be blank")
+    end
+  end
 
   def acceptable_documents
     return unless documents.attached?

@@ -4,7 +4,7 @@ class AppraisalTypesController < ApplicationController
   
   # GET /appraisal_types or /appraisal_types.json
   def index
-    @appraisal_types = AppraisalType.all
+    @appraisal_types = AppraisalType.all.order(:classification)
   end
 
   # GET /appraisal_types/1 or /appraisal_types/1.json
