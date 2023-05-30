@@ -1,90 +1,90 @@
 <div class="grid grid-cols-1 md:grid-cols-2 place-content-between">
   <div class="mx-2">
     <div>
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Department
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= art_item.department.fullname %>
       </div>
     </div>
 
     <div class="py-2">
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Department contact
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= art_item.department_contact %>
       </div>
     </div>
     
     <div class="py-2">
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Description
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= art_item.description %>
       </div>
     </div>
 
     <div class="py-2">
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Location building
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= art_item.location_building %>
       </div>
     </div>
 
     <div class="py-2">
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Location room
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= art_item.location_room %>
       </div>
     </div>
 
     <div class="py-2">
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Value cost
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= number_to_currency(art_item.value_cost) %>
       </div>
     </div>
 
     <div class="py-2">
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Date acquired
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= show_date(art_item.date_acquired) %>
       </div>
     </div>
 
     <div class="py-2">
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Appraisal type
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= art_item.appraisal_type.classification %>
       </div>
     </div>
 
     <div class="py-2">
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Appraisal Description
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= art_item.appraisal_description %>
       </div>
     </div>
 
     <div class="py-2">
-      <h3 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-lg-bold-text sm:mt-0 sm:col-span-2">
       Protection
-      </h3>
+      </p>
       <div class="ml-2 body-md-text flex-grow">
         <%= art_item.protection %>
       </div>
@@ -93,30 +93,30 @@
   </div>
 
   <div class="ml-4">
-    <h4 class="flex sm:mt-0 sm:col-span-2">Record history</h4>
+    <p class="flex body-md-bold-text sm:mt-0 sm:col-span-2">Record history</p>
     <div class="py-2">
-      <h5 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-md-text sm:mt-0 sm:col-span-2">
         Updated by
-      </h5>
-      <div class="ml-2 body-md-text flex-grow">
+      </p>
+      <div body-md-text class="ml-2 body-md-text flex-grow">
         <%= show_user_name_by_id(art_item.updated_by) %>
       </div>
     </div>
 
     <div class="py-2">
-      <h5 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-md-text sm:mt-0 sm:col-span-2">
         Created at
-      </h5>
-      <div class="ml-2 body-md-text flex-grow">
+      </p>
+      <div body-md-text class="ml-2 body-md-text flex-grow">
         <%= show_date(art_item.created_at) %>
       </div>
     </div>
 
     <div class="py-2">
-      <h5 class="flex sm:mt-0 sm:col-span-2">
+      <p class="flex body-md-text sm:mt-0 sm:col-span-2">
         Updated at
-      </h5>
-      <div class="ml-2 body-md-text flex-grow">
+      </p>
+      <div body-md-text class="ml-2 body-md-text flex-grow">
         <%= show_date(art_item.updated_at) %>
       </div>
     </div>
