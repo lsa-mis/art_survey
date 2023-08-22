@@ -14,7 +14,7 @@ gem "omniauth-saml", "~> 2.1"
 gem "omniauth-rails_csrf_protection"
 gem 'pg', '~> 1.5', '>= 1.5.3'
 gem "puma", "~> 5.6"
-gem "rails", "~> 7.0.4"
+gem "rails", "~> 7.0.7"
 gem "ransack", "~> 3.2", ">= 3.2.1"
 gem "redis", "~> 4.0"
 gem "skylight"
