@@ -36,7 +36,8 @@ class ArtItem < ApplicationRecord
   validates :value_cost, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
 
   validate :has_description
-  validate :acceptable_documents
+  validate :validate_documents
+  validate :validate_images
 
   scope :active_with_departments, -> { ArtItem.with_attached_documents.includes(:department).where(archived: false) }
   scope :archived_with_departments, -> { ArtItem.includes(:department).where(archived: true) }
@@ -46,23 +47,31 @@ class ArtItem < ApplicationRecord
       errors.add(:description, "Can't be blank")
     end
   end
+ 
+  private
 
-  def acceptable_documents
-    return unless documents.attached?
-  
-    acceptable_types = [
-      "application/pdf", "text/plain", "image/jpg", 
-      "image/jpeg", "image/png", 
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    ]
-
-    documents.each do |doc|
-      unless doc.byte_size <= 20.megabyte
-        errors.add(:documents, "is too big")
+  def validate_documents
+    documents.each do |document|
+      if document.blob.content_type.start_with?('application/') # Check if it's a document
+        if document.blob.byte_size > 10.megabytes # Adjust the size limit as needed
+          errors.add(:documents, "Document size exceeds the 10MB limit.")
+        end
+      else
+        errors.add(:documents, "Invalid file format. Only documents are allowed.")
       end
+    end
+  end
 
-      unless acceptable_types.include?(doc.content_type)
-        errors.add(:documents, "must be an acceptable file type (pdf,txt,jpg,png,doc)")
+  def validate_images
+    return unless images.attached?
+
+    images.each do |image|
+      if image.blob.content_type.start_with?('image/') # Check if it's an image
+        if image.blob.byte_size > 5.megabytes # Adjust the size limit as needed
+          errors.add(:images, "Image size exceeds the 5MB limit.")
+        end
+      else
+        errors.add(:images, "Invalid file format. Only images are allowed.")
       end
     end
   end
