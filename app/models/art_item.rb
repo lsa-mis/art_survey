@@ -51,8 +51,15 @@ class ArtItem < ApplicationRecord
   private
 
   def validate_documents
+    return unless documents.attached?
+
+    acceptable_doc_types = ['application/pdf', 'application/msword', 
+                          'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
+                          'text/plain', 'application/rtf', 'application/vnd.ms-excel', 
+                          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+
     documents.each do |document|
-      if document.blob.content_type.start_with?('application/') # Check if it's a document
+      if document.content_type.in?(acceptable_doc_types)
         if document.blob.byte_size > 10.megabytes # Adjust the size limit as needed
           errors.add(:documents, "Document size exceeds the 10MB limit.")
         end
