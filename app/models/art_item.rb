@@ -60,7 +60,7 @@ class ArtItem < ApplicationRecord
 
     documents.each do |document|
       if document.content_type.in?(acceptable_doc_types)
-        if document.blob.byte_size > 10.megabytes # Adjust the size limit as needed
+        if document.blob.byte_size > 5.megabytes # Adjust the size limit as needed
           errors.add(:documents, "Document size exceeds the 10MB limit.")
         end
       else
