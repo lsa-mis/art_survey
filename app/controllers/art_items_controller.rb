@@ -6,17 +6,7 @@ class ArtItemsController < ApplicationController
 
   # GET /art_items or /art_items.json
   def index
-    # if params[:q].nil?
-      @q = get_artitems_collection.ransack(params[:q])
-    # else
-    #   if
-    #     params[:q][:archived_true].present? && params[:q][:archived_true] == "0"
-    #     @q = get_artitems_collection.ransack(params[:q])
-    #   else
-    #     @q = get_artitems_collection.ransack(params[:q])
-    #   end
-    # end
-
+    @q = get_artitems_collection.ransack(params[:q])
     @art_items = @q.result.order('department.fullname')
     @departments_result = @art_items.pluck(:department_id).uniq
     @appraisal_type_ids = get_artitems_collection.pluck(:appraisal_type_id).uniq.sort

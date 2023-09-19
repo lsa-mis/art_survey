@@ -66,7 +66,7 @@
   </div>
 
   <div id="attached_files" class="my-5">
-    <%= form.label :documents, "Documents (pdf,txt,jpg,png,doc)" %><span class="optional-text"> * optional</span>
+    <%= form.label :documents %><span class="optional-text"> Preferred types are txt, pdf, rtf, doc, docx (5 MB limit per item) * optional</span>
     <%= form.file_field :documents, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -79,19 +79,19 @@
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
             <% @art_item.documents.each do |doc| %>
-              <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                <div class="w-0 flex-1 flex items-center">
-                  <i class="fas fa-paperclip text-gray-400"></i>
-                  <span class="ml-2 flex-1 w-0 truncate">
-                    <%= link_to doc.filename, url_for(doc), target: "_blank" %>
-                  </span>
-                  <% unless doc.id.nil? %>
+              <% unless doc.id.nil? %>
+                <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                  <div class="w-0 flex-1 flex items-center">
+                    <i class="fas fa-paperclip text-gray-400"></i>
+                    <span class="ml-2 flex-1 w-0 truncate">
+                      <%= link_to doc.filename, url_for(doc), target: "_blank" %>
+                    </span>
                       <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <%= link_to 'Remove', delete_file_path(doc), data: {turbo_method: :get, turbo_confirm: 'Are you sure?'} %>
                       </button>
-                  <% end %>
-                </div>
-              </li>
+                  </div>
+                </li>
+              <% end %>
             <% end %>
           </ul>
         </dd>
@@ -100,7 +100,7 @@
   </div>
 
   <div id="attached_images" class="my-5">
-    <%= form.label :images %><span class="optional-text"> * optional</span>
+    <%= form.label :images %><span class="optional-text"> Preferred types are png, jpg, jpeg (5 MB limit per item) * optional</span>
     <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -110,19 +110,24 @@
 
   <ul class="list-none grid grid-cols-2 gap-x-4 gap-y-8 px-4">
     <% art_item.images.each do |image| %>
-      <li class="relative">
-        <div class="flex flex-col">
-          <div class="group block w-full h-40 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-            <%= image_tag image.variant(:thumb), class: "object-cover h-full w-full group-hover:opacity-75" %>
+      <% unless image.id.nil? %>
+        <li class="relative">
+          <div class="flex flex-col">
+            <% if image.variable? %>
+              <div class="group block w-full h-40 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                <%= image_tag image.variant(:thumb), class: "object-cover h-full w-full group-hover:opacity-75" %>
+              </div>
+
+                <div>
+                  <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <%= link_to 'Remove', delete_file_path(image), data: {turbo_method: :get, turbo_confirm: 'Are you sure?'} %>
+                  </button>
+                </div>
+
+            <% end %>
           </div>
-          <div>
-            <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              <%= link_to 'Remove', delete_file_path(image), data: {turbo_method: :get, turbo_confirm: 'Are you sure?'} %>
-            </button>
-          </div>
-        </div>
-      </li>
-      
+        </li>
+      <% end %>
     <% end %>
   </ul>
 
