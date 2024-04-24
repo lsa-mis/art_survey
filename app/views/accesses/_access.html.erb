@@ -5,6 +5,11 @@
     <%= show_department_fullname(access.permission.department_id) %> - <%= show_role_title(access.permission.role_id) %>
   </p>
 
+  <p>
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= show_user_name_by_uniqname(access.uniqname) %>
+  </p>
+
   <p class="my-5">
     <strong class="block font-medium mb-1">Updated by:</strong>
     <%= show_user_name_by_id(access.updated_by) %>
