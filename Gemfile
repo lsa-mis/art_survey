@@ -3,6 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.3.4"
 
+# Add these lines to handle deprecation warnings
+gem 'bigdecimal'
+gem 'mutex_m'
+gem 'observer'
+
 gem 'actionpack', '7.0.8.5'
 gem 'activesupport', '7.0.8.5'
 gem "bootsnap", require: false
