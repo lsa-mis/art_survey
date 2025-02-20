@@ -73,6 +73,7 @@ GEM
       rake (>= 10.4, < 14.0)
     base64 (0.2.0)
     bcrypt (3.1.19)
+    bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -86,14 +87,14 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    concurrent-ruby (1.3.4)
+    concurrent-ruby (1.3.5)
     crass (1.0.6)
     date (3.4.1)
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     declarative (0.0.20)
-    devise (4.9.2)
+    devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -102,7 +103,7 @@ GEM
     diff-lcs (1.5.0)
     digest-crc (0.6.5)
       rake (>= 12.0.0, < 14.0.0)
-    erubi (1.13.0)
+    erubi (1.13.1)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -153,7 +154,7 @@ GEM
       signet (>= 0.16, < 2.a)
     hashie (5.0.0)
     httpclient (2.8.3)
-    i18n (1.14.6)
+    i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
@@ -162,15 +163,17 @@ GEM
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.6.0)
-    irb (1.7.4)
-      reline (>= 0.3.6)
-    jbuilder (2.11.5)
+    irb (1.15.1)
+      pp (>= 0.6.0)
+      rdoc (>= 4.0.0)
+      reline (>= 0.4.2)
+    jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jwt (2.7.1)
     ldap_lookup (0.1.7)
       net-ldap (~> 0.17.0)
-    loofah (2.23.1)
+    loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -181,13 +184,14 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     memoist (0.16.2)
-    method_source (1.0.0)
+    method_source (1.1.0)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    minitest (5.25.1)
+    minitest (5.25.4)
     msgpack (1.7.2)
     multi_json (1.15.0)
-    net-imap (0.4.19)
+    mutex_m (0.2.0)
+    net-imap (0.5.6)
       date
       net-protocol
     net-ldap (0.17.1)
@@ -195,15 +199,16 @@ GEM
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.5.0)
+    net-smtp (0.5.1)
       net-protocol
-    nio4r (2.7.3)
-    nokogiri (1.16.8-arm64-darwin)
+    nio4r (2.7.4)
+    nokogiri (1.18.3-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.8-x86_64-darwin)
+    nokogiri (1.18.3-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.8-x86_64-linux)
+    nokogiri (1.18.3-x86_64-linux-gnu)
       racc (~> 1.4)
+    observer (0.1.2)
     omniauth (2.1.2)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
@@ -217,6 +222,12 @@ GEM
     orm_adapter (0.5.0)
     os (1.1.4)
     pg (1.5.3)
+    pp (0.6.2)
+      prettyprint
+    prettyprint (0.2.0)
+    psych (5.2.3)
+      date
+      stringio
     public_suffix (5.0.3)
     puma (5.6.9)
       nio4r (~> 2.0)
@@ -225,7 +236,7 @@ GEM
     rack-protection (3.2.0)
       base64 (>= 0.1.0)
       rack (~> 2.2, >= 2.2.4)
-    rack-test (2.1.0)
+    rack-test (2.2.0)
       rack (>= 1.3)
     rails (7.0.8.5)
       actioncable (= 7.0.8.5)
@@ -245,7 +256,7 @@ GEM
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.6.1)
+    rails-html-sanitizer (1.6.2)
       loofah (~> 2.21)
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
     railties (7.0.8.5)
@@ -255,14 +266,16 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
-    rake (13.1.0)
+    rake (13.2.1)
     ransack (3.2.1)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
+    rdoc (6.12.0)
+      psych (>= 4.0.0)
     redis (4.8.1)
     regexp_parser (2.8.1)
-    reline (0.3.8)
+    reline (0.6.0)
       io-console (~> 0.5)
     representable (3.2.0)
       declarative (< 0.1.0)
@@ -317,25 +330,25 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
+    stringio (3.1.3)
     tailwindcss-rails (2.0.30-arm64-darwin)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.30-x86_64-darwin)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.30-x86_64-linux)
       railties (>= 6.0.0)
-    thor (1.3.1)
+    thor (1.3.2)
     timeout (0.4.3)
     trailblazer-option (0.1.2)
-    turbo-rails (1.4.0)
+    turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    web-console (4.2.0)
+    web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
@@ -346,21 +359,26 @@ GEM
       selenium-webdriver (~> 4.0, < 4.11)
     webrick (1.8.2)
     websocket (1.2.9)
-    websocket-driver (0.7.6)
+    websocket-driver (0.7.7)
+      base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.13)
+    zeitwerk (2.6.18)
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-23
   x86_64-darwin-20
   x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
+  actionpack (= 7.0.8.5)
+  activesupport (= 7.0.8.5)
   annotate (~> 3.2)
+  bigdecimal
   bootsnap
   capybara
   debug
@@ -372,11 +390,13 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   ldap_lookup (~> 0.1.6)
+  mutex_m
+  observer
   omniauth-rails_csrf_protection
   omniauth-saml (~> 2.1)
   pg (~> 1.5, >= 1.5.3)
   puma (~> 5.6)
-  rails (~> 7.0.8)
+  rails (~> 7.0.8.5)
   ransack (~> 3.2, >= 3.2.1)
   redis (~> 4.0)
   rspec-rails
@@ -390,7 +410,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 3.3.4p94
 
 BUNDLED WITH
-   2.2.26
+   2.5.9

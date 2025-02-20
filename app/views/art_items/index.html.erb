@@ -12,7 +12,7 @@
 
   <div>
     <%= search_form_for @q, data: { target: "autosubmit.form", action: "input->autosubmit#search" } do |form| %>
-      
+
       <div class="font-blue-umblue">
         <div class="sidebar" data-autosubmit-target="sidebar">
           <div class="text-sm ">
@@ -89,4 +89,3 @@
     </div>
   </div>
 </div>
-<%= javascript_include_tag 'mobile_menu', async: true %>
