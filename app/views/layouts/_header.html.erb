@@ -1,6 +1,7 @@
-<nav class="static bg-blue-umblue shadow min-w-screen" data-controller="dropdown">
-  <div class="w-auto max-w-7xl mx-auto px-4 md:px-6 ">
+<nav class="static bg-blue-umblue shadow min-w-screen">
+  <div class="w-auto max-w-7xl mx-auto px-4 md:px-6">
     <div class="flex justify-between h-16">
+      <!-- Logo and Desktop Navigation -->
       <div class="flex-shrink-0 flex items-center">
         <div class="flex">
           <%= link_to root_path do %>
@@ -14,35 +15,18 @@
             </div>
           <% end %>
         </div>
-        <div class="hidden md:ml-6 md:flex md:space-x-4 pl-2">
-          <% if user_signed_in? %>
-            <% if access_authorized! %>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal"><%= link_to "Catalog", art_items_path, class: "#{class_names(active: current_page?(art_items_path))}"%></div>
-              <div>
-                <%= link_to "https://docs.google.com/document/d/e/2PACX-1vTKMfzTxp2I02KuuT_3S5t2OOA4vUIZObWUgnslilQSuh1XBUQgmTpODJGmyoLWZ5UkN-adzSBQgBc7/pub#h.zf7fqp6cccac", target: "_blank" do %>
-                  <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal">
-                    <span class="pr-1">AdminDoc</span>
-                    <%= svg("arrow-up-right-from-square")  %>
-                    
-                  </div>
-                <% end %>
-              </div>    
 
-            <% end %>
-            <% if is_super_user! || is_department_admin_user! %>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal">|</div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-base font-normal"><%= link_to "Users", accesses_path, class: "#{class_names(active: current_page?(accesses_path))}"%></div>
-            <% end %>
-          <% end %>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:ml-6 md:flex md:space-x-4 pl-2">
+          <%= render "layouts/nav_links", mobile: false %>
         </div>
       </div>
+
+      <!-- Desktop User Menu -->
       <div class="hidden md:ml-6 md:flex md:items-center">
         <div class="ml-2 relative">
           <div class="grid justify-items-end flex flex-wrap items-center">
             <% if user_signed_in? %>
-              <button id="user-menu-button" class="bg-white rounded-full flex-1 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" tabindex="-1" aria-expanded="false" aria-haspopup="true" type="button" data-action="click->dropdown#toggle click@window->dropdown#hide">
-                <span class="sr-only bg-white text-black">Open user menu</span>
-              </button>
               <div class="leading-tight text-sm font-medium text-white">
                 <%= current_user.email %>
               </div>
@@ -50,33 +34,77 @@
                 <div class="px-1 ml-2 shadow-sm font-medium rounded text-blue-900 bg-yellow-550 hover:bg-yellow-500 flex-1 hover:underline">Sign Out</div>
               <% end %>
             <% else %>
-              <div>
-                <%= button_to user_saml_omniauth_authorize_path, data: {turbo: "false"} do %>
-                  <div class="px-1 shadow-sm font-medium rounded text-blue-900 bg-yellow-550 hover:bg-yellow-500 hover:underline">Sign In</div>
-                <% end %>
-              </div>
+              <%= button_to user_saml_omniauth_authorize_path, data: {turbo: "false"} do %>
+                <div class="px-1 shadow-sm font-medium rounded text-blue-900 bg-yellow-550 hover:bg-yellow-500 hover:underline">Sign In</div>
+              <% end %>
             <% end %>
           </div>
         </div>
       </div>
-      <div class="md:hidden items-center mt-1">
-        <%= render 'layouts/mobile_menu_toggle' %>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button type="button"
+                class="inline-flex items-center justify-center p-2 text-gray-400 hover:text-yellow-400 focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-9 w-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
       </div>
     </div>
-    <%= render 'layouts/mobile_menu_dropdown' %>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 text-white">
+        <%= render "layouts/nav_links", mobile: true %>
+
+        <!-- Mobile User Menu -->
+        <div class="mt-4 border-t border-gray-300 pt-4">
+          <% if user_signed_in? %>
+            <div class="px-2 text-md font-medium text-white">
+              <%= current_user.email %>
+            </div>
+            <%= button_to destroy_user_session_path,
+                          method: :delete,
+                          class: "w-full text-left",
+                          data: {turbo: "false"} do %>
+              <div class="mt-2 px-2 py-3 shadow-sm font-medium rounded text-blue-900 bg-yellow-550 hover:bg-yellow-500 hover:underline text-center">
+                Sign Out
+              </div>
+            <% end %>
+          <% else %>
+            <%= button_to user_saml_omniauth_authorize_path,
+                         class: "w-full",
+                         data: {turbo: "false"} do %>
+              <div class="px-2 py-3 shadow-sm font-medium rounded text-blue-900 bg-yellow-550 hover:bg-yellow-500 hover:underline text-center">
+                Sign In
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="w-auto max-w-7xl mx-auto px-4 bg-blue-umblue ">
+
+  <!-- Admin Navigation Bar -->
+  <div class="w-auto max-w-7xl mx-auto px-4 bg-blue-umblue">
     <div class="flex justify-between">
       <div class="flex-shrink-0 flex items-center">
         <div class="hidden md:ml-6 md:flex md:space-x-4">
-          <% if user_signed_in? %>
-            <% if is_super_user! %>
-              <div class="border-transparent text-blue-200 inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal">Application Configurations:</div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Add Appraisal Types", appraisal_types_path, class: "#{class_names(active: current_page?(appraisal_types_path))}"%></div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Add Departments", departments_path, class: "#{class_names(active: current_page?(departments_path))}"%></div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "Add Department Roles", permissions_path, class: "#{class_names(active: current_page?(permissions_path))}"%></div>
-              <div class="border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal"><%= link_to "View Users", users_path, class: "#{class_names(active: current_page?(users_path))}"%></div>
-            <% end %>
+          <% if user_signed_in? && is_super_user! %>
+            <div class="border-transparent text-blue-200 inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal">
+              Application Configurations:
+            </div>
+            <%= link_to "Add Appraisal Types", appraisal_types_path,
+                class: "border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal #{class_names(active: current_page?(appraisal_types_path))}" %>
+            <%= link_to "Add Departments", departments_path,
+                class: "border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal #{class_names(active: current_page?(departments_path))}" %>
+            <%= link_to "Add Department Roles", permissions_path,
+                class: "border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal #{class_names(active: current_page?(permissions_path))}" %>
+            <%= link_to "View Users", users_path,
+                class: "border-transparent text-blue-50 hover:border-blue-300 hover:text-white inline-flex items-center pr-1 pt-1 border-b-2 text-xs font-normal #{class_names(active: current_page?(users_path))}" %>
           <% end %>
         </div>
       </div>
