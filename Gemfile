@@ -8,22 +8,22 @@ gem 'bigdecimal'
 gem 'mutex_m'
 gem 'observer'
 
-gem 'actionpack', '7.0.8.5'
-gem 'activesupport', '7.0.8.5'
+gem 'actionpack'
+gem 'activesupport'
 gem "bootsnap", require: false
 gem "devise"
 gem "google-cloud-storage", require: false
-gem "image_processing", "~> 1.2"
+gem "image_processing"
 gem "importmap-rails"
 gem "jbuilder"
 gem "ldap_lookup", "~> 0.1.6"
 gem "omniauth-saml", "~> 2.1"
 gem "omniauth-rails_csrf_protection"
 gem 'pg', '~> 1.5', '>= 1.5.3'
-gem "puma", "~> 5.6"
-gem "rails", "~> 7.0.8.5"
-gem "ransack", "~> 3.2", ">= 3.2.1"
-gem "redis", "~> 4.0"
+gem "puma"
+gem "rails", "7.2.2.1"
+gem "ransack", "~> 4.1.1"
+gem "redis"
 gem "skylight"
 gem "sprockets-rails"
 gem "stimulus-rails"

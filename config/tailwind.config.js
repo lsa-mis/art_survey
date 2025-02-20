@@ -1,16 +1,16 @@
 // located in config/tailwind.config.js
 
-const defaultTheme = require('tailwindcss/defaultTheme')
+// // // const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   mode: 'jit',
   // These paths are just examples, customize them to match your project structure
   content: [
-    './public/*.html',
-    './app/helpers/**/*.rb',
-    './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}',
-    './vendor/javascript/tailwindcss-stimulus-components.js'
+    '../public/*.html',
+    '../app/helpers/**/*.rb',
+    '../app/javascript/**/*.js',
+    '../app/views/**/*.{erb,haml,html,slim}',
+    '../vendor/javascript/tailwindcss-stimulus-components.js'
   ],
   theme: {
     extend: {

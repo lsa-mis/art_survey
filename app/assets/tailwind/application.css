@@ -4,7 +4,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'actiontext.css';
+@import '../stylesheets/actiontext.css';
 
 /*
 @layer components {
@@ -143,7 +143,7 @@ from https://tailwindcss.com/docs/adding-custom-styles
   .secondary_yellow_button:disabled {
     @apply opacity-50 bg-black pointer-events-none text-white;
   }
-  
+
   .secondary_blue_button {
     @apply p-2 font-montserrat font-semibold leading-7 text-base border rounded-md text-white bg-blue-750;
   }
@@ -207,7 +207,7 @@ from https://tailwindcss.com/docs/adding-custom-styles
   .fancy_label {
     @apply font-oswald text-sm font-bold text-gray-900 bg-white relative px-1 top-2 w-auto group-focus-within:text-red-600;
   }
-  
+
   input[type='checkbox'] {
     @apply rounded text-xs text-blue-umblue;
   }
@@ -327,7 +327,7 @@ from https://tailwindcss.com/docs/adding-custom-styles
       display: none;
     }
   }
-  
+
 }
 
 @layer utilities {
