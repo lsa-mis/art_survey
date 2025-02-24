@@ -4,12 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.4"
 
 # Add these lines to handle deprecation warnings
-gem 'bigdecimal'
-gem 'mutex_m'
-gem 'observer'
 
-gem 'actionpack'
-gem 'activesupport'
 gem "bootsnap", require: false
 gem "devise"
 gem "google-cloud-storage", require: false
@@ -20,12 +15,12 @@ gem "ldap_lookup", "~> 0.1.6"
 gem "omniauth-saml", "~> 2.1"
 gem "omniauth-rails_csrf_protection"
 gem 'pg', '~> 1.5', '>= 1.5.3'
+gem 'propshaft'
 gem "puma"
 gem "rails", "7.2.2.1"
 gem "ransack", "~> 4.2.0"
 gem "redis"
 gem "skylight"
-gem "sprockets-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "tailwindcss-ruby", "3.4.13"
@@ -40,10 +35,8 @@ group :development, :test do
   gem "capybara"
   gem "webdrivers"
   gem "faker"
-  gem "shoulda-matchers"
   gem "database_cleaner-active_record"
   gem "simplecov", require: false
-  gem "rails-controller-testing"
 end
 
 group :development do
