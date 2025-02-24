@@ -1,11 +1,18 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
+
+# Add this line before requiring environment
+require 'active_support/core_ext/array/conversions'
+
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-require 'factory_bot_rails'
+require 'devise'
+
+# Remove the factory_bot_rails require since it's auto-loaded by Rails
+# require 'factory_bot_rails'
 require 'faker'
 require 'shoulda-matchers'
 require 'database_cleaner-active_record'
@@ -47,6 +54,11 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
+
+    # Update FactoryBot reset logic
+    FactoryBot.factories.clear
+    FactoryBot.definition_file_paths = [Rails.root.join('spec', 'factories')]
+    FactoryBot.find_definitions
   end
 
   config.around(:each) do |example|
@@ -55,10 +67,12 @@ RSpec.configure do |config|
     end
   end
 
-  # Add support for Devise test helpers
+  # Modify the Devise test helpers configuration
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::Test::ViewHelpers, type: :view
+
+  # Remove or comment out the ViewHelpers line since we're not testing views
+  # config.include Devise::Test::ViewHelpers, type: :view
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
