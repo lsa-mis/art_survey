@@ -27,7 +27,7 @@ gem "redis"
 gem "skylight"
 gem "sprockets-rails"
 gem "stimulus-rails"
-gem "tailwindcss-rails"
+gem "tailwindcss-rails", "~> 2.3.0"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
