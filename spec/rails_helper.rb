@@ -14,7 +14,6 @@ require 'devise'
 # Remove the factory_bot_rails require since it's auto-loaded by Rails
 # require 'factory_bot_rails'
 require 'faker'
-require 'shoulda-matchers'
 require 'database_cleaner-active_record'
 
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -52,13 +51,8 @@ RSpec.configure do |config|
 
   # Database Cleaner configuration
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
-
-    # Update FactoryBot reset logic
-    FactoryBot.factories.clear
-    FactoryBot.definition_file_paths = [Rails.root.join('spec', 'factories')]
-    FactoryBot.find_definitions
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.around(:each) do |example|
@@ -101,12 +95,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-end
-
-# Shoulda Matchers configuration
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
 end
