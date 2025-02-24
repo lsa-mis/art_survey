@@ -47,3 +47,6 @@
 
 /config/skylight.yml
 .DS_Store
+
+# Ignore SimpleCov coverage reports
+/coverage/
