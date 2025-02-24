@@ -25,5 +25,20 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:user) { build(:user) }
+
+  # Validation tests
+  describe 'validations' do
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email).case_insensitive }
+  end
+
+  # Method tests
+  describe '#display_name_email' do
+    it 'returns the display name and email' do
+      user.display_name = 'John Doe'
+      user.email = 'john@example.com'
+      expect(user.display_name_email).to eq('John Doe - john@example.com')
+    end
+  end
 end
