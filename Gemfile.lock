@@ -295,7 +295,7 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.2.1)
-    ransack (4.1.1)
+    ransack (4.2.1)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
@@ -430,7 +430,7 @@ DEPENDENCIES
   pg (~> 1.5, >= 1.5.3)
   puma
   rails (= 7.2.2.1)
-  ransack (~> 4.1.1)
+  ransack (~> 4.2.0)
   redis
   rspec-rails
   skylight
