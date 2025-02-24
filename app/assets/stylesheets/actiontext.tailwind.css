@@ -1,0 +1,41 @@
+/* ActionText styles without Sprockets dependency */
+@layer components {
+  .trix-content .attachment-gallery > action-text-attachment,
+  .trix-content .attachment-gallery > .attachment {
+    @apply flex-1 basis-[33%] px-2 max-w-[33%];
+  }
+
+  .trix-content .attachment-gallery.attachment-gallery--2 > action-text-attachment,
+  .trix-content .attachment-gallery.attachment-gallery--2 > .attachment,
+  .trix-content .attachment-gallery.attachment-gallery--4 > action-text-attachment,
+  .trix-content .attachment-gallery.attachment-gallery--4 > .attachment {
+    @apply basis-1/2 max-w-[50%];
+  }
+
+  .trix-content action-text-attachment .attachment {
+    @apply p-0 max-w-full;
+  }
+
+  trix-editor ul,
+  .trix-content ul {
+    @apply list-disc ml-4;
+  }
+
+  trix-editor ol,
+  .trix-content ol {
+    @apply list-decimal ml-4;
+  }
+
+  trix-editor a,
+  .trix-content a {
+    @apply text-blue-600 underline;
+  }
+
+  trix-editor .trix-button-group--file-tools {
+    @apply hidden;
+  }
+
+  .active {
+    @apply text-yellow-400;
+  }
+}
