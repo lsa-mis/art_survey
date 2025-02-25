@@ -223,99 +223,52 @@
 }
 
 @layer components {
-
-  .btn-primary {
-      @apply py-2 px-4 bg-blue-200;
-    }
-
-  .select2-dropdown {
-    @apply rounded-b-lg shadow-md;
+  /* Simple Carousel Styles */
+  .carousel-container {
+    @apply relative overflow-hidden rounded-xl;
   }
 
-  .select2-search {
-    @apply border border-gray-300 rounded;
+  .carousel-indicators {
+    @apply flex justify-center mt-4 space-x-2;
   }
 
-  .select2-results__group {
-    @apply text-lg font-bold text-gray-900;
+  .carousel-indicators button {
+    @apply w-3 h-3 rounded-full bg-gray-300 transition-colors duration-200;
   }
 
-  /* ... */
-  .switches [type="checkbox"] {
-    position: absolute;
-    left: -9999px;
-    max-width: 150px;
-    width: 95%;
-    margin: 20px auto 0;
-    border-radius: 5px;
-    color: white;
-    background: RoyalBlue;
+  .carousel-indicators button.active {
+    @apply bg-indigo-500;
   }
 
-  .switches li {
-    position: relative;
-    counter-increment: switchCounter;
+  /* Loading indicator styles */
+  .loading-indicator {
+    @apply absolute inset-0 flex items-center justify-center bg-gray-100 rounded-xl z-10;
   }
 
-  .switches li:not(:last-child) {
-    border-bottom: 1px solid gray;
+  /* Carousel navigation buttons */
+  [data-simple-carousel-target="prev"],
+  [data-simple-carousel-target="next"] {
+    @apply absolute top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 shadow-md z-10 transition-opacity duration-200;
   }
 
-  .switches .label-text {
-    padding-right: 2px;
+  [data-simple-carousel-target="prev"] {
+    @apply left-2;
   }
 
-  .switches label {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 10px 8px 10px;
+  [data-simple-carousel-target="next"] {
+    @apply right-2;
   }
 
-  .switches span:last-child {
-    position: relative;
-    width: 50px;
-    height: 30px;
-    border-radius: 15px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
-    background: gray;
-    transition: all 0.3s;
+  /* Slide transition */
+  [data-simple-carousel-target="slide"] {
+    @apply transition-opacity duration-300;
   }
 
-  .switches span:last-child::before,
-  .switches span:last-child::after {
-    content: "";
-    position: absolute;
-  }
-
-  .switches span:last-child::before {
-    left: 4px;
-    top: 4px;
-    width: 20px;
-    height: 20px;
-    background: white;
-    border-radius: 50%;
-    z-index: 1;
-    transition: transform 0.3s;
-  }
-
-  .switches span:last-child::after {
-    top: 50%;
-    right: 8px;
-    width: 12px;
-    height: 12px;
-    transform: translateY(-50%);
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
-    background-size: 12px 12px;
-  }
-
-  .switches [type="checkbox"]:checked+label span:last-child {
-    background: green;
-  }
-
-  .switches [type="checkbox"]:checked+label span:last-child::before {
-    transform: translateX(24px);
+  /* Remove the circular dependency by not applying hidden to .hidden */
+  /* The .hidden class from Tailwind will be applied directly in the HTML */
+  [data-simple-carousel-target="slide"].hidden {
+    /* This class intentionally left empty to avoid circular dependency */
+    /* The .hidden utility from Tailwind will be applied via the class attribute */
   }
 
   .switches [type="checkbox"]:checked+label span:last-child::after {
@@ -331,7 +284,6 @@
       display: none;
     }
   }
-
 }
 
 @layer utilities {
