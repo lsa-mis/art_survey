@@ -36,5 +36,12 @@ module ArtSurvey
 
     # run 'brew install vips' or uncomment the next line
     config.active_storage.variant_processor = :mini_magick
+
+    # Add query caching for ActiveStorage blobs
+    config.active_storage.queues.analysis = :active_storage_analysis
+    config.active_storage.queues.purge    = :active_storage_purge
+
+    # Enable caching for ActiveStorage blobs
+    config.active_storage.track_variants = true
   end
 end
