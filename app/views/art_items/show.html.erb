@@ -4,12 +4,12 @@
     <div class="p-2 rounded-lg bg-yellow-200 shadow-lg sm:p-3">
       This art item is archived
     </div>
-  <% end %>  
+  <% end %>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
   <div class="col-span-1">
-    <div data-controller="lightbox">
-      <%= render "modal" %>
+    <div data-controller="modal">
+      <%= render "image_modal" %>
       <div class="px-2">
         <%= render partial: "show_images", locals: { art_item: @art_item } %>
       </div>
@@ -34,6 +34,3 @@
     </div>
   </div>
 </div>
-
-
-

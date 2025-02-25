@@ -18,6 +18,9 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Load custom middleware
+require_relative '../lib/active_storage_blob_cache_middleware'
+
 module ArtSurvey
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -36,5 +39,15 @@ module ArtSurvey
 
     # run 'brew install vips' or uncomment the next line
     config.active_storage.variant_processor = :mini_magick
+
+    # Add query caching for ActiveStorage blobs
+    config.active_storage.queues.analysis = :active_storage_analysis
+    config.active_storage.queues.purge    = :active_storage_purge
+
+    # Enable caching for ActiveStorage blobs
+    config.active_storage.track_variants = true
+
+    # Add our custom middleware for ActiveStorage blob caching
+    config.middleware.use ActiveStorageBlobCacheMiddleware
   end
 end

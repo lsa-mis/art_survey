@@ -1,0 +1,35 @@
+<div data-modal-target="container" class="hidden fixed z-30 inset-0 overflow-y-auto">
+  <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+    <!-- Background overlay -->
+    <div data-modal-target="background"
+         data-action="click->modal#closeBackground"
+         class="fixed inset-0 transition-opacity duration-300 ease-in-out opacity-0 bg-gray-700 bg-opacity-75">
+
+      <!-- Caption in top left -->
+      <div class="absolute top-0 left-0 pt-4 pl-4">
+        <span data-modal-target="caption" class="text-white font-medium"></span>
+      </div>
+
+      <!-- Close button in top right -->
+      <div class="absolute top-0 right-0 pt-4 pr-4">
+        <button type="button"
+                class="text-gray-100 hover:text-white focus:outline-none"
+                data-action="modal#close">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal content -->
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    <div class="inline-block align-bottom rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+      <%= turbo_frame_tag :image_gallery,
+                          data: {
+                            "modal-target": "content",
+                            "action": "simple-carousel:slide-change->modal#updateCaption"
+                          } %>
+    </div>
+  </div>
+</div>
