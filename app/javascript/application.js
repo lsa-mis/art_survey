@@ -5,6 +5,3 @@ import "controllers"  // This imports controllers/index.js
 // Import Trix and ActionText in the correct order
 import "trix"
 import * as ActionText from "@rails/actiontext"
-
-import Swiper, { Navigation } from "swiper";
-Swiper.use([Navigation]);
