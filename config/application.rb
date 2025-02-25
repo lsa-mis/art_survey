@@ -18,6 +18,9 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Load custom middleware
+require_relative '../lib/active_storage_blob_cache_middleware'
+
 module ArtSurvey
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -43,5 +46,8 @@ module ArtSurvey
 
     # Enable caching for ActiveStorage blobs
     config.active_storage.track_variants = true
+
+    # Add our custom middleware for ActiveStorage blob caching
+    config.middleware.use ActiveStorageBlobCacheMiddleware
   end
 end
