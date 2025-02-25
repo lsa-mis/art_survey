@@ -1,19 +1,8 @@
-/* located at app/assests/stylesheet/application.tailwind.css */
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'actiontext.css';
 
-/*
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
-}
-from https://tailwindcss.com/docs/adding-custom-styles
-*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald:wght@400;500;600&display=swap');
 
 @layer base {
   .header_link {
@@ -143,7 +132,7 @@ from https://tailwindcss.com/docs/adding-custom-styles
   .secondary_yellow_button:disabled {
     @apply opacity-50 bg-black pointer-events-none text-white;
   }
-  
+
   .secondary_blue_button {
     @apply p-2 font-montserrat font-semibold leading-7 text-base border rounded-md text-white bg-blue-750;
   }
@@ -207,12 +196,10 @@ from https://tailwindcss.com/docs/adding-custom-styles
   .fancy_label {
     @apply font-oswald text-sm font-bold text-gray-900 bg-white relative px-1 top-2 w-auto group-focus-within:text-red-600;
   }
-  
+
   input[type='checkbox'] {
     @apply rounded text-xs text-blue-umblue;
   }
-
-  /* table */
 
   .mi_table {
     @apply px-2 min-w-full divide-y;
@@ -233,10 +220,14 @@ from https://tailwindcss.com/docs/adding-custom-styles
   .mi_tbody_td {
     @apply relative p-2 sm:pl-2 text-sm font-medium text-gray-900 text-left;
   }
-  /* ... */
 }
 
 @layer components {
+
+  .btn-primary {
+      @apply py-2 px-4 bg-blue-200;
+    }
+
   .select2-dropdown {
     @apply rounded-b-lg shadow-md;
   }
@@ -260,16 +251,20 @@ from https://tailwindcss.com/docs/adding-custom-styles
     color: white;
     background: RoyalBlue;
   }
+
   .switches li {
     position: relative;
     counter-increment: switchCounter;
   }
+
   .switches li:not(:last-child) {
     border-bottom: 1px solid gray;
   }
+
   .switches .label-text {
     padding-right: 2px;
   }
+
   .switches label {
     cursor: pointer;
     display: flex;
@@ -277,6 +272,7 @@ from https://tailwindcss.com/docs/adding-custom-styles
     justify-content: space-between;
     padding: 8px 10px 8px 10px;
   }
+
   .switches span:last-child {
     position: relative;
     width: 50px;
@@ -286,10 +282,13 @@ from https://tailwindcss.com/docs/adding-custom-styles
     background: gray;
     transition: all 0.3s;
   }
-  .switches span:last-child::before, .switches span:last-child::after {
+
+  .switches span:last-child::before,
+  .switches span:last-child::after {
     content: "";
     position: absolute;
   }
+
   .switches span:last-child::before {
     left: 4px;
     top: 4px;
@@ -300,6 +299,7 @@ from https://tailwindcss.com/docs/adding-custom-styles
     z-index: 1;
     transition: transform 0.3s;
   }
+
   .switches span:last-child::after {
     top: 50%;
     right: 8px;
@@ -309,25 +309,29 @@ from https://tailwindcss.com/docs/adding-custom-styles
     background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
     background-size: 12px 12px;
   }
-  .switches [type="checkbox"]:checked + label span:last-child {
+
+  .switches [type="checkbox"]:checked+label span:last-child {
     background: green;
   }
-  .switches [type="checkbox"]:checked + label span:last-child::before {
+
+  .switches [type="checkbox"]:checked+label span:last-child::before {
     transform: translateX(24px);
   }
-  .switches [type="checkbox"]:checked + label span:last-child::after {
+
+  .switches [type="checkbox"]:checked+label span:last-child::after {
     width: 14px;
     height: 14px;
     left: 8px;
     background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
     background-size: 14px 14px;
   }
+
   @media screen and (max-width: 600px) {
     .switches li::before {
       display: none;
     }
   }
-  
+
 }
 
 @layer utilities {
@@ -341,5 +345,5 @@ from https://tailwindcss.com/docs/adding-custom-styles
 }
 
 .skiplink:focus {
-    @apply translate-y-2 bg-yellow-500 px-2 z-10;
+  @apply translate-y-2 bg-yellow-500 px-2 z-10;
 }

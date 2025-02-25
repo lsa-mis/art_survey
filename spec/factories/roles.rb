@@ -11,7 +11,7 @@
 #
 FactoryBot.define do
   factory :role do
-    title { Faker::FunnyName.one_word_name }
+    title { Faker::Name.name }
     description { Faker::Lorem.paragraph }
     updated_by { 1 }
   end

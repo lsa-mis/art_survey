@@ -7,6 +7,12 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore node modules
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -44,3 +50,6 @@
 
 /config/skylight.yml
 .DS_Store
+
+# Ignore SimpleCov coverage reports
+/coverage/

@@ -47,15 +47,26 @@ class ArtItem < ApplicationRecord
       errors.add(:description, "Can't be blank")
     end
   end
- 
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["appraisal_type_id", "archived", "created_at", "date_acquired",
+     "department_contact", "department_id", "id", "location_building",
+     "location_room", "updated_at", "updated_by", "value_cost"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["appraisal_type", "department", "annotations", "rich_text_description",
+     "rich_text_appraisal_description", "rich_text_protection"]
+  end
+
   private
 
   def validate_documents
     return unless documents.attached?
 
-    acceptable_doc_types = ['application/pdf', 'application/msword', 
-                          'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
-                          'text/plain', 'application/rtf', 'application/vnd.ms-excel', 
+    acceptable_doc_types = ['application/pdf', 'application/msword',
+                          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                          'text/plain', 'application/rtf', 'application/vnd.ms-excel',
                           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
 
     documents.each do |document|
