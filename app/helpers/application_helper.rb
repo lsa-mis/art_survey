@@ -20,9 +20,12 @@ module ApplicationHelper
       svg("attachment-1483")
     end
   end
-  
+
   def content_message(location)
-    PageInformation.find_by(location: location).content  if PageInformation.find_by(location: location).present?
+    Rails.cache.fetch("page_information/#{location}", expires_in: 12.hours) do
+      page_info = PageInformation.find_by(location: location)
+      page_info&.content
+    end
   end
 
   def show_date(field)
