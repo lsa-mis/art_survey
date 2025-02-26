@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       Access.where(permission_id: permission_collection).pluck(:uniqname).include?(session[:user_uniqname])
     end
   end
-  
+
   def is_super_user!
     if is_user_a?("SuperUser")
       true
@@ -70,11 +70,30 @@ class ApplicationController < ActionController::Base
     Permission.where(department_id: current_user_permissions.pluck(:department_id))
   end
 
+  # Returns a collection of departments the current user has access to
+  # For SuperUsers: returns all departments
+  # For Department Admins: returns only their authorized departments
+  # For regular users: returns only their authorized departments
   def current_user_departments
+    if is_super_user!
+      Department.all.order(:fullname).pluck(:id)
+    elsif is_department_admin_user!
+      Department.where(id: (current_department_admin_user_department_permissions_collection.pluck(:department_id) +
+                            Permission.where(id: current_user_access.pluck(:permission_id)).pluck(:department_id)))
+                .order(:fullname).pluck(:id)
+    else
+      Department.where(id: current_user_permissions.pluck(:department_id)).order(:fullname).pluck(:id)
+    end
+  end
+
+  # Returns actual department objects for forms and views
+  def current_user_department_objects
     if is_super_user!
       Department.all.order(:fullname)
     elsif is_department_admin_user!
-      Department.where(id: (current_department_admin_user_department_permissions_collection.pluck(:department_id) + Permission.where(id: current_user_access.pluck(:permission_id)).pluck(:department_id))).order(:fullname)
+      Department.where(id: (current_department_admin_user_department_permissions_collection.pluck(:department_id) +
+                            Permission.where(id: current_user_access.pluck(:permission_id)).pluck(:department_id)))
+                .order(:fullname)
     else
       Department.where(id: current_user_permissions.pluck(:department_id)).order(:fullname)
     end
