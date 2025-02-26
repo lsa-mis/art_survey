@@ -39,8 +39,25 @@ class ArtItem < ApplicationRecord
   validate :validate_documents
   validate :validate_images
 
-  scope :active_with_departments, -> { ArtItem.with_attached_documents.includes(:department).where(archived: false) }
-  scope :archived_with_departments, -> { ArtItem.includes(:department).where(archived: true) }
+  scope :active_with_departments, -> {
+    includes(:department, :appraisal_type)
+    .with_attached_documents
+    .with_attached_images
+    .with_rich_text_description
+    .with_rich_text_appraisal_description
+    .with_rich_text_protection
+    .where(archived: false)
+  }
+
+  scope :archived_with_departments, -> {
+    includes(:department, :appraisal_type)
+    .with_attached_documents
+    .with_attached_images
+    .with_rich_text_description
+    .with_rich_text_appraisal_description
+    .with_rich_text_protection
+    .where(archived: true)
+  }
 
   def has_description
     unless description&.body&.present?
