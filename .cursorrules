@@ -1,6 +1,6 @@
 {
   "expertise": {
-    "frameworks": ["Ruby on Rails", "MySQL", "Hotwire", "Bootstrap CSS"],
+    "frameworks": ["Ruby on Rails", "MySQL", "Hotwire", "Bootstrap CSS", "Tailwind CSS", "Yarn"],
     "components": ["Turbo", "Stimulus"]
   },
   "codeStyle": {
@@ -31,6 +31,12 @@
       "structure": "MVC with concerns and helpers",
       "routing": "RESTful",
       "activeRecord": "Use effectively for database operations"
+    },
+    "tailwind": {
+      "css": "Use Tailwind CSS for styling"
+    },
+    "yarn": {
+      "css": "Use Tailwind CSS for styling"
     }
   },
   "testing": {
