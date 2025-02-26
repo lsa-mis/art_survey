@@ -52,7 +52,7 @@
 
   <div class="my-5">
     <%= form.label :appraisal_type_id %>
-    <%= form.collection_select :appraisal_type_id, @appraisal_types.order(:classification), :id, :classification, {include_blank: "Select", required: true }, { class: "block rounded-none rounded-l-md text-base border-gray-300" }%>
+    <%= form.collection_select :appraisal_type_id, @appraisal_types, :id, :classification, {include_blank: "Select", required: true }, { class: "block rounded-none rounded-l-md text-base border-gray-300" }%>
   </div>
 
   <div class="my-5">
