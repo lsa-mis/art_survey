@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["https://artsurvey-staging.lsa.umich.edu", "https://artsurvey.lsa.umich.edu"],
+    "responseHeader": ["Content-Type", "Content-Length", "Content-Disposition", "Content-Encoding", "Content-Range", "ETag", "Access-Control-Allow-Origin", "Accept", "Origin", "X-Requested-With"],
+    "method": ["GET", "HEAD", "OPTIONS", "PUT", "POST"],
+    "maxAgeSeconds": 3600
+  }
+]
