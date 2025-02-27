@@ -17,21 +17,23 @@
 #
 FactoryBot.define do
   factory :art_item do
-    description { Faker::Lorem.sentence(word_count: 3) }
-    location_building { Faker::University.name }
-    location_room { Faker::Number.number(digits: 4) }
-    value_cost { Faker::Number.number(digits: 4) }
-    date_acquired { Faker::Date.backward(days: 14) }
-    appraisal_description { Faker::Lorem.paragraph }
-    protection { Faker::Lorem.paragraph }
-    archived { false }
-    updated_by { 1 }
+    location_building { Faker::Address.building_number }
+    location_room { Faker::Address.secondary_address }
+    value_cost { Faker::Number.between(from: 1000, to: 100000) }
+    date_acquired { Faker::Date.backward(days: 365) }
     department_contact { Faker::Name.name }
-    documents { nil }
-    images { nil }
+    updated_by { 1 }
+    archived { false }
 
-    # Create associations instead of just IDs
-    association :appraisal_type
+    # Associations
     association :department
+    association :appraisal_type
+
+    # Add a rich text description
+    after(:build) do |art_item|
+      art_item.description = ActionText::Content.new(Faker::Lorem.paragraph(sentence_count: 3))
+      art_item.appraisal_description = ActionText::Content.new(Faker::Lorem.paragraph(sentence_count: 2))
+      art_item.protection = ActionText::Content.new(Faker::Lorem.paragraph(sentence_count: 2))
+    end
   end
 end

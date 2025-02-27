@@ -11,8 +11,8 @@
 #
 FactoryBot.define do
   factory :permission do
-    role {1}
-    department {1}
+    association :role
+    association :department
     updated_by { 1 }
   end
 end

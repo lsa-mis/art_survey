@@ -12,9 +12,9 @@
 #
 FactoryBot.define do
   factory :department do
-    deptID { Faker::Number.number(digits: 6 )}
-    fullname { Faker::Commerce.department }
-    shortname { Faker::Alphanumeric.alpha(number: 3).upcase }
+    sequence(:deptID) { |n| 100000 + n }
+    fullname { Faker::University.name }
+    shortname { Faker::University.greek_organization }
     updated_by { 1 }
   end
 end
