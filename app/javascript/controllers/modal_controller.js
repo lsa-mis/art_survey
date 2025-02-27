@@ -5,7 +5,6 @@ export default class extends Controller {
   static values = { open: Boolean }
 
   connect() {
-    console.log("Modal controller connected")
     // Initialize with closed state
     this.openValue = false
 
@@ -20,15 +19,12 @@ export default class extends Controller {
   }
 
   open(event) {
-    console.log("Modal open triggered", event)
     if (event) {
       event.preventDefault()
 
       // Get the URL and key from the clicked element
       const url = event.currentTarget.dataset.modalUrl
       const key = event.currentTarget.dataset.modalKey
-
-      console.log("Modal opening with URL:", url, "and key:", key)
 
       if (url && this.hasContentTarget) {
         // Load the content via Turbo
@@ -40,7 +36,6 @@ export default class extends Controller {
           detail: { key: key }
         })
 
-        console.log("Dispatching modal:opened event with key:", key)
         document.dispatchEvent(modalOpenedEvent)
       }
     }
@@ -50,7 +45,6 @@ export default class extends Controller {
   }
 
   close() {
-    console.log("Modal close triggered")
     this.openValue = false
   }
 
@@ -68,7 +62,6 @@ export default class extends Controller {
   }
 
   openValueChanged() {
-    console.log("Modal open state changed to:", this.openValue)
     if (this.openValue) {
       // Show the modal
       this.containerTarget.classList.remove("hidden")
@@ -89,7 +82,6 @@ export default class extends Controller {
   }
 
   updateCaption(event) {
-    console.log("Updating caption from event:", event.detail)
     if (this.hasCaptionTarget && event.detail && event.detail.slideName) {
       this.captionTarget.textContent = event.detail.slideName
     }

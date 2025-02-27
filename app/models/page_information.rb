@@ -9,4 +9,12 @@
 #
 class PageInformation < ApplicationRecord
   has_rich_text :content
+
+  after_save :clear_cache
+
+  private
+
+  def clear_cache
+    Rails.cache.delete("page_information/#{location}")
+  end
 end

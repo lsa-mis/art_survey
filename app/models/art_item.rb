@@ -39,8 +39,55 @@ class ArtItem < ApplicationRecord
   validate :validate_documents
   validate :validate_images
 
-  scope :active_with_departments, -> { ArtItem.with_attached_documents.includes(:department).where(archived: false) }
-  scope :archived_with_departments, -> { ArtItem.includes(:department).where(archived: true) }
+  # Optimized scopes for better performance
+
+  # Basic scope - minimal eager loading for better performance
+  scope :active_with_departments, -> {
+    includes(:department, :appraisal_type)
+    .where(archived: false)
+  }
+
+  # Full scope for archived items that need all associations
+  scope :archived_with_departments, -> {
+    includes(:department, :appraisal_type)
+    .with_attached_documents
+    .with_attached_images
+    .with_rich_text_description
+    .with_rich_text_appraisal_description
+    .with_rich_text_protection
+    .where(archived: true)
+  }
+
+  # More specific scope for detailed view with all associations
+  scope :with_all_associations, -> {
+    includes(:department, :appraisal_type, :annotations)
+    .with_attached_documents
+    .with_attached_images
+    .with_rich_text_description
+    .with_rich_text_appraisal_description
+    .with_rich_text_protection
+  }
+
+  # Lightweight scope for index pages and listings
+  scope :for_listing, -> {
+    includes(:department)
+    .with_attached_images
+    .with_rich_text_description
+    .where(archived: false)
+  }
+
+  # Batch preload associations for collections
+  def self.batch_load_for_listing(items)
+    ActiveRecord::Associations::Preloader.new(
+      records: items,
+      associations: [
+        :department,
+        { images_attachments: :blob },
+        :rich_text_description
+      ]
+    ).call
+    items
+  end
 
   def has_description
     unless description&.body&.present?

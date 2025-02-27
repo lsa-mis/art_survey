@@ -18,9 +18,6 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# Load custom middleware
-require_relative '../lib/active_storage_blob_cache_middleware'
-
 module ArtSurvey
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -44,10 +41,18 @@ module ArtSurvey
     config.active_storage.queues.analysis = :active_storage_analysis
     config.active_storage.queues.purge    = :active_storage_purge
 
-    # Enable caching for ActiveStorage blobs
+    # Enable caching for ActiveStorage blobs and representations
     config.active_storage.track_variants = true
 
-    # Add our custom middleware for ActiveStorage blob caching
-    config.middleware.use ActiveStorageBlobCacheMiddleware
+    # Representation URLs will be persistent and cacheable for 24 hours by default
+    # This helps with CDN caching and browser caching
+    # You can override this in each environment file or via ENV['REPRESENTATION_CACHE_TTL']
+    config.active_storage.resolve_model_to_route = :rails_storage_redirect
+
+    # Add explicit support for parallel processing
+    config.active_storage.multiple_file_field_include_hidden = true
+
+    # Precompute variations on upload if possible
+    config.active_storage.precompile_variants_on_upload = true if Rails.env.production? || Rails.env.staging?
   end
 end

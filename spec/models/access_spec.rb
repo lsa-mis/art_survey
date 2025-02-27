@@ -119,4 +119,12 @@ RSpec.describe Access, type: :model do
       }.to change(Access, :count).by(-1)
     end
   end
+
+  describe 'scopes and class methods' do
+    let!(:access) { create(:access, permission: permission, uniqname: 'testuser') }
+
+    it 'can find access by uniqname' do
+      expect(Access.where(uniqname: 'testuser')).to include(access)
+    end
+  end
 end

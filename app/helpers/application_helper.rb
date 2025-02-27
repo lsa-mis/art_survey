@@ -1,28 +1,35 @@
 module ApplicationHelper
 
   def svg(svg)
-    file_path = "app/assets/images/svg/#{svg}.svg"
-    return File.read(file_path).html_safe if File.exist?(file_path)
-    file_path
+    # Use public path for SVGs since this approach works correctly
+    public_path = "/images/svg/#{svg}.svg"
+    "<img src='#{public_path}' class='svg-icon' style='width: 15px; height: 15px;' alt='#{svg}'>".html_safe
   end
 
   def show_svg(type)
-    case type
-    when "text/plain"
+    type_str = type.to_s.downcase
+
+    case
+    when type_str.nil? || type_str.empty?
+      svg("attachment-1483")
+    when type_str.include?("text/plain")
       svg("text-1473")
-    when "application/pdf"
+    when type_str.include?("pdf") || type_str.include?("application/pdf") || type_str.include?("application/x-pdf") || type_str.include?("acrobat") || type_str.match?(/pdf/i)
       svg("pdf-3375")
-    when "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    when type_str.include?("application/vnd.openxmlformats-officedocument.wordprocessingml.document") || type_str.include?("word") || type_str.include?("office") || type_str.include?("msword") || type_str.include?("doc")
       svg("office-1466")
-    when "image/jpg" || "image/jpeg" || "image/png"
+    when type_str.include?("image/jpg") || type_str.include?("image/jpeg") || type_str.include?("image/png") || type_str.include?("jpg") || type_str.include?("jpeg") || type_str.include?("png")
       svg("jpg-1476")
     else
       svg("attachment-1483")
     end
   end
-  
+
   def content_message(location)
-    PageInformation.find_by(location: location).content  if PageInformation.find_by(location: location).present?
+    Rails.cache.fetch("page_information/#{location}", expires_in: 12.hours) do
+      page_info = PageInformation.find_by(location: location)
+      page_info&.content
+    end
   end
 
   def show_date(field)

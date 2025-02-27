@@ -8,15 +8,19 @@
   </div>
 
   <div>
-    <% @departments_result.each do |dept|%>
-      <h3 class="mt-6"><%= show_department_fullname(dept) %></h3>
-      <div class= "mt-4 flex flex-wrap">
-        <% @art_items.where(department_id: dept).each do |item| %>   
+    <% @items_by_department.each do |dept_id, items| %>
+      <% department = @departments_by_id[dept_id] %>
+      <h3 class="mt-6"><%= department.fullname %></h3>
+      <div class="mt-4 flex flex-wrap">
+        <% items.each do |item| %>
           <div class="w-64 m-2 rounded shadow-lg">
-            <% if item.images.first.present? %>
+            <% if item.images_attachments.present? %>
               <%= link_to art_item_path(item) do %>
-                <% image_tag(item.images.first.representation(resize_to_limit: [200, 200]), class: 'mx-auto hover:border-2 hover:border-blue-umblue', alt: item.description.to_plain_text.truncate(40) ) %>
-              <% end %>            
+                <%= image_tag(item.images_attachments.first.blob.variant(resize_to_limit: [200, 200]),
+                    class: 'mx-auto hover:border-2 hover:border-blue-umblue',
+                    alt: item.description.to_plain_text.truncate(40),
+                    loading: "lazy") %>
+              <% end %>
             <% else %>
               <%= link_to art_item_path(item) do %>
                 <%= image_tag("block_m-hex.png", size: "200", class: 'mx-auto px-2 hover:border-2 hover:border-blue-umblue', alt: "Block M Placeholder") %>
@@ -33,7 +37,7 @@
                 <%= number_to_currency(item.value_cost, precision: 0) %>
               </p>
               <p class="mt-4">
-                <%= link_to 'View Item', art_item_path(item), class: "link-text" %><span class="sr-only"><%= item.id %></span></a>
+                <%= link_to 'View Item', art_item_path(item), class: "link-text" %><span class="sr-only"><%= item.id %></span>
               </p>
             </div>
           </div>
@@ -41,8 +45,4 @@
       </div>
     <% end %>
   </div>
-
-
-
-
 </div>

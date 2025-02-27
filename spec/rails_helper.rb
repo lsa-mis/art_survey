@@ -49,9 +49,12 @@ RSpec.configure do |config|
   # Factory Bot configuration
   config.include FactoryBot::Syntax::Methods
 
+  # Include RequestSpecHelper for request specs
+  config.include RequestSpecHelper, type: :request
+
   # Database Cleaner configuration
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
   end
 

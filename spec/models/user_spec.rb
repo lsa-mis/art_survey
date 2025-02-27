@@ -36,6 +36,27 @@ RSpec.describe User, type: :model do
 
   # Validation tests
   describe 'validations' do
+    it 'is valid with valid attributes' do
+      user = build(:user)
+      expect(user).to be_valid
+    end
+
+    it 'is not valid without an email' do
+      user = build(:user, email: nil)
+      expect(user).not_to be_valid
+    end
+
+    it 'is not valid with an invalid email format' do
+      user = build(:user, email: 'invalid-email')
+      expect(user).not_to be_valid
+    end
+
+    it 'is not valid with a duplicate email' do
+      create(:user, email: 'test@example.com')
+      user = build(:user, email: 'test@example.com')
+      expect(user).not_to be_valid
+    end
+
     describe 'email validations' do
       context 'when email is not present' do
         before { user.email = nil }
@@ -178,6 +199,14 @@ RSpec.describe User, type: :model do
       timestamp = Time.current
       user.update(last_sign_in_at: timestamp)
       expect(user.last_sign_in_at).to be_within(1.second).of(timestamp)
+    end
+  end
+
+  describe 'instance methods' do
+    let(:user) { create(:user, display_name: 'Test User', email: 'test@example.com') }
+
+    it 'returns the display name and email with display_name_email' do
+      expect(user.display_name_email).to eq('Test User - test@example.com')
     end
   end
 end
