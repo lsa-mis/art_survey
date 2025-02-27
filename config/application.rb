@@ -48,7 +48,7 @@ module ArtSurvey
     config.active_storage.track_variants = true
 
     # Add our custom middleware for ActiveStorage blob caching
-    config.middleware.use ActiveStorageBlobCacheMiddleware
+    #config.middleware.use ActiveStorageBlobCacheMiddleware
 
     # Representation URLs will be persistent and cacheable for 24 hours by default
     # This helps with CDN caching and browser caching
