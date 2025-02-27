@@ -10,7 +10,7 @@
           <div>
             <%= link_to url_for(file), target: "_blank" do %>
               <div class="flex justify-start ml-1">
-                <div>
+                <div class="svg-icon-container" style="min-width: 20px; min-height: 20px;">
                   <%= show_svg(file.content_type) %>
                 </div>
                 <div class="ml-1 text-ellipsis overflow-hidden">
