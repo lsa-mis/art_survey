@@ -12,7 +12,7 @@ gem "image_processing"
 gem "importmap-rails"
 gem "jbuilder"
 gem "ldap_lookup", "~> 0.1.6"
-gem "omniauth-saml", "~> 2.1"
+gem "omniauth-saml", "~> 2.2"
 gem "omniauth-rails_csrf_protection"
 gem 'pg', '~> 1.5', '>= 1.5.3'
 gem 'propshaft'
