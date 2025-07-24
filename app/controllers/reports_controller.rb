@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
         ArtItem.all
       end
     else
-      ArtItem.where(department_id: current_user_departments)
+      ArtItem.where(department: current_user_departments)
     end
 
     art_items = art_items.includes(:department, :appraisal_type, images_attachments: :blob)

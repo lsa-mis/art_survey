@@ -8,7 +8,7 @@
       <%= form.select :department_id, options_for_select([['All Departments', '']] + @departments.map { |d| [d.fullname, d.id] }, @selected_department&.id), {}, class: 'border rounded px-3 py-2 w-full', id: 'department_id_select' %>
     </div>
   <% end %>
-  <%= button_to 'Download CSV', art_items_reports_path(format: :csv), method: :get, params: {}, class: 'bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded', id: 'download-csv-btn' %>
+  <%= link_to 'Download CSV', art_items_reports_path(format: :csv), class: 'bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded', id: 'download-csv-btn' %>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       var btn = document.getElementById('download-csv-btn');
