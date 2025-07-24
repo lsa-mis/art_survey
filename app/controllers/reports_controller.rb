@@ -14,7 +14,11 @@ class ReportsController < ApplicationController
         ArtItem.all
       end
     else
-      ArtItem.where(department: current_user_departments)
+      if @selected_department && current_user_departments.include?(@selected_department.id)
+        ArtItem.where(department: @selected_department)
+      else
+        ArtItem.where(department_id: current_user_departments)
+      end
     end
 
     art_items = art_items.includes(:department, :appraisal_type, images_attachments: :blob)
@@ -22,7 +26,12 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html # renders app/views/reports/art_items.html.erb
       format.csv do
-        send_data art_items_to_csv(art_items), filename: "art_items_report-#{Time.zone.today}.csv"
+        department_part = if @selected_department&.fullname.present?
+          "-#{@selected_department.fullname.parameterize(separator: '_')}"
+        else
+          ''
+        end
+        send_data art_items_to_csv(art_items), filename: "art_items_report#{department_part}-#{Time.zone.today}.csv"
       end
     end
   end
