@@ -68,4 +68,24 @@ RSpec.describe ReportsController, type: :controller do
       expect(response).to redirect_to(root_path)
     end
   end
+
+  describe 'department selection in @departments' do
+    let!(:other_department) { create(:department, fullname: 'Photography') }
+
+    it 'SuperUser sees all departments' do
+      allow(controller).to receive(:is_super_user!).and_return(true)
+      allow(controller).to receive(:is_department_admin_user!).and_return(false)
+      allow(controller).to receive(:current_user_department_objects).and_return([department1, department2, other_department])
+      get :art_items
+      expect(assigns(:departments)).to match_array([department1, department2, other_department])
+    end
+
+    it 'Department Admin sees only their assigned departments' do
+      allow(controller).to receive(:is_super_user!).and_return(false)
+      allow(controller).to receive(:is_department_admin_user!).and_return(true)
+      allow(controller).to receive(:current_user_department_objects).and_return([department2])
+      get :art_items
+      expect(assigns(:departments)).to eq([department2])
+    end
+  end
 end
