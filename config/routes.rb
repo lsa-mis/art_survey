@@ -6,12 +6,17 @@ Rails.application.routes.draw do
   get 'art_item_images/index'
   resources :art_items do
     resources :art_item_images, only: :index
-  end  
+  end
   resources :accesses
   resources :permissions
   resources :departments
   resources :appraisal_types
   resources :roles
+  resources :reports, only: [] do
+    collection do
+      get :art_items
+    end
+  end
 
   get 'art_items/delete_file_attachment/:id', to: 'art_items#delete_file_attachment', as: :delete_file
 
