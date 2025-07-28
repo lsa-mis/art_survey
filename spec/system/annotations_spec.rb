@@ -49,7 +49,6 @@ RSpec.describe "Annotations", type: :system do
     end
 
     it "allows creating a new annotation", js: true do
-      skip "Skipping JS tests for now - requires proper setup"
       # Switch to JS driver for this test
       driven_by(:selenium_chrome_headless)
 
@@ -78,7 +77,6 @@ RSpec.describe "Annotations", type: :system do
     end
 
     it "allows editing an existing annotation", js: true do
-      skip "Skipping JS tests for now - requires proper setup"
       # Switch to JS driver for this test
       driven_by(:selenium_chrome_headless)
 
