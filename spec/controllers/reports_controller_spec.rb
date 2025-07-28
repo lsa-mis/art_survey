@@ -88,4 +88,29 @@ RSpec.describe ReportsController, type: :controller do
       expect(assigns(:departments)).to eq([department2])
     end
   end
+
+  describe 'CSV content for department selection' do
+    before do
+      allow(controller).to receive(:is_super_user!).and_return(true)
+      allow(controller).to receive(:is_department_admin_user!).and_return(false)
+      allow(controller).to receive(:current_user_department_objects).and_return([department1, department2])
+      allow(controller).to receive(:current_user_departments).and_return([department1.id, department2.id])
+    end
+
+    it 'includes all art_items when All Departments is selected' do
+      get :art_items, format: :csv
+      csv = CSV.parse(response.body, headers: true)
+      expect(csv.count).to eq(2)
+      depts = csv.map { |row| row['Department'] }
+      expect(depts).to include('Painting', 'Sculpture')
+    end
+
+    it 'includes only selected department art_items when a department is selected' do
+      get :art_items, params: { department_id: department1.id }, format: :csv
+      csv = CSV.parse(response.body, headers: true)
+      expect(csv.count).to eq(1)
+      expect(csv[0]['Department']).to eq('Painting')
+      expect(csv[0]['Department']).not_to eq('Sculpture')
+    end
+  end
 end

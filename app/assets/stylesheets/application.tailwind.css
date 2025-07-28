@@ -14,27 +14,27 @@
   }
 
   h1 {
-    @apply text-4xl font-semibold leading-normal font-oswald;
+    @apply text-4xl font-semibold leading-normal;
   }
 
   h2 {
-    @apply text-3xl font-medium leading-10 font-oswald;
+    @apply text-3xl font-medium leading-10;
   }
 
   h3 {
-    @apply text-xl font-medium leading-8 font-oswald;
+    @apply text-xl font-medium leading-8;
   }
 
   h4 {
-    @apply text-base font-medium leading-6 font-oswald;
+    @apply text-base font-medium leading-6;
   }
 
   h5 {
-    @apply text-base font-normal leading-6 font-oswald;
+    @apply text-base font-normal leading-6;
   }
 
   h6 {
-    @apply text-sm font-medium leading-5 font-oswald;
+    @apply text-sm font-medium leading-5;
   }
 
   hr {
@@ -42,35 +42,35 @@
   }
 
   .body-text {
-    @apply text-xs font-normal leading-4 font-montserrat;
+    @apply text-xs font-normal leading-4;
   }
 
   .body-bold-text {
-    @apply text-xs font-medium leading-4 font-montserrat;
+    @apply text-xs font-medium leading-4;
   }
 
   .body-md-text {
-    @apply text-sm font-normal leading-5 font-montserrat;
+    @apply text-sm font-normal leading-5;
   }
 
   .body-md-bold-text {
-    @apply text-sm font-medium leading-5 font-montserrat;
+    @apply text-sm font-medium leading-5;
   }
 
   .body-lg-text {
-    @apply text-base font-normal leading-6 font-montserrat;
+    @apply text-base font-normal leading-6;
   }
 
   .body-lg-bold-text {
-    @apply text-base font-bold leading-6 font-montserrat;
+    @apply text-base font-bold leading-6;
   }
 
   .button_label {
-    @apply text-sm font-medium leading-4 text-gray-550 font-montserrat;
+    @apply text-sm font-medium leading-4 text-gray-550;
   }
 
   .link-text {
-    @apply text-xs font-semibold text-blue-umblue font-montserrat hover:text-blue-300
+    @apply text-xs font-semibold text-blue-umblue hover:text-blue-300
   }
 
   .optional-text {
@@ -94,7 +94,7 @@
   }
 
   .primary_button {
-    @apply p-2 font-montserrat font-semibold leading-7 text-base border rounded-md text-white bg-blue-umblue;
+    @apply p-2 font-semibold leading-7 text-base border rounded-md text-white bg-blue-umblue;
   }
 
   .primary_button:hover {
@@ -114,7 +114,7 @@
   }
 
   .secondary_yellow_button {
-    @apply p-2 font-montserrat font-semibold leading-7 text-base border rounded-md text-blue-umblue bg-yellow-umyellow;
+    @apply p-2 font-semibold leading-7 text-base border rounded-md text-blue-umblue bg-yellow-umyellow;
   }
 
   .secondary_yellow_button:hover {
@@ -134,7 +134,7 @@
   }
 
   .secondary_blue_button {
-    @apply p-2 font-montserrat font-semibold leading-7 text-base border rounded-md text-white bg-blue-750;
+    @apply p-2 font-semibold leading-7 text-base border rounded-md text-white bg-blue-750;
   }
 
   .secondary_blue_button:hover {
@@ -154,7 +154,7 @@
   }
 
   .tertiary_button {
-    @apply p-2 font-montserrat font-semibold leading-7 text-base text-blue-umblue;
+    @apply p-2 font-semibold leading-7 text-base text-blue-umblue;
   }
 
   .tertiary_button:hover {
@@ -190,11 +190,11 @@
   }
 
   .input_text_field {
-    @apply font-montserrat text-xs font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500 focus:border-blue-500;
+    @apply text-xs font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500 focus:border-blue-500;
   }
 
   .fancy_label {
-    @apply font-oswald text-sm font-bold text-gray-900 bg-white relative px-1 top-2 w-auto group-focus-within:text-red-600;
+    @apply text-sm font-bold text-gray-900 bg-white relative px-1 top-2 w-auto group-focus-within:text-red-600;
   }
 
   input[type='checkbox'] {

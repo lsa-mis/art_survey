@@ -49,7 +49,6 @@ RSpec.describe "Annotations", type: :system do
     end
 
     it "allows creating a new annotation", js: true do
-      skip "Skipping JS tests for now - requires proper setup"
       # Switch to JS driver for this test
       driven_by(:selenium_chrome_headless)
 
@@ -78,7 +77,6 @@ RSpec.describe "Annotations", type: :system do
     end
 
     it "allows editing an existing annotation", js: true do
-      skip "Skipping JS tests for now - requires proper setup"
       # Switch to JS driver for this test
       driven_by(:selenium_chrome_headless)
 
@@ -101,7 +99,8 @@ RSpec.describe "Annotations", type: :system do
       end
 
       # Edit the annotation - the form is now loaded in a turbo frame
-      within "form" do
+      # Use a more specific selector to target the edit form
+      within "form:has(input[type='submit'][value='Update'])" do
         find("trix-editor").click.set("This annotation has been updated")
         click_button "Update"
       end

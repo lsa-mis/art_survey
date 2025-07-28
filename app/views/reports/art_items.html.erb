@@ -2,26 +2,30 @@
 <h1 class="text-2xl font-bold mb-4">Art Items Report</h1>
 
 <% if @departments.any? %>
-  <%= form_with url: art_items_reports_path, method: :get, local: true, html: { id: 'report-form', class: 'mb-6' } do |form| %>
+  <%= form_with url: art_items_reports_path, method: :get, local: true, html: { id: 'report-form', class: 'mb-6', data: { controller: 'download-csv', download_csv_url_value: art_items_reports_path(format: :csv) } } do |form| %>
     <div class="mb-4">
-      <%= form.label :department_id, 'Department', class: 'block font-semibold mb-1' %>
-      <%= form.select :department_id, options_for_select([['All Departments', '']] + @departments.map { |d| [d.fullname, d.id] }, @selected_department&.id), {}, class: 'border rounded px-3 py-2 w-full', id: 'department_id_select' %>
+      <%= label_tag :department_id, 'Department', class: 'block font-semibold mb-1' %>
+      <%= select_tag(
+            'department_id',
+            options_for_select(
+              [['All Departments', '']] + @departments.map { |d| [d.fullname, d.id] },
+              @selected_department&.id
+            ),
+            id: 'department_id_select',
+            data: { download_csv_target: 'select' },
+            class: 'border rounded px-3 py-2 w-full'
+          )
+      %>
     </div>
+    <button
+      type="button"
+      id="download-csv-btn"
+      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      data-action="click->download-csv#download"
+    >
+      Download CSV
+    </button>
   <% end %>
-  <%= link_to 'Download CSV', art_items_reports_path(format: :csv), class: 'bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded', id: 'download-csv-btn' %>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var btn = document.getElementById('download-csv-btn');
-      var select = document.getElementById('department_id_select');
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        var depId = select.value;
-        var url = '<%= art_items_reports_path(format: :csv) %>';
-        if(depId) { url += '?department_id=' + encodeURIComponent(depId); }
-        window.location = url;
-      });
-    });
-  </script>
 <% else %>
   <div class="text-red-600">No departments available for your account.</div>
 <% end %>

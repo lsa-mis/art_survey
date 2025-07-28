@@ -6,6 +6,7 @@ ruby "3.3.4"
 # Add these lines to handle deprecation warnings
 
 gem "bootsnap", require: false
+gem 'csv'
 gem "devise"
 gem "google-cloud-storage", require: false
 gem "image_processing"
