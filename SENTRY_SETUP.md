@@ -81,10 +81,12 @@ This endpoint will:
 ## Configuration Files Modified
 
 1. `config/initializers/sentry.rb` - Main Sentry configuration
-2. `config/environments/production.rb` - Production-specific settings
-3. `config/environments/staging.rb` - Staging-specific settings
+2. `config/environments/production.rb` - Production-specific settings (DSN only)
+3. `config/environments/staging.rb` - Staging-specific settings (DSN only)
 4. `config/routes.rb` - Added test endpoint
 5. `app/controllers/static_pages_controller.rb` - Added test method
+
+**Note**: Sentry automatically integrates with Rails' built-in logging system, so no additional logger configuration is needed.
 
 ## Best Practices
 

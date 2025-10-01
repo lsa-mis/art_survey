@@ -96,11 +96,5 @@ Rails.application.configure do
   # Sentry configuration for staging
   config.sentry_dsn = ENV['SENTRY_DSN']
 
-  # Configure logging to work with Sentry
-  if ENV['SENTRY_DSN'].present?
-    # Use Sentry's logger integration
-    config.logger = Sentry.get_logger
-  end
-
   config.skylight.environments << "staging"
 end

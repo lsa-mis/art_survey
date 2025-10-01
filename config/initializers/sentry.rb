@@ -58,8 +58,8 @@ if Rails.env.staging? || Rails.env.production?
       event
     end
 
-    # Configure logging level
-    config.logger = Rails.logger
+    # Configure logging level - Sentry will automatically use Rails.logger
+    # No need to explicitly set config.logger
 
     # Set up custom context
     config.before_send_transaction = lambda do |event, hint|
