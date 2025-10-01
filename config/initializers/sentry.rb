@@ -2,6 +2,9 @@
 
 # Only initialize Sentry in staging and production environments
 if Rails.env.staging? || Rails.env.production?
+  Rails.logger.info "Initializing Sentry for #{Rails.env} environment"
+  Rails.logger.info "SENTRY_DSN present: #{ENV['SENTRY_DSN'].present?}"
+
   Sentry.init do |config|
     # Read DSN from environment variable
     config.dsn = ENV['SENTRY_DSN']
@@ -84,5 +87,13 @@ if Rails.env.staging? || Rails.env.production?
 
       event
     end
+  end
+
+  # Test Sentry initialization
+  begin
+    Sentry.capture_message("Sentry initialized successfully for #{Rails.env}", level: :info)
+    Rails.logger.info "Sentry test message sent successfully"
+  rescue => e
+    Rails.logger.error "Failed to send Sentry test message: #{e.message}"
   end
 end
