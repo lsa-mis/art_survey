@@ -95,4 +95,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Sentry configuration for production
+  config.sentry_dsn = ENV['SENTRY_DSN']
+
+  # Configure logging to work with Sentry
+  if ENV['SENTRY_DSN'].present?
+    # Use Sentry's logger integration
+    config.logger = Sentry.get_logger
+  end
 end
