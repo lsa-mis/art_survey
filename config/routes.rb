@@ -21,6 +21,12 @@ Rails.application.routes.draw do
   get 'art_items/delete_file_attachment/:id', to: 'art_items#delete_file_attachment', as: :delete_file
 
   get 'static_pages/home'
+
+  # Sentry test endpoint (only available in staging and production)
+  if Rails.env.staging? || Rails.env.production?
+    get 'sentry-test', to: 'static_pages#sentry_test'
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

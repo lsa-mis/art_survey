@@ -93,5 +93,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Sentry configuration for staging
+  config.sentry_dsn = ENV['SENTRY_DSN']
+
   config.skylight.environments << "staging"
 end
