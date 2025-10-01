@@ -10,7 +10,11 @@ if Rails.env.staging? || Rails.env.production?
     config.environment = Rails.env
 
     # Set release version (useful for tracking deployments)
-    config.release = ENV['SENTRY_RELEASE'] || `git rev-parse HEAD`.strip rescue nil
+    config.release = ENV['SENTRY_RELEASE'] || begin
+      `git rev-parse HEAD`.strip
+    rescue
+      nil
+    end
 
     # Enable breadcrumbs for better debugging context
     config.breadcrumbs_logger = [:active_support_logger, :http_logger]
@@ -26,14 +30,8 @@ if Rails.env.staging? || Rails.env.production?
     # Sample rate for error events (0.0 to 1.0)
     config.sample_rate = 1.0
 
-    # Enable performance monitoring
-    config.enable_tracing = true
-
     # Set up custom tags for better filtering
-    config.tags = {
-      environment: Rails.env,
-      app: 'art_survey'
-    }
+    # Note: Tags are set per event, not globally in configuration
 
     # Configure which exceptions to ignore
     config.excluded_exceptions += [
@@ -43,8 +41,37 @@ if Rails.env.staging? || Rails.env.production?
       'Mime::Type::InvalidMimeType'
     ]
 
-    # Configure before_send to filter sensitive data
+
+    # Configure logging level - Sentry will automatically use Rails.logger
+    # No need to explicitly set config.logger
+
+    # Set up custom context and tags
+    config.before_send_transaction = lambda do |event, hint|
+      # Add custom context to all transactions
+      event.set_context('app_info', {
+        version: Rails.application.class.module_parent_name.downcase,
+        environment: Rails.env
+      })
+
+      # Set custom tags for better filtering
+      event.set_tag('environment', Rails.env)
+      event.set_tag('app', 'art_survey')
+
+      event
+    end
+
+    # Set up custom context for error events
     config.before_send = lambda do |event, hint|
+      # Add custom context to error events
+      event.set_context('app_info', {
+        version: Rails.application.class.module_parent_name.downcase,
+        environment: Rails.env
+      })
+
+      # Set custom tags for better filtering
+      event.set_tag('environment', Rails.env)
+      event.set_tag('app', 'art_survey')
+
       # Remove sensitive parameters
       if event.request&.data
         event.request.data = event.request.data.except('password', 'password_confirmation', 'token', 'secret')
@@ -55,19 +82,6 @@ if Rails.env.staging? || Rails.env.production?
         event.request.headers = event.request.headers.except('Authorization', 'X-API-Key')
       end
 
-      event
-    end
-
-    # Configure logging level - Sentry will automatically use Rails.logger
-    # No need to explicitly set config.logger
-
-    # Set up custom context
-    config.before_send_transaction = lambda do |event, hint|
-      # Add custom context to all transactions
-      event.set_context('app_info', {
-        version: Rails.application.class.module_parent_name.downcase,
-        environment: Rails.env
-      })
       event
     end
   end
