@@ -8,7 +8,8 @@ if Rails.env.staging? || Rails.env.production?
   Sentry.init do |config|
     # DSN is automatically read from SENTRY_DSN environment variable
     # config.dsn is set automatically by sentry-rails gem
-
+    config.enable_logs = true
+    config.rails.structured_logging.enabled = true
     # Set environment for better filtering in Sentry dashboard
     config.environment = Rails.env
 
