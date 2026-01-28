@@ -196,8 +196,6 @@ GEM
     json (2.10.2)
     jwt (2.10.1)
       base64
-    ldap_lookup (2.0.1)
-      net-ldap (~> 0.18.0)
     logger (1.6.6)
     loofah (2.24.0)
       crass (~> 1.0.2)
@@ -222,7 +220,6 @@ GEM
     net-imap (0.5.7)
       date
       net-protocol
-    net-ldap (0.18.0)
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
@@ -443,7 +440,6 @@ DEPENDENCIES
   image_processing
   importmap-rails
   jbuilder
-  ldap_lookup (= 2.0.1)
   omniauth-rails_csrf_protection
   omniauth-saml (~> 2.2)
   pg (~> 1.5, >= 1.5.3)
