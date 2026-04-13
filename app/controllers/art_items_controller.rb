@@ -74,8 +74,8 @@ class ArtItemsController < ApplicationController
         format.html { redirect_to art_item_url(@art_item), notice: "Art item was successfully created." }
         format.json { render :show, status: :created, location: @art_item }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @art_item.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @art_item.errors, status: :unprocessable_content }
       end
     end
   end
@@ -95,8 +95,8 @@ class ArtItemsController < ApplicationController
         format.html { redirect_to art_item_url(@art_item), notice: "Art item was successfully updated." }
         format.json { render :show, status: :ok, location: @art_item }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @art_item.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @art_item.errors, status: :unprocessable_content }
       end
     end
   end

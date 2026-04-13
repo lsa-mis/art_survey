@@ -17,7 +17,7 @@ gem "omniauth-rails_csrf_protection"
 gem 'pg', '~> 1.5', '>= 1.5.3'
 gem 'propshaft'
 gem "puma"
-gem "rails", "7.2.2.1"
+gem "rails", "7.2.3.1"
 gem "ransack", "~> 4.2.0"
 gem "redis"
 gem "request_store"

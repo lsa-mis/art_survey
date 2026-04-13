@@ -29,8 +29,8 @@ class AppraisalTypesController < ApplicationController
         format.html { redirect_to appraisal_type_url(@appraisal_type), notice: "Appraisal type was successfully created." }
         format.json { render :show, status: :created, location: @appraisal_type }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @appraisal_type.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @appraisal_type.errors, status: :unprocessable_content }
       end
     end
   end
@@ -42,8 +42,8 @@ class AppraisalTypesController < ApplicationController
         format.html { redirect_to appraisal_type_url(@appraisal_type), notice: "Appraisal type was successfully updated." }
         format.json { render :show, status: :ok, location: @appraisal_type }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @appraisal_type.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @appraisal_type.errors, status: :unprocessable_content }
       end
     end
   end

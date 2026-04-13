@@ -29,7 +29,7 @@ class AnnotationsController < ApplicationController
       @new_annotation = Annotation.new(art_item: @annotation.art_item)
       flash.now[:notice] = "Annotation successfully created."
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -39,7 +39,7 @@ class AnnotationsController < ApplicationController
       @annotations = Annotation.where(art_item: @annotation.art_item).order("updated_at DESC")
       flash.now[:notice] = "Annotation successfully updated."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
