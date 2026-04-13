@@ -74,9 +74,9 @@ RSpec.describe PermissionsController, type: :controller do
       end
 
       context "with invalid params" do
-        it "returns unprocessable_entity status" do
+        it "returns unprocessable_content status" do
           post :create, params: { permission: invalid_attributes }
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
       end
     end
@@ -105,10 +105,10 @@ RSpec.describe PermissionsController, type: :controller do
       end
 
       context "with invalid params" do
-        it "returns unprocessable_entity status" do
+        it "returns unprocessable_content status" do
           permission = create(:permission)
           put :update, params: { id: permission.to_param, permission: invalid_attributes }
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
       end
     end

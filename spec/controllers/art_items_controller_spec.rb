@@ -102,7 +102,7 @@ RSpec.describe ArtItemsController, type: :controller do
       context "with invalid params" do
         it "returns a success response (i.e. to display the 'new' template)" do
           post :create, params: {art_item: invalid_attributes}
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
       end
     end
@@ -136,7 +136,7 @@ RSpec.describe ArtItemsController, type: :controller do
         it "returns a success response (i.e. to display the 'edit' template)" do
           art_item = ArtItem.create! valid_attributes
           put :update, params: {id: art_item.to_param, art_item: invalid_attributes}
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
       end
     end
@@ -237,7 +237,7 @@ RSpec.describe ArtItemsController, type: :controller do
       context "with invalid params" do
         it "returns an appropriate response for invalid parameters" do
           post :create, params: {art_item: invalid_attributes}
-          # The controller might be redirecting instead of rendering unprocessable_entity
+          # The controller might be redirecting instead of rendering unprocessable_content
           # This is a more flexible expectation that allows either behavior
           expect(response.status).to be_in([302, 422])
         end
@@ -279,7 +279,7 @@ RSpec.describe ArtItemsController, type: :controller do
         it "returns a success response (i.e. to display the 'edit' template)" do
           art_item = ArtItem.create! valid_attributes
           put :update, params: {id: art_item.to_param, art_item: invalid_attributes}
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
       end
     end

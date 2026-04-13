@@ -120,9 +120,9 @@ RSpec.describe AnnotationsController, type: :controller do
         }.to change(Annotation, :count).by(0)
       end
 
-      it "returns an unprocessable_entity response" do
+      it "returns an unprocessable_content response" do
         post :create, params: { annotation: invalid_attributes }, format: :html
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "renders the new template" do
@@ -170,10 +170,10 @@ RSpec.describe AnnotationsController, type: :controller do
     end
 
     context "with invalid params" do
-      it "returns an unprocessable_entity response" do
+      it "returns an unprocessable_content response" do
         annotation = Annotation.create! valid_attributes
         put :update, params: { id: annotation.to_param, annotation: invalid_attributes }, format: :html
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "renders the edit template" do

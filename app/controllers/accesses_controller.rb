@@ -30,8 +30,8 @@ class AccessesController < ApplicationController
         format.html { redirect_to access_url(@access), notice: "Access was successfully created." }
         format.json { render :show, status: :created, location: @access }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @access.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @access.errors, status: :unprocessable_content }
       end
     end
   end
@@ -43,8 +43,8 @@ class AccessesController < ApplicationController
         format.html { redirect_to access_url(@access), notice: "Access was successfully updated." }
         format.json { render :show, status: :ok, location: @access }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @access.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @access.errors, status: :unprocessable_content }
       end
     end
   end

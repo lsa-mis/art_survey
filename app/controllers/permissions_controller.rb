@@ -30,8 +30,8 @@ class PermissionsController < ApplicationController
         format.html { redirect_to permission_url(@permission), notice: "Permission was successfully created." }
         format.json { render :show, status: :created, location: @permission }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @permission.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @permission.errors, status: :unprocessable_content }
       end
     end
   end
@@ -43,8 +43,8 @@ class PermissionsController < ApplicationController
         format.html { redirect_to permission_url(@permission), notice: "Permission was successfully updated." }
         format.json { render :show, status: :ok, location: @permission }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @permission.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @permission.errors, status: :unprocessable_content }
       end
     end
   end
