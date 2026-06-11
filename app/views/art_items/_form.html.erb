@@ -52,16 +52,16 @@
 
   <div class="my-5">
     <%= form.label :appraisal_type_id %>
-    <%= form.collection_select :appraisal_type_id, @appraisal_types, :id, :classification, {include_blank: "Select", required: true }, { class: "block rounded-none rounded-l-md text-base border-gray-300" }%>
-  </div>
-
-  <div class="my-5">
-    <%= form.label "Protection" %><span class="optional-text"> * optional</span>
-    <%= form.rich_text_area :appraisal_description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :appraisal_type_id, @appraisal_types, :id, :classification, {include_blank: "Select", required: true }, { class: "block rounded-none rounded-l-md text-base border-gray-300" } %>
   </div>
 
   <div class="my-5">
     <%= form.label "Appraisal Description" %><span class="optional-text"> * optional</span>
+    <%= form.rich_text_area :appraisal_description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label "Protection" %><span class="optional-text"> * optional</span>
     <%= form.rich_text_area :protection, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
