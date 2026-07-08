@@ -51,6 +51,21 @@ RSpec.describe AccessesController, type: :controller do
         get :index
         expect(response).to be_successful
       end
+
+      it "assigns all accesses when no search params are present" do
+        get :index
+        expect(assigns(:accesses).map(&:id)).to match_array(Access.pluck(:id))
+      end
+
+      it "filters accesses by uniqname when search params are present" do
+        get :index, params: { q: { uniqname_eq: super_user.uniqname } }
+        expect(assigns(:accesses).map(&:uniqname)).to eq([super_user.uniqname])
+      end
+
+      it "renders turbo stream when search params are present" do
+        get :index, params: { q: { uniqname_eq: super_user.uniqname } }, format: :turbo_stream
+        expect(response.media_type).to eq("text/vnd.turbo-stream.html")
+      end
     end
 
     describe "GET #show" do
@@ -146,7 +161,8 @@ RSpec.describe AccessesController, type: :controller do
   end
 
   describe "for authenticated department admin user" do
-    let(:dept_access) { create(:access, uniqname: "dept_user", permission: dept_admin_permission, updated_by: 1) }
+    let!(:dept_access) { create(:access, uniqname: "dept_user", permission: dept_admin_permission, updated_by: 1) }
+    let!(:other_dept_access) { create(:access, uniqname: "other_dept_user", permission: create(:permission, role: dept_admin_role, department: other_department), updated_by: 1) }
 
     before do
       # Skip Devise authentication
@@ -161,13 +177,28 @@ RSpec.describe AccessesController, type: :controller do
       allow(controller).to receive(:super_user_access_authorized!).and_return(false)
       allow(controller).to receive(:super_user_department_admin_access_authorized!).and_return(true)
       allow(controller).to receive(:current_user_associated_department_permissions).and_return([dept_admin_permission])
-      allow(controller).to receive(:get_accesses_collection).and_return([dept_access])
+      allow(controller).to receive(:get_accesses_collection).and_return(Access.where(id: dept_access.id))
     end
 
     describe "GET #index" do
       it "returns a success response" do
         get :index
         expect(response).to be_successful
+      end
+
+      it "assigns only scoped accesses when no search params are present" do
+        get :index
+        expect(assigns(:accesses).map(&:id)).to eq([dept_access.id])
+      end
+
+      it "filters scoped accesses by uniqname when search params are present" do
+        get :index, params: { q: { uniqname_eq: "dept_user" } }
+        expect(assigns(:accesses).map(&:uniqname)).to eq(["dept_user"])
+      end
+
+      it "does not return accesses outside department scoping when filtering" do
+        get :index, params: { q: { uniqname_eq: "other_dept_user" } }
+        expect(assigns(:accesses)).to be_empty
       end
     end
 
