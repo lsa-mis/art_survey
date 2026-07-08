@@ -15,4 +15,8 @@ class Access < ApplicationRecord
   validates :uniqname, presence: true
   validates :updated_by, presence: true
   validates :permission_id, presence: true, uniqueness: { scope: :uniqname }
+
+  def self.ransackable_attributes(_auth = nil)
+    %w[uniqname permission_id updated_by]
+  end
 end
