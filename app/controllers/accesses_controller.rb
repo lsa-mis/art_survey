@@ -5,7 +5,17 @@ class AccessesController < ApplicationController
 
   # GET /accesses or /accesses.json
   def index
-    @accesses = get_accesses_collection.sort_by { |ac| ac.permission.department_full_name }
+    base_collection = get_accesses_collection.includes(permission: [:department, :role])
+    @q = base_collection.ransack(params[:q])
+    @accesses = @q.result.sort_by { |ac| ac.permission.department_full_name }
+    @uniqnames_for_filter = base_collection.distinct.pluck(:uniqname).sort
+
+    unless params[:q].nil?
+      render turbo_stream: turbo_stream.replace(
+        :accessesListing,
+        partial: "accesses/listing"
+      )
+    end
   end
 
   # GET /accesses/1 or /accesses/1.json
