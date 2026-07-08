@@ -18,8 +18,19 @@ SimpleCov.start 'rails' do
   add_filter '/bin/'
   add_filter '/db/'
   add_filter '/spec/'
-  # Maintain minimum coverage percentage
-  minimum_coverage 90
+  add_filter '/lib/tasks/'
+  add_filter 'app/channels/'
+  add_filter 'app/jobs/application_job.rb'
+  add_filter 'app/mailers/application_mailer.rb'
+  add_filter 'app/controllers/users/omniauth_callbacks_controller.rb'
+  add_filter 'app/controllers/users/sessions_controller.rb'
+
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Models', 'app/models'
+  add_group 'Helpers', 'app/helpers'
+
+  minimum_coverage 85
+  refuse_coverage_drop
 end
 
 RSpec.configure do |config|

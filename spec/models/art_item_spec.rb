@@ -126,6 +126,60 @@ RSpec.describe ArtItem, type: :model do
     end
   end
 
+  describe 'attachment validations' do
+    let(:art_item) { create(:art_item) }
+
+    describe 'documents' do
+      it 'rejects invalid content types' do
+        art_item.documents.attach(
+          io: StringIO.new('binary'),
+          filename: 'virus.exe',
+          content_type: 'application/x-msdownload'
+        )
+
+        expect(art_item).not_to be_valid
+        expect(art_item.errors[:documents]).to include('Invalid file format. Only documents are allowed.')
+      end
+
+      it 'rejects documents larger than 5MB' do
+        art_item.documents.attach(
+          io: StringIO.new('small'),
+          filename: 'large.pdf',
+          content_type: 'application/pdf'
+        )
+        allow(art_item.documents.first.blob).to receive(:byte_size).and_return(6.megabytes)
+
+        expect(art_item).not_to be_valid
+        expect(art_item.errors[:documents]).to include('Document size exceeds the 5MB limit.')
+      end
+    end
+
+    describe 'images' do
+      it 'rejects non-image content types' do
+        art_item.images.attach(
+          io: StringIO.new('text'),
+          filename: 'file.txt',
+          content_type: 'text/plain'
+        )
+
+        expect(art_item).not_to be_valid
+        expect(art_item.errors[:images]).to include('Invalid file format. Only images are allowed.')
+      end
+
+      it 'rejects images larger than 5MB' do
+        art_item.images.attach(
+          io: StringIO.new('small'),
+          filename: 'large.jpg',
+          content_type: 'image/jpeg'
+        )
+        allow(art_item.images.first.blob).to receive(:byte_size).and_return(6.megabytes)
+
+        expect(art_item).not_to be_valid
+        expect(art_item.errors[:images]).to include('Image size exceeds the 5MB limit.')
+      end
+    end
+  end
+
   describe 'scopes' do
     let!(:archived_art_item) { create(:art_item, archived: true) }
     let!(:active_art_item) { create(:art_item, archived: false) }

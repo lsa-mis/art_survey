@@ -1,5 +1,5 @@
 class ArtItemImagesController < ApplicationController
-  before_action :access_authorized!
+  before_action :check_for_authorized_access
 
   layout false
 
