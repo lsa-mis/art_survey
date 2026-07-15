@@ -47,22 +47,20 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 staging:
-  primary: &primary_staging
+  primary:
     <<: *default
-    database: art_survey_staging
-    username: art_survey
-    password: <%= ENV["ART_SURVEY_DATABASE_PASSWORD"] %>
-  cache:
-    <<: *primary_staging
-    database: art_survey_staging_cache
-    migrations_paths: db/cache_migrate
+    url: <%= ENV["DATABASE_URL"] %>
   queue:
-    <<: *primary_staging
-    database: art_survey_staging_queue
+    <<: *default
+    url: <%= ENV.fetch("QUEUE_DATABASE_URL") { ENV["DATABASE_URL"] } %>
     migrations_paths: db/queue_migrate
+  cache:
+    <<: *default
+    url: <%= ENV.fetch("CACHE_DATABASE_URL") { ENV["DATABASE_URL"] } %>
+    migrations_paths: db/cache_migrate
   cable:
-    <<: *primary_staging
-    database: art_survey_staging_cable
+    <<: *default
+    url: <%= ENV.fetch("CABLE_DATABASE_URL") { ENV["DATABASE_URL"] } %>
     migrations_paths: db/cable_migrate
 
 production:
