@@ -1,5 +1,7 @@
 class CreateSolidCableMessages < ActiveRecord::Migration[8.1]
   def change
+    return if table_exists?(:solid_cable_messages)
+
     create_table :solid_cable_messages do |t|
       t.binary :channel, limit: 1024, null: false
       t.binary :payload, limit: 536870912, null: false
