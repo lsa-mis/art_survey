@@ -1,38 +1,38 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.4.9"
+ruby "4.0.6"
 
-# Add these lines to handle deprecation warnings
-
-gem "bootsnap", require: false
-gem 'csv'
+gem "bootsnap", "~> 1.24", require: false
+gem "csv"
 gem "devise"
 gem "google-cloud-storage", require: false
-gem "image_processing"
+gem "image_processing", "~> 1.2"
 gem "importmap-rails"
 gem "jbuilder"
 gem "omniauth-saml", "~> 2.2"
 gem "omniauth-rails_csrf_protection"
-gem 'pg', '~> 1.5', '>= 1.5.3'
-gem 'propshaft'
-gem "puma"
-gem "rails", "7.2.3.1"
+gem "pg", "~> 1.5", ">= 1.5.3"
+gem "propshaft"
+gem "puma", ">= 5.0"
+gem "rails", "~> 8.1.3"
 gem "ransack", "~> 4.2.0"
-gem "redis"
 gem "request_store"
 gem "sentry-ruby"
 gem "sentry-rails"
 gem "skylight"
+gem "solid_cable"
+gem "solid_cache"
+gem "solid_queue"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "tailwindcss-ruby", "3.4.13"
+gem "thruster", require: false
 gem "turbo-rails"
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "capybara"
@@ -40,11 +40,10 @@ group :development, :test do
   gem "faker"
   gem "database_cleaner-active_record"
   gem "simplecov", require: false
-  gem 'rails-controller-testing'
+  gem "rails-controller-testing"
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem "annotate", "~> 3.2"
+  gem "annotaterb"
 end

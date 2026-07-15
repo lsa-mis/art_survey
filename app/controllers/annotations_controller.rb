@@ -1,6 +1,6 @@
 class AnnotationsController < ApplicationController
   before_action :check_for_authorized_access
-  before_action :set_annotation, only: %i[ show edit update destroy ]
+  before_action :set_annotation, only: %i[ show edit update ]
 
 
   # GET /annotations or /annotations.json
