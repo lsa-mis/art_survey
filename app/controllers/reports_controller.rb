@@ -38,6 +38,14 @@ class ReportsController < ApplicationController
 
   private
 
+  # Prefix cells that would be interpreted as spreadsheet formulas when opened
+  # in Excel/LibreOffice/Google Sheets (CSV injection / formula injection).
+  # Spreadsheets strip a wide set of leading whitespace/controls (ASCII space,
+  # tab/CR/LF/VT/FF, NBSP, BOM, other Cf format chars) before checking for
+  # = + - @ — including ActionText to_plain_text newlines from blank Trix lines.
+  CSV_LEADING_IGNORABLE = /\A(?:\p{Space}|\p{Cf}|[\x00-\x08\x0E-\x1F])*/u
+  CSV_FORMULA_TRIGGER = /\A[=+\-@]/
+
   def art_items_to_csv(art_items)
     headers = [
       'Department',
@@ -56,19 +64,28 @@ class ReportsController < ApplicationController
       csv << headers
       art_items.find_each do |item|
         csv << [
-          item.department&.fullname,
-          item.department_contact,
-          item.description&.body&.to_plain_text,
-          item.location_building,
-          item.location_room,
+          csv_safe_cell(item.department&.fullname),
+          csv_safe_cell(item.department_contact),
+          csv_safe_cell(item.description&.body&.to_plain_text),
+          csv_safe_cell(item.location_building),
+          csv_safe_cell(item.location_room),
           item.value_cost,
           item.date_acquired,
-          item.appraisal_type&.classification,
-          item.protection&.body&.to_plain_text,
-          item.appraisal_description&.body&.to_plain_text,
+          csv_safe_cell(item.appraisal_type&.classification),
+          csv_safe_cell(item.protection&.body&.to_plain_text),
+          csv_safe_cell(item.appraisal_description&.body&.to_plain_text),
           item.images.attached? ? url_for(item.images.first) : ''
         ]
       end
     end
+  end
+
+  def csv_safe_cell(value)
+    return value unless value.is_a?(String)
+
+    significant = value.sub(CSV_LEADING_IGNORABLE, '')
+    return value unless significant.match?(CSV_FORMULA_TRIGGER)
+
+    "'#{value}"
   end
 end
