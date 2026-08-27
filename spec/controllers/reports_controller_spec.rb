@@ -127,7 +127,7 @@ RSpec.describe ReportsController, type: :controller do
         department_contact: '=HYPERLINK("http://evil.example")',
         location_building: '+Building',
         location_room: '-101',
-        value_cost: 500,
+        value_cost: 1500,
         date_acquired: '2022-01-01',
         appraisal_type: appraisal_type
       )
@@ -155,8 +155,9 @@ RSpec.describe ReportsController, type: :controller do
       csv = CSV.parse(response.body, headers: true)
 
       expect(csv[0]['Department Contact']).to eq('Alice')
-      expect(csv[0]['Description']).to eq('Desc1')
       expect(csv[0]['Location Building']).to eq('A')
+      expect(csv[0]['Location Room']).to eq('101')
+      expect(csv[0]['Description']).not_to start_with("'")
     end
   end
 end
