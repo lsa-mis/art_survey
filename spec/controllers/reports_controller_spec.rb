@@ -113,4 +113,50 @@ RSpec.describe ReportsController, type: :controller do
       expect(csv[0]['Department']).not_to eq('Sculpture')
     end
   end
+
+  describe 'CSV formula neutralization' do
+    before do
+      allow(controller).to receive(:is_super_user!).and_return(true)
+      allow(controller).to receive(:is_department_admin_user!).and_return(false)
+    end
+
+    it 'prefixes formula-like contact, location, and rich-text fields' do
+      item = create(
+        :art_item,
+        department: department1,
+        department_contact: '=HYPERLINK("http://evil.example")',
+        location_building: '+Building',
+        location_room: '-101',
+        value_cost: 500,
+        date_acquired: '2022-01-01',
+        appraisal_type: appraisal_type
+      )
+      # Factory after(:build) sets rich text; override after create for formula cases.
+      item.update!(
+        description: '=1+1',
+        protection: '@SUM(A1)',
+        appraisal_description: '+cmd'
+      )
+
+      get :art_items, params: { department_id: department1.id }, format: :csv
+      csv = CSV.parse(response.body, headers: true)
+      row = csv.find { |r| r['Department Contact']&.start_with?("'=") }
+
+      expect(row['Department Contact']).to eq("'=HYPERLINK(\"http://evil.example\")")
+      expect(row['Description']).to eq("'=1+1")
+      expect(row['Location Building']).to eq("'+Building")
+      expect(row['Location Room']).to eq("'-101")
+      expect(row['Protection']).to eq("'@SUM(A1)")
+      expect(row['Appraisal Description']).to eq("'+cmd")
+    end
+
+    it 'leaves ordinary text values unchanged' do
+      get :art_items, params: { department_id: department1.id }, format: :csv
+      csv = CSV.parse(response.body, headers: true)
+
+      expect(csv[0]['Department Contact']).to eq('Alice')
+      expect(csv[0]['Description']).to eq('Desc1')
+      expect(csv[0]['Location Building']).to eq('A')
+    end
+  end
 end

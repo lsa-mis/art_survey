@@ -38,6 +38,10 @@ class ReportsController < ApplicationController
 
   private
 
+  # Prefix cells that would be interpreted as spreadsheet formulas when opened
+  # in Excel/LibreOffice/Google Sheets (CSV injection / formula injection).
+  CSV_FORMULA_PREFIX = /\A[=+\-@\t\r]/
+
   def art_items_to_csv(art_items)
     headers = [
       'Department',
@@ -56,19 +60,25 @@ class ReportsController < ApplicationController
       csv << headers
       art_items.find_each do |item|
         csv << [
-          item.department&.fullname,
-          item.department_contact,
-          item.description&.body&.to_plain_text,
-          item.location_building,
-          item.location_room,
+          csv_safe_cell(item.department&.fullname),
+          csv_safe_cell(item.department_contact),
+          csv_safe_cell(item.description&.body&.to_plain_text),
+          csv_safe_cell(item.location_building),
+          csv_safe_cell(item.location_room),
           item.value_cost,
           item.date_acquired,
-          item.appraisal_type&.classification,
-          item.protection&.body&.to_plain_text,
-          item.appraisal_description&.body&.to_plain_text,
+          csv_safe_cell(item.appraisal_type&.classification),
+          csv_safe_cell(item.protection&.body&.to_plain_text),
+          csv_safe_cell(item.appraisal_description&.body&.to_plain_text),
           item.images.attached? ? url_for(item.images.first) : ''
         ]
       end
     end
+  end
+
+  def csv_safe_cell(value)
+    return value unless value.is_a?(String) && value.match?(CSV_FORMULA_PREFIX)
+
+    "'#{value}"
   end
 end
