@@ -159,5 +159,31 @@ RSpec.describe ReportsController, type: :controller do
       expect(csv[0]['Location Room']).to eq('101')
       expect(csv[0]['Description']).not_to start_with("'")
     end
+
+    it 'prefixes rich-text fields that start with a newline before a formula' do
+      item = create(
+        :art_item,
+        department: department1,
+        value_cost: 1500,
+        date_acquired: '2022-01-01',
+        appraisal_type: appraisal_type
+      )
+      # Blank Trix lines become \n in to_plain_text, which the formula check must treat
+      # as a prefix so spreadsheet apps cannot strip the newline and execute the formula.
+      item.update!(
+        description: '<div><br></div><div>=1+1</div>',
+        protection: '<div><br></div><div>@SUM(A1)</div>',
+        appraisal_description: '<div><br></div><div>+cmd</div>'
+      )
+
+      get :art_items, params: { department_id: department1.id }, format: :csv
+      csv = CSV.parse(response.body, headers: true)
+      row = csv.find { |r| r['Description']&.start_with?("'\n=") }
+
+      expect(item.description.body.to_plain_text).to eq("\n=1+1")
+      expect(row['Description']).to eq("'\n=1+1")
+      expect(row['Protection']).to eq("'\n@SUM(A1)")
+      expect(row['Appraisal Description']).to eq("'\n+cmd")
+    end
   end
 end

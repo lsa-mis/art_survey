@@ -40,7 +40,9 @@ class ReportsController < ApplicationController
 
   # Prefix cells that would be interpreted as spreadsheet formulas when opened
   # in Excel/LibreOffice/Google Sheets (CSV injection / formula injection).
-  CSV_FORMULA_PREFIX = /\A[=+\-@\t\r]/
+  # Include LF: ActionText to_plain_text emits \n for blank Trix lines, and
+  # spreadsheets strip leading newlines before treating = + - @ as formulas.
+  CSV_FORMULA_PREFIX = /\A[=+\-@\t\r\n]/
 
   def art_items_to_csv(art_items)
     headers = [
