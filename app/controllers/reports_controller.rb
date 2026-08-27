@@ -40,9 +40,11 @@ class ReportsController < ApplicationController
 
   # Prefix cells that would be interpreted as spreadsheet formulas when opened
   # in Excel/LibreOffice/Google Sheets (CSV injection / formula injection).
-  # Include LF: ActionText to_plain_text emits \n for blank Trix lines, and
-  # spreadsheets strip leading newlines before treating = + - @ as formulas.
-  CSV_FORMULA_PREFIX = /\A[=+\-@\t\r\n]/
+  # Spreadsheets strip a wide set of leading whitespace/controls (ASCII space,
+  # tab/CR/LF/VT/FF, NBSP, BOM, other Cf format chars) before checking for
+  # = + - @ — including ActionText to_plain_text newlines from blank Trix lines.
+  CSV_LEADING_IGNORABLE = /\A(?:\p{Space}|\p{Cf}|[\x00-\x08\x0E-\x1F])*/u
+  CSV_FORMULA_TRIGGER = /\A[=+\-@]/
 
   def art_items_to_csv(art_items)
     headers = [
@@ -79,7 +81,10 @@ class ReportsController < ApplicationController
   end
 
   def csv_safe_cell(value)
-    return value unless value.is_a?(String) && value.match?(CSV_FORMULA_PREFIX)
+    return value unless value.is_a?(String)
+
+    significant = value.sub(CSV_LEADING_IGNORABLE, '')
+    return value unless significant.match?(CSV_FORMULA_TRIGGER)
 
     "'#{value}"
   end

@@ -185,5 +185,55 @@ RSpec.describe ReportsController, type: :controller do
       expect(row['Protection']).to eq("'\n@SUM(A1)")
       expect(row['Appraisal Description']).to eq("'\n+cmd")
     end
+
+    it 'prefixes formulas after leading whitespace or control characters that spreadsheets strip' do
+      item = create(
+        :art_item,
+        department: department1,
+        department_contact: " =HYPERLINK(\"http://evil.example\")",
+        location_building: "\u00A0+Building",
+        location_room: "\uFEFF-101",
+        value_cost: 1500,
+        date_acquired: '2022-01-01',
+        appraisal_type: appraisal_type
+      )
+      # ActionText may normalize some C0 controls; leading space/NBSP still reach export
+      # and must not bypass neutralization when followed by a formula trigger.
+      item.update!(
+        description: " =1+1",
+        protection: "\u00A0@SUM(A1)",
+        appraisal_description: "\v\f+cmd"
+      )
+
+      get :art_items, params: { department_id: department1.id }, format: :csv
+      csv = CSV.parse(response.body, headers: true)
+      row = csv.find { |r| r['Department Contact']&.start_with?("' ") }
+
+      expect(row['Department Contact']).to eq("' =HYPERLINK(\"http://evil.example\")")
+      expect(row['Location Building']).to eq("'\u00A0+Building")
+      expect(row['Location Room']).to eq("'\uFEFF-101")
+      expect(row['Description']).to start_with("'")
+      expect(row['Description']).to end_with('=1+1')
+      expect(row['Protection']).to start_with("'")
+      expect(row['Protection']).to end_with('@SUM(A1)')
+      expect(row['Appraisal Description']).to start_with("'")
+      expect(row['Appraisal Description']).to end_with('+cmd')
+    end
+
+    it 'neutralizes formula triggers after ignorable prefixes in csv_safe_cell' do
+      [
+        " =1+1",
+        "\u00A0+cmd",
+        "\uFEFF@SUM(A1)",
+        "\v=HYPERLINK(\"http://evil.example\")",
+        "\f-1+1",
+        "\t\r\n =WEBSERVICE(\"http://evil.example\")"
+      ].each do |payload|
+        expect(controller.send(:csv_safe_cell, payload)).to eq("'#{payload}")
+      end
+
+      expect(controller.send(:csv_safe_cell, ' ordinary')).to eq(' ordinary')
+      expect(controller.send(:csv_safe_cell, "\u00A0safe")).to eq("\u00A0safe")
+    end
   end
 end
