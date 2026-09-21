@@ -53,8 +53,12 @@ Devise.setup do |config|
     security: {want_assertions_signed: true, want_assertions_encrypted: true},
     attribute_statements: {
       email: ['email', 'mail', 'User.Email'],
-      first_name: ['first_name', 'User.FirstName'],
-      last_name: ['last_name', 'User.LastName']
+      first_name: ['first_name', 'givenName', 'User.FirstName'],
+      last_name: ['last_name', 'sn', 'User.LastName'],
+      uid: ['uid', 'uid', 'User.UID'],
+      principal_name: ['principal_name', 'eduPersonPrincipalName', 'User.PrincipalName'],
+      display_name: ['display_name', 'displayName', 'User.DisplayName'],
+      person_affiliation: ['person_affiliation', 'eduPersonAffiliation', 'User.PersonAffiliation']
     }
   }.compact
 
