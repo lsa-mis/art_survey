@@ -35,13 +35,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def set_user
-    if user_signed_in?
-      @user = current_user
-    elsif User.where(email: auth.info.email).any?
-      @user = User.find_by(email: auth.info.email)
-    else
-      @user = create_user
-    end
+    @user =
+      if user_signed_in?
+        current_user
+      else
+        User.find_by(email: auth.info.email) || create_user
+      end
 
     if @user
       session[:user_email] = @user.email
