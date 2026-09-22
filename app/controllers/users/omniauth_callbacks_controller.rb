@@ -59,7 +59,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       uniqname: get_uniqname(auth.info.email),
       uid: auth.info.uid,
       principal_name: auth.info.principal_name,
-      display_name: auth.info.name,
+      display_name: auth.info.display_name,
       person_affiliation: auth.info.person_affiliation,
       password: Devise.friendly_token[0, 20]
     )
