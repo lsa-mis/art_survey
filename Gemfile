@@ -10,6 +10,7 @@ gem "google-cloud-storage", require: false
 gem "image_processing", "~> 1.2"
 gem "importmap-rails"
 gem "jbuilder"
+gem "json", "< 3"
 gem "omniauth-saml", "~> 2.2"
 gem "omniauth-rails_csrf_protection"
 gem "pg", "~> 1.5", ">= 1.5.3"
