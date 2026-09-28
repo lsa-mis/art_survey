@@ -167,6 +167,14 @@ RSpec.describe ApplicationController, type: :controller do
       expect(controller.get_accesses_collection.pluck(:id)).to match_array(Access.pluck(:id))
     end
 
+    it "returns all Access rows for permissions in a Department Administrator's departments" do
+      set_session_uniqname(dept_admin.uniqname)
+      expect(controller.get_accesses_collection.pluck(:id)).to contain_exactly(
+        dept_admin_access.id,
+        recorder_access.id
+      )
+    end
+
     it 'returns only the current user Access rows for Recorders' do
       set_session_uniqname(recorder.uniqname)
       expect(controller.get_accesses_collection.pluck(:id)).to eq([recorder_access.id])
@@ -204,6 +212,12 @@ RSpec.describe ApplicationController, type: :controller do
   end
 
   describe '#super_user_department_admin_access_authorized!' do
+    it 'allows SuperUsers through' do
+      set_session_uniqname(super_user.uniqname)
+      get :admin_guarded
+      expect(response).to have_http_status(:ok)
+    end
+
     it 'allows Department Administrators through' do
       set_session_uniqname(dept_admin.uniqname)
       get :admin_guarded
