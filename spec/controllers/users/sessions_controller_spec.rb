@@ -11,6 +11,13 @@ RSpec.describe Users::SessionsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    around do |example|
+      previous_base_url = $baseURL
+      example.run
+    ensure
+      $baseURL = previous_base_url
+    end
+
     it 'preserves SAML session keys and redirects to IdP single logout' do
       $baseURL = 'https://example.test/return'
       session['saml_uid'] = 'tester@umich.edu'
