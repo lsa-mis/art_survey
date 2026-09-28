@@ -167,7 +167,7 @@ RSpec.describe ApplicationController, type: :controller do
       expect(controller.get_accesses_collection.pluck(:id)).to match_array(Access.pluck(:id))
     end
 
-    it "returns all Access rows for permissions in a Department Administrator's departments" do
+    it "returns all Access rows for permissions in a Department Administrator-managed department" do
       set_session_uniqname(dept_admin.uniqname)
       expect(controller.get_accesses_collection.pluck(:id)).to contain_exactly(
         dept_admin_access.id,
