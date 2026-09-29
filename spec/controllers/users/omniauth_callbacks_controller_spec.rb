@@ -17,10 +17,17 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
     )
   end
 
-  before do
-    request.env['devise.mapping'] = Devise.mappings[:user]
-    $baseURL = '/'
-  end
+around do |example|
+  previous_base_url = $baseURL
+  $baseURL = '/'
+  example.run
+ensure
+  $baseURL = previous_base_url
+end
+
+before do
+  request.env['devise.mapping'] = Devise.mappings[:user]
+end
 
   describe '#get_uniqname' do
     it 'returns the local part of the email address' do
