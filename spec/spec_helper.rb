@@ -22,8 +22,8 @@ SimpleCov.start 'rails' do
   add_filter 'app/channels/'
   add_filter 'app/jobs/application_job.rb'
   add_filter 'app/mailers/application_mailer.rb'
-  add_filter 'app/controllers/users/omniauth_callbacks_controller.rb'
-  add_filter 'app/controllers/users/sessions_controller.rb'
+# add_filter 'app/controllers/users/omniauth_callbacks_controller.rb'
+# add_filter 'app/controllers/users/sessions_controller.rb'
 
   add_group 'Controllers', 'app/controllers'
   add_group 'Models', 'app/models'
