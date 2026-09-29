@@ -180,6 +180,74 @@ RSpec.describe ArtItem, type: :model do
     end
   end
 
+  describe 'AppendToHasManyAttached' do
+    let(:art_item) { create(:art_item) }
+
+    def document_upload(filename)
+      {
+        io: StringIO.new('%PDF-1.4 sample'),
+        filename: filename,
+        content_type: 'application/pdf'
+      }
+    end
+
+    def image_upload(filename)
+      {
+        io: StringIO.new('fake-image-bytes'),
+        filename: filename,
+        content_type: 'image/jpeg'
+      }
+    end
+
+    it 'appends documents instead of replacing existing uploads' do
+      art_item.documents.attach(document_upload('first.pdf'))
+      art_item.save!
+      expect(art_item.documents.count).to eq(1)
+
+      art_item.documents = [document_upload('second.pdf')]
+      art_item.save!
+
+      expect(art_item.reload.documents.count).to eq(2)
+      expect(art_item.documents.map { |d| d.filename.to_s }).to contain_exactly('first.pdf', 'second.pdf')
+    end
+
+    it 'appends images instead of replacing existing uploads' do
+      art_item.images.attach(image_upload('first.jpg'))
+      art_item.save!
+      expect(art_item.images.count).to eq(1)
+
+      art_item.images = [image_upload('second.jpg')]
+      art_item.save!
+
+      expect(art_item.reload.images.count).to eq(2)
+      expect(art_item.images.map { |i| i.filename.to_s }).to contain_exactly('first.jpg', 'second.jpg')
+    end
+
+    it 'leaves existing documents unchanged when assigned blank' do
+      art_item.documents.attach(document_upload('keep.pdf'))
+      art_item.save!
+
+      art_item.documents = []
+      art_item.save!
+
+      expect(art_item.reload.documents.count).to eq(1)
+      expect(art_item.documents.first.filename.to_s).to eq('keep.pdf')
+    end
+
+    it 'appends multiple new documents in one assignment' do
+      art_item.documents.attach(document_upload('existing.pdf'))
+      art_item.save!
+
+      art_item.documents = [document_upload('a.pdf'), document_upload('b.pdf')]
+      art_item.save!
+
+      expect(art_item.reload.documents.count).to eq(3)
+      expect(art_item.documents.map { |d| d.filename.to_s }).to contain_exactly(
+        'existing.pdf', 'a.pdf', 'b.pdf'
+      )
+    end
+  end
+
   describe 'scopes' do
     let!(:archived_art_item) { create(:art_item, archived: true) }
     let!(:active_art_item) { create(:art_item, archived: false) }
