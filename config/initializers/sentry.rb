@@ -6,8 +6,8 @@ if Rails.env.staging? || Rails.env.production?
   Rails.logger.info "SENTRY_DSN present: #{ENV['SENTRY_DSN'].present?}"
 
   Sentry.init do |config|
-    # DSN is automatically read from SENTRY_DSN environment variable
-    config.enable_logs = true
+    # DSN is automatically read from SENTRY_DSN environment variable.
+    # sentry-ruby 7 enables logs by default and removed config.enable_logs.
     config.rails.structured_logging.enabled = true
     config.environment = Rails.env
 
