@@ -8,7 +8,7 @@ Art Survey is used to enter information about valuable departmentally owned art.
 
 ### Prerequisites
 - Postgresql
-- University of Michigan Shibboleth + DUO authentication
+- University of Michigan Okta authentication
 - 'ldap_lookup' gem requires a proper configuration to be in place
 
 To get a local copy up and running clone the repo, navigate to the local instance and start the application

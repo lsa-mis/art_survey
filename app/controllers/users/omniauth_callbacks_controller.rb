@@ -15,7 +15,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-
   def handle_auth(kind)
     if user_signed_in?
       flash[:notice] = "Your #{kind} account was connected."
@@ -30,41 +29,40 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     return unless user_signed_in?
     current_user.last_sign_in_at < 15.minutes.ago
   end
-end
 
-def auth
-  request.env["omniauth.auth"]
-end
-
-def set_user
-  if user_signed_in?
-    @user = current_user
-  elsif User.where(email: auth.info.email).any?
-    @user = User.find_by(email: auth.info.email)
-  else
-    @user = create_user
+  def auth
+    request.env["omniauth.auth"]
   end
 
-  if @user
-    session[:user_email] = @user.email
-    session[:user_uniqname] = get_uniqname(@user.email)
+  def set_user
+    @user =
+      if user_signed_in?
+        current_user
+      else
+        User.find_by(email: auth.info.email) || create_user
+      end
+
+    if @user
+      session[:user_email] = @user.email
+      session[:user_uniqname] = get_uniqname(@user.email)
+    end
   end
-end
 
-def get_uniqname(email)
-  email.split("@").first
-end
+  def get_uniqname(email)
+    email.split("@").first
+  end
 
-def create_user
+  def create_user
+    @user = User.create(
+      email: auth.info.email,
+      uniqname: get_uniqname(auth.info.email),
+      uid: auth.info.uid,
+      principal_name: auth.info.principal_name,
+      display_name: auth.info.display_name,
+      person_affiliation: auth.info.person_affiliation,
+      password: Devise.friendly_token[0, 20]
+    )
 
-  @user = User.create(
-    email: auth.info.email,
-    uniqname: get_uniqname(auth.info.email),
-    uid: auth.info.uid,
-    principal_name: auth.info.principal_name,
-    display_name: auth.info.name,
-    person_affiliation: auth.info.person_affiliation,
-    password: Devise.friendly_token[0, 20]
-  )
-
+    @user
+  end
 end
