@@ -11,7 +11,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         email: email,
         uid: uid,
         principal_name: email,
-        name: name,
+        display_name: display_name,
         person_affiliation: affiliation
       )
     )
