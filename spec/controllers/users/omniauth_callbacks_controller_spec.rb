@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
-  def auth_hash(email:, uid: 'saml-uid', name: 'Art User', affiliation: 'staff')
+  def auth_hash(email:, uid: 'saml-uid', display_name: 'Art User', affiliation: 'staff')
     OmniAuth::AuthHash.new(
       provider: 'saml',
       uid: uid,
@@ -56,7 +56,7 @@ end
       request.env['omniauth.auth'] = auth_hash(
         email: 'brandnew@umich.edu',
         uid: 'brand-uid',
-        name: 'Brand New',
+        display_name: 'Brand New',
         affiliation: 'faculty'
       )
       allow(controller).to receive(:user_signed_in?).and_return(false)
@@ -92,7 +92,7 @@ end
       request.env['omniauth.auth'] = auth_hash(
         email: 'createonly@umich.edu',
         uid: 'create-uid',
-        name: 'Create Only',
+        display_name: 'Create Only',
         affiliation: 'staff'
       )
 
@@ -117,7 +117,7 @@ end
     end
 
     it 'signs in a newly created user and sets authorization session keys' do
-      request.env['omniauth.auth'] = auth_hash(email: 'callback@umich.edu', uid: 'cb-uid', name: 'Callback User')
+      request.env['omniauth.auth'] = auth_hash(email: 'callback@umich.edu', uid: 'cb-uid', display_name: 'Callback User')
 
       post :saml
 
