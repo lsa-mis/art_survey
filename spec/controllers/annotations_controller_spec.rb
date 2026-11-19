@@ -31,7 +31,7 @@ RSpec.describe AnnotationsController, type: :controller do
     access
 
     # Mock authentication
-    allow(controller).to receive(:authenticate_user!).and_return(true)
+    stub_authenticate_user!
     allow(controller).to receive(:current_user).and_return(user)
 
     # Mock session

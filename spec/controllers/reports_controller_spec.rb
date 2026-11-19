@@ -15,7 +15,7 @@ RSpec.describe ReportsController, type: :controller do
   end
 
   before do
-    allow(controller).to receive(:authenticate_user!).and_return(true)
+    stub_authenticate_user!
     allow(controller).to receive(:current_user_department_objects).and_return([department1, department2])
     allow(controller).to receive(:current_user_departments).and_return([department1.id, department2.id])
   end

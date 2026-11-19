@@ -19,7 +19,7 @@ RSpec.describe PermissionsController, type: :controller do
   describe "with authenticated super user" do
     before do
       # Skip Devise authentication
-      allow(controller).to receive(:authenticate_user!).and_return(true)
+      stub_authenticate_user!
       # Set the session
       session[:user_uniqname] = super_user.uniqname
       # Stub the authorization methods
@@ -134,7 +134,7 @@ RSpec.describe PermissionsController, type: :controller do
 
     before do
       # Skip Devise authentication
-      allow(controller).to receive(:authenticate_user!).and_return(true)
+      stub_authenticate_user!
       # Set the session
       session[:user_uniqname] = regular_user.uniqname
       # Stub the authorization methods
