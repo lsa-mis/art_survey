@@ -15,19 +15,19 @@
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'simplecov'
 SimpleCov.start 'rails' do
-  add_filter '/bin/'
-  add_filter '/db/'
-  add_filter '/spec/'
-  add_filter '/lib/tasks/'
-  add_filter 'app/channels/'
-  add_filter 'app/jobs/application_job.rb'
-  add_filter 'app/mailers/application_mailer.rb'
-# add_filter 'app/controllers/users/omniauth_callbacks_controller.rb'
-# add_filter 'app/controllers/users/sessions_controller.rb'
+  skip '/bin/'
+  skip '/db/'
+  skip '/spec/'
+  skip '/lib/tasks/'
+  skip 'app/channels/'
+  skip 'app/jobs/application_job.rb'
+  skip 'app/mailers/application_mailer.rb'
+  # skip 'app/controllers/users/omniauth_callbacks_controller.rb'
+  # skip 'app/controllers/users/sessions_controller.rb'
 
-  add_group 'Controllers', 'app/controllers'
-  add_group 'Models', 'app/models'
-  add_group 'Helpers', 'app/helpers'
+  group 'Controllers', 'app/controllers'
+  group 'Models', 'app/models'
+  group 'Helpers', 'app/helpers'
 
   minimum_coverage 85
   refuse_coverage_drop

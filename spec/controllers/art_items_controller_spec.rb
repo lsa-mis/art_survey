@@ -45,7 +45,7 @@ RSpec.describe ArtItemsController, type: :controller do
   describe "for authenticated super user" do
     before do
       # Skip Devise authentication
-      allow(controller).to receive(:authenticate_user!).and_return(true)
+      stub_authenticate_user!
       # Set the session
       session[:user_uniqname] = super_user.uniqname
       # Stub the authorization methods
@@ -160,7 +160,7 @@ RSpec.describe ArtItemsController, type: :controller do
   describe "for authenticated department admin user" do
     before do
       # Skip Devise authentication
-      allow(controller).to receive(:authenticate_user!).and_return(true)
+      stub_authenticate_user!
       # Set the session
       session[:user_uniqname] = dept_admin.uniqname
       # Stub the authorization methods

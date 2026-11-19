@@ -32,7 +32,7 @@ RSpec.describe ApplicationController, type: :controller do
       get 'anonymous/admin_guarded' => 'anonymous#admin_guarded'
     end
 
-    allow(controller).to receive(:authenticate_user!).and_return(true)
+    stub_authenticate_user!
   end
 
   let!(:lsa_department) { create(:department, fullname: 'LSA College', shortname: 'LSA') }
